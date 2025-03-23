@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <style>
+    .spiderman {
+      fill: #e23636;
+    }
+    .spider-web {
+      fill: none;
+      stroke: #0d47a1;
+      stroke-width: 2;
+      opacity: 0.7;
+    }
+    .highlights {
+      fill: #ffffff;
+      opacity: 0.5;
+    }
+  </style>
+  <!-- Background -->
+  <rect width="800" height="800" fill="#1a1a2e"/>
+  
+  <!-- Web pattern background -->
+  <g class="web-pattern">
+    <path class="spider-web" d="M0,0 L800,800 M800,0 L0,800"/>
+    <path class="spider-web" d="M400,0 L400,800 M0,400 L800,400"/>
+    <path class="spider-web" d="M0,200 L800,600 M800,200 L0,600"/>
+    <path class="spider-web" d="M200,0 L600,800 M600,0 L200,800"/>
+  </g>
+  
+  <!-- Spiderman silhouette -->
+  <path class="spiderman" d="M400,150 C450,150 500,170 530,200 C560,230 580,270 580,320 C580,370 560,410 530,440 C520,450 510,460 500,465 C520,480 550,510 560,550 C570,590 570,640 550,680 C530,720 500,750 460,765 C430,775 400,780 370,765 C340,750 320,725 310,695 C300,665 300,630 310,600 C320,570 335,550 350,535 C340,530 330,520 320,510 C290,480 270,440 270,390 C270,340 290,300 320,270 C350,240 375,220 400,220 L400,150 Z"/>
+  
+  <!-- Spiderman eyes -->
+  <ellipse cx="350" cy="350" rx="30" ry="50" fill="white"/>
+  <ellipse cx="450" cy="350" rx="30" ry="50" fill="white"/>
+  
+  <!-- Web details -->
+  <path class="spider-web" d="M330,280 C340,265 360,260 380,270"/>
+  <path class="spider-web" d="M470,280 C460,265 440,260 420,270"/>
+  
+  <!-- Highlights -->
+  <path class="highlights" d="M350,280 L370,260 L390,280"/>
+  <path class="highlights" d="M410,280 L430,260 L450,280"/>
+</svg>

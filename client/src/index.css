@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 100% 99%;
+    --foreground: 213 15% 16%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 213 15% 16%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 15% 16%;
+    
+    --primary: 17 96% 53%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 16 79% 61%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 240 5% 96%;
+    --muted-foreground: 215 16% 47%;
+    
+    --accent: 16 79% 61%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 0 0% 0%;
+    --input: 240 5% 96%;
+    --ring: 17 96% 53%;
+    
+    --radius: 0.5rem;
+  }
+  
+  .dark {
+    --background: 213 15% 16%;
+    --foreground: 322 35% 82%; /* Chocolate-magenta shade for better visibility */
+    
+    --card: 213 15% 16%;
+    --card-foreground: 322 35% 82%;
+    
+    --popover: 213 15% 16%;
+    --popover-foreground: 322 35% 82%;
+    
+    --primary: 17 96% 53%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 3 90% 23%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 213 15% 22%;
+    --muted-foreground: 322 30% 70%;
+    
+    --accent: 3 90% 23%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 0 0% 0%;
+    --input: 213 15% 22%;
+    --ring: 17 96% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .neo-brutal {
+    @apply border-4 border-black shadow-brutal transition-transform duration-75;
+  }
+  
+  .neo-brutal:hover {
+    @apply shadow-brutal-hover transform -translate-y-1 -translate-x-1;
+  }
+  
+  .neo-brutal-sm {
+    @apply border-2 border-black shadow-brutal-sm transition-transform duration-75;
+  }
+  
+  .typing-cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: currentColor;
+    animation: blink 1s step-end infinite;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -38px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FA4B13;
+    border: 3px solid black;
+    z-index: 1;
+  }
+  
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 20px;
+    bottom: -40px;
+    width: 4px;
+    background-color: black;
+    z-index: 0;
+  }
+  
+  .timeline-item:last-child::after {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .bg-light-bg {
+    background-color: #F8F8FF;
+  }
+  
+  .bg-light-primary {
+    background-color: #FA4B13;
+  }
+  
+  .bg-light-secondary {
+    background-color: #F27242;
+  }
+  
+  .text-light-text {
+    color: #212C30;
+  }
+  
+  .text-light-primary {
+    color: #FA4B13;
+  }
+  
+  .dark .bg-dark-bg {
+    background-color: #212C30;
+  }
+  
+  .dark .bg-dark-primary {
+    background-color: #FA4B13;
+  }
+  
+  .dark .bg-dark-secondary {
+    background-color: #670E0F;
+  }
+  
+  .dark .text-dark-text {
+    color: #E6AACE; /* Updated to chocolate-magenta */
+  }
+  
+  .dark .text-dark-primary {
+    color: #FA4B13;
+  }
+  
+  .shadow-brutal {
+    box-shadow: 6px 6px 0px 0px #000000;
+  }
+  
+  .shadow-brutal-hover {
+    box-shadow: 8px 8px 0px 0px #000000;
+  }
+  
+  .shadow-brutal-sm {
+    box-shadow: 4px 4px 0px 0px #000000;
+  }
+  
+  /* 3D effects and glow for the Spiderman image */
+  .spiderman-hero-image {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.5s ease;
+  }
+  
+  .spiderman-hero-image::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(45deg, #e23636, #0d47a1, #e23636);
+    filter: blur(15px);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .spiderman-hero-image:hover::before {
+    opacity: 1;
+  }
+  
+  /* Glow effect for neo-brutal elements on hover */
+  .neo-brutal {
+    position: relative;
+    overflow: visible !important;
+  }
+  
+  .neo-brutal::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: linear-gradient(to right, #FA4B13, #F27242);
+    filter: blur(20px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .neo-brutal:hover::after {
+    opacity: 0.7;
+  }
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}

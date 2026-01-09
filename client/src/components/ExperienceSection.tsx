@@ -4,8 +4,8 @@ import { experiences } from '@/lib/data';
 const ExperienceSection = () => {
   return (
     <section id="experience" className="py-20">
-      <div className="container mx-auto px-6">
-        <motion.div 
+      <div className="w-[85%] mx-auto px-2 md:px-4">
+        <motion.div
           className="mb-12"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -16,12 +16,12 @@ const ExperienceSection = () => {
             Experience
           </h2>
         </motion.div>
-        
+
         <div className="relative pl-12 md:pl-16 max-w-3xl mx-auto">
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-black"></div>
-          
+
           {experiences.map((experience, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               className={`timeline-item relative mb-16 ml-6 ${index === experiences.length - 1 ? '' : 'mb-16'}`}
               initial={{ opacity: 0, x: -10 }}
@@ -36,15 +36,15 @@ const ExperienceSection = () => {
                     {experience.period}
                   </div>
                 </div>
-                
+
                 <h4 className="font-semibold mb-3">{experience.company}</h4>
-                
+
                 <ul className="list-disc list-inside space-y-2">
                   {experience.responsibilities.map((responsibility, respIndex) => (
                     <li key={respIndex} dangerouslySetInnerHTML={{ __html: responsibility }}></li>
                   ))}
                 </ul>
-                
+
                 <div className="mt-4 flex flex-wrap gap-2">
                   {experience.skills.map((skill, skillIndex) => (
                     <span key={skillIndex} className="text-sm bg-light-bg dark:bg-dark-bg border-2 border-black px-2 py-1">

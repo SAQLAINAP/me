@@ -37,16 +37,16 @@ const Header = () => {
 
   return (
     <header className={`sticky top-0 w-full bg-light-bg dark:bg-dark-bg z-50 py-4 border-b-4 border-black ${scrolled ? 'shadow-lg' : ''}`}>
-      <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className="w-[85%] mx-auto px-2 md:px-4 flex justify-between items-center">
         <h1 className="font-poppins font-bold text-3xl">
           <span className="text-light-primary dark:text-dark-primary">S</span>aqlain
         </h1>
 
         <nav className="hidden md:flex gap-8">
           {navLinks.map((link) => (
-            <a 
+            <a
               key={link.href}
-              href={link.href} 
+              href={link.href}
               className="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors"
             >
               {link.label}
@@ -55,7 +55,7 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button 
+          <button
             onClick={toggleTheme}
             className="neo-brutal p-2 bg-light-bg dark:bg-dark-bg"
             aria-label="Toggle theme"
@@ -66,9 +66,9 @@ const Header = () => {
               <i className="fas fa-sun"></i>
             )}
           </button>
-          
-          <button 
-            className="md:hidden neo-brutal p-2 bg-light-bg dark:bg-dark-bg" 
+
+          <button
+            className="md:hidden neo-brutal p-2 bg-light-bg dark:bg-dark-bg"
             onClick={toggleMenu}
             aria-label="Toggle mobile menu"
           >
@@ -79,11 +79,11 @@ const Header = () => {
 
       {/* Mobile menu */}
       <div className={`md:hidden bg-light-bg dark:bg-dark-bg border-t-4 border-black ${isMenuOpen ? 'block' : 'hidden'}`}>
-        <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+        <div className="w-[85%] mx-auto px-2 md:px-4 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
-            <a 
+            <a
               key={link.href}
-              href={link.href} 
+              href={link.href}
               className="font-medium py-2"
               onClick={handleLinkClick}
             >

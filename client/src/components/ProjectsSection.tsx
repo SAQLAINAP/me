@@ -4,15 +4,15 @@ import { projects, ProjectFilter } from '@/lib/data';
 import ProjectModal from './ui/ProjectModal';
 
 const ProjectsSection = () => {
-  const [activeFilter, setActiveFilter] = useState<ProjectFilter>('all');
+  const [activeFilter, setActiveFilter] = useState<ProjectFilter>('ai');
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
   const handleFilterClick = (filter: ProjectFilter) => {
     setActiveFilter(filter);
   };
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
+  const filteredProjects = activeFilter === 'all'
+    ? projects
     : projects.filter(project => project.categories.includes(activeFilter));
 
   const openProjectModal = (projectId: string) => {
@@ -25,8 +25,8 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="py-20 bg-light-secondary/5 dark:bg-dark-secondary/10">
-      <div className="container mx-auto px-6">
-        <motion.div 
+      <div className="w-[85%] mx-auto px-2 md:px-4">
+        <motion.div
           className="mb-12"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -37,18 +37,11 @@ const ProjectsSection = () => {
             Projects
           </h2>
         </motion.div>
-        
+
         <div className="mb-8">
           <div className="flex flex-wrap gap-4 justify-center">
-            <motion.button 
-              className={`neo-brutal px-4 py-2 bg-light-bg dark:bg-dark-bg font-medium ${activeFilter === 'all' ? 'bg-light-primary dark:bg-dark-primary text-white' : ''}`}
-              onClick={() => handleFilterClick('all')}
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 2 }}
-            >
-              All Projects
-            </motion.button>
-            <motion.button 
+
+            <motion.button
               className={`neo-brutal px-4 py-2 bg-light-bg dark:bg-dark-bg font-medium ${activeFilter === 'ai' ? 'bg-light-primary dark:bg-dark-primary text-white' : ''}`}
               onClick={() => handleFilterClick('ai')}
               whileHover={{ y: -2 }}
@@ -56,7 +49,7 @@ const ProjectsSection = () => {
             >
               AI
             </motion.button>
-            <motion.button 
+            <motion.button
               className={`neo-brutal px-4 py-2 bg-light-bg dark:bg-dark-bg font-medium ${activeFilter === 'web' ? 'bg-light-primary dark:bg-dark-primary text-white' : ''}`}
               onClick={() => handleFilterClick('web')}
               whileHover={{ y: -2 }}
@@ -64,7 +57,7 @@ const ProjectsSection = () => {
             >
               Web
             </motion.button>
-            <motion.button 
+            <motion.button
               className={`neo-brutal px-4 py-2 bg-light-bg dark:bg-dark-bg font-medium ${activeFilter === 'quantum' ? 'bg-light-primary dark:bg-dark-primary text-white' : ''}`}
               onClick={() => handleFilterClick('quantum')}
               whileHover={{ y: -2 }}
@@ -72,7 +65,7 @@ const ProjectsSection = () => {
             >
               Quantum Computing
             </motion.button>
-            <motion.button 
+            <motion.button
               className={`neo-brutal px-4 py-2 bg-light-bg dark:bg-dark-bg font-medium ${activeFilter === 'opensource' ? 'bg-light-primary dark:bg-dark-primary text-white' : ''}`}
               onClick={() => handleFilterClick('opensource')}
               whileHover={{ y: -2 }}
@@ -80,10 +73,26 @@ const ProjectsSection = () => {
             >
               Open Source
             </motion.button>
+            <motion.button
+              className={`neo-brutal px-4 py-2 bg-light-bg dark:bg-dark-bg font-medium ${activeFilter === 'blockchain' ? 'bg-light-primary dark:bg-dark-primary text-white' : ''}`}
+              onClick={() => handleFilterClick('blockchain')}
+              whileHover={{ y: -2 }}
+              whileTap={{ y: 2 }}
+            >
+              Blockchain
+            </motion.button>
+            <motion.button
+              className={`neo-brutal px-4 py-2 bg-light-bg dark:bg-dark-bg font-medium ${activeFilter === 'misc' ? 'bg-light-primary dark:bg-dark-primary text-white' : ''}`}
+              onClick={() => handleFilterClick('misc')}
+              whileHover={{ y: -2 }}
+              whileTap={{ y: 2 }}
+            >
+              Misc
+            </motion.button>
           </div>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-2 gap-8"
           layout
         >
@@ -100,9 +109,9 @@ const ProjectsSection = () => {
               >
                 <div className="neo-brutal h-full bg-white dark:bg-dark-bg/90 overflow-hidden group">
                   <div className="relative overflow-hidden h-48">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
+                    <img
+                      src={project.image}
+                      alt={project.title}
                       className="w-full h-full object-cover transition-transform group-hover:scale-105"
                     />
                     <div className="absolute top-4 right-4">
@@ -111,7 +120,7 @@ const ProjectsSection = () => {
                       </span>
                     </div>
                   </div>
-                  
+
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="font-poppins font-bold text-2xl">{project.title}</h3>
@@ -123,11 +132,11 @@ const ProjectsSection = () => {
                         ))}
                       </div>
                     </div>
-                    
+
                     <p className="mb-4">
                       <span className="font-semibold">{project.shortDescription}</span>
                     </p>
-                    
+
                     <div className="mb-4">
                       <h4 className="font-semibold mb-2">Tech Stack:</h4>
                       <div className="flex flex-wrap gap-2">
@@ -138,18 +147,18 @@ const ProjectsSection = () => {
                         ))}
                       </div>
                     </div>
-                    
+
                     <div className="flex justify-between items-center">
-                      <motion.button 
-                        className="neo-brutal-sm bg-light-primary dark:bg-dark-primary text-white font-bold py-2 px-4" 
+                      <motion.button
+                        className="neo-brutal-sm bg-light-primary dark:bg-dark-primary text-white font-bold py-2 px-4"
                         onClick={() => openProjectModal(project.id)}
                         whileHover={{ y: -2 }}
                         whileTap={{ y: 2 }}
                       >
                         View Details
                       </motion.button>
-                      <a 
-                        href={project.githubLink} 
+                      <a
+                        href={project.githubLink}
                         className="text-light-primary dark:text-dark-primary hover:underline font-medium"
                         target="_blank"
                         rel="noopener noreferrer"

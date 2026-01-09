@@ -16,8 +16,10 @@ export const frameworks = [
   { name: 'Express.js', iconType: 'FaNodeJs' },
   { name: 'Tailwind CSS', iconType: 'SiTailwindcss' },
   { name: 'Flask', iconType: 'SiFlask' },
+  { name: 'FastAPI', iconType: 'SiFastapi' },
+  { name: 'Node.js', iconType: 'SiNodedotjs' },
+  { name: 'NextJS', iconType: 'SiNextdotjs' },
   { name: 'Cirq', iconType: 'FaCode' },
-  { name: 'PennyLane', iconType: 'SiPenny' },
 ];
 
 export const devTools = [
@@ -25,8 +27,13 @@ export const devTools = [
   { name: 'GitHub', iconType: 'FaGithub' },
   { name: 'Docker', iconType: 'FaDocker' },
   { name: 'Kubernetes', iconType: 'SiKubernetes' },
-  { name: 'Ansible', iconType: 'SiAnsible' },
   { name: 'Linux', iconType: 'FaLinux' },
+  { name: 'Postman', iconType: 'SiPostman' },
+  { name: 'CI/CD', iconType: 'FaTools' },
+  { name: 'OpenAI SDK', iconType: 'SiOpenai' },
+  { name: 'Gemini Agents SDK', iconType: 'SiGoogle' },
+  { name: 'n8n', iconType: 'SiN8N' },
+  { name: 'make.io', iconType: 'SiMake' },
 ];
 
 export const cloudAndDb = [
@@ -34,21 +41,32 @@ export const cloudAndDb = [
   { name: 'SQL', iconType: 'FaDatabase' },
   { name: 'MongoDB', iconType: 'SiMongodb' },
   { name: 'PostgreSQL', iconType: 'FaDatabase' },
+  { name: 'Firebase', iconType: 'SiFirebase' },
 ];
 
 // Experience data from resume
 export const experiences = [
   {
-    position: 'Tech Intern',
-    company: 'Spawn Labs',
+    position: 'Product Dev & Engineering Intern',
+    company: 'Kroolo-AI',
     location: 'Bangalore',
-    period: 'May 2023 - June 2023',
+    period: 'July 2025 - Oct 2025',
     responsibilities: [
-      'Developed a <span class="font-semibold">full-stack application</span> alongside the team',
-      'Assisted in <span class="font-semibold">hosting and version control systems</span>',
-      'Collaborated with senior developers on project implementation'
+      'Developed a <span class="font-semibold">complete policy analyzer and generator site</span> from scratch, processing over 40 policies with 90% + accuracy and reducing manual review time by more than 40%',
+      'Assisted in <span class="font-semibold">multiple features for Enterprise Search</span> on Kroolo Platform, improving search response times by 30%'
     ],
-    skills: ['Full Stack', 'DevOps', 'Version Control']
+    skills: ['Product Development', 'Full Stack', 'Enterprise Search', 'AI Integration']
+  },
+  {
+    position: 'Prompt Engineering Intern',
+    company: 'GetCreatr AI',
+    location: 'Bangalore',
+    period: 'May 2025 - July 2025',
+    responsibilities: [
+      'Developed and deployed <span class="font-semibold">5 end-to-end AI-embedded full-stack applications</span> using advanced prompting techniques, generating $3,000+ in client project revenue',
+      'Assisted in <span class="font-semibold">client projects and developing portfolio projects</span> on Creatr, improving app outreach'
+    ],
+    skills: ['Prompt Engineering', 'Full Stack', 'AI Applications', 'Client Relations']
   },
   {
     position: 'Campus Ambassador',
@@ -60,6 +78,18 @@ export const experiences = [
       'Represented Coding Ninjas & GeeksforGeeks on campus and in technical communities'
     ],
     skills: ['Event Management', 'Technical Promotion', 'Leadership']
+  },
+  {
+    position: 'Tech Intern',
+    company: 'Spawn Labs',
+    location: 'Bangalore',
+    period: 'May 2023 - June 2023',
+    responsibilities: [
+      'Developed a <span class="font-semibold">full-stack application</span> alongside the team',
+      'Assisted in <span class="font-semibold">hosting and version control systems</span>',
+      'Collaborated with senior developers on project implementation'
+    ],
+    skills: ['Full Stack', 'DevOps', 'Version Control']
   },
   {
     position: 'Member',
@@ -75,7 +105,7 @@ export const experiences = [
 ];
 
 // Projects data
-export type ProjectFilter = 'all' | 'ai' | 'web' | 'quantum' | 'opensource';
+export type ProjectFilter = 'all' | 'ai' | 'web' | 'quantum' | 'opensource' | 'blockchain' | 'misc';
 
 export interface Project {
   id: string;
@@ -149,6 +179,115 @@ export const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c',
     categories: ['web', 'opensource'],
     githubLink: 'https://github.com/SAQLAINAP/DENSA'
+  },
+  {
+    id: 'architectural-ai-gemini',
+    title: 'Architectural AI Gemini',
+    year: '2024',
+    shortDescription: 'Generative AI for architectural design',
+    description: 'An AI-powered tool leveraging Google\'s Gemini models to assist in architectural planning and design. It interprets user requirements to generate layout suggestions, analyze zoning data, and provide intelligent design recommendations.',
+    challenges: 'Translating abstract user descriptions into concrete visual or structural architectural concepts required careful prompt engineering and integration with multimodal capabilities of Gemini.',
+    features: [
+      'Generative design suggestions',
+      'Multimodal input processing',
+      'Code generation for drafting tools',
+      'Integration with Gemini Pro Vision'
+    ],
+    techStack: ['Google Gemini API', 'Python', 'Flask', 'React'],
+    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e',
+    categories: ['ai'],
+    githubLink: 'https://github.com/SAQLAINAP/Architectural-AI-Gemini'
+  },
+  {
+    id: 'refashion-nft',
+    title: 'Refashion NFT',
+    year: '2024',
+    shortDescription: 'Sustainable fashion NFT marketplace',
+    description: 'A blockchain-based marketplace designed to promote sustainable fashion through NFTs. It allows creators to mint and trade digital fashion assets, ensuring authenticity and ownership tracking via smart contracts.',
+    challenges: 'Developing secure smart contracts and ensuring a seamless user experience for non-crypto natives was a priority. We focused on optimizing gas fees and implementing a clean UI.',
+    features: [
+      'NFT Minting and Trading',
+      'Secure Smart Contract integration',
+      'Wallet connectivity (MetaMask)',
+      'Sustainable fashion focus'
+    ],
+    techStack: ['Solidity', 'Ethereum', 'React', 'Web3.js', 'IPFS'],
+    image: 'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d',
+    categories: ['blockchain'],
+    githubLink: 'https://github.com/SAQLAINAP/Refashion_NFT'
+  },
+  {
+    id: 'sentiment-analysis',
+    title: 'Sentiment Analysis',
+    year: '2024',
+    shortDescription: 'Advanced NLP sentiment classifier',
+    description: 'A comprehensive sentiment analysis project that utilizes various machine learning techniques to classify text data. It explores different models and preprocessing steps to achieve high accuracy in detecting emotional tone.',
+    challenges: 'Handling nuances in natural language, such as sarcasm and context-dependent meanings, required experimenting with multiple pre-trained models and fine-tuning strategies.',
+    features: [
+      'Text pre-processing pipeline',
+      'Multiple classification models',
+      'Visualization of sentiment trends',
+      'Detailed performance metrics'
+    ],
+    techStack: ['Python', 'NLTK', 'Scikit-learn', 'Pandas', 'Matplotlib'],
+    image: 'https://images.unsplash.com/photo-1555435024-2c2d45a1f161',
+    categories: ['ai'],
+    githubLink: 'https://github.com/SAQLAINAP/Sentiment_Analysis/tree/master'
+  },
+  {
+    id: 'poligap',
+    title: 'Poligap',
+    year: '2024',
+    shortDescription: 'Modern political engagement platform',
+    description: 'A live platform connecting citizens with policy makers, bridging the gap in political communication. It features real-time updates, forums for discussion, and direct channels for feedback.',
+    challenges: 'Building a platform that handles real-time user interaction and ensures data integrity at scale was key. We focused on a responsive, accessible design for a broad user base.',
+    features: [
+      'Real-time policy updates',
+      'Community discussion forums',
+      'Direct feedback channels',
+      'Live deployment at poligap.com'
+    ],
+    techStack: ['Next.js', 'React', 'Tailwind CSS', 'Node.js'],
+    image: 'https://images.unsplash.com/photo-1529101091760-61df6be5d10d',
+    categories: ['web'],
+    githubLink: 'https://github.com/SAQLAINAP/Poligap',
+    demoLink: 'https://poligap.com'
+  },
+  {
+    id: 'safeclick',
+    title: 'SafeClick',
+    year: '2024',
+    shortDescription: 'Browser security extension',
+    description: 'A preventative security tool designed to protect users from malicious links and phishing attempts. It analyzes URLs in real-time and warns users before they navigate to potentially unsafe sites.',
+    challenges: ' achieving low-latency URL analysis without compromising browsing speed. We implemented efficient local caching and heuristic analysis to minimize API calls.',
+    features: [
+      'Real-time URL analysis',
+      'Phishing detection',
+      'Visual warning indicators',
+      'Lightweight browser extension'
+    ],
+    techStack: ['JavaScript', 'Browser Extension API', 'HTML/CSS'],
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3',
+    categories: ['web', 'misc'],
+    githubLink: 'https://github.com/SAQLAINAP/SafeClick'
+  },
+  {
+    id: 'devguardian',
+    title: 'DevGuardian',
+    year: '2024',
+    shortDescription: 'Developer workflow security tool',
+    description: 'A specialized tool for developers to safeguard their environments and manage secrets securely. It helps identify vulnerabilities in dependencies and configuration files.',
+    challenges: 'Designing a tool that integrates seamlessly into existing developer workflows without adding friction. We focused on CLI usability and clear reporting.',
+    features: [
+      'Secret scanning',
+      'Dependency vulnerability check',
+      'Configurable security rules',
+      'CLI interface'
+    ],
+    techStack: ['Python', 'Bash', 'Git Hooks'],
+    image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb',
+    categories: ['misc'],
+    githubLink: 'https://github.com/SAQLAINAP/DevGuardian'
   },
   {
     id: 'fuel-cal',
@@ -229,6 +368,13 @@ export const certifications = [
     issuer: 'Linux Foundation'
   },
   {
+    title: 'Kubernetes and Cloud Native Associate (KCNA)',
+    description: 'Demonstrated foundational knowledge of Kubernetes and the cloud-native ecosystem. Topics covered include Kubernetes architecture, container orchestration, cloud-native architecture, observability, and application delivery.',
+    period: 'Aug 2025',
+    achievement: 'Certified Associate',
+    issuer: 'Cloud Native Computing Foundation (CNCF)'
+  },
+  {
     title: 'Quantum Computing Fundamentals',
     description: 'Mastered quantum algorithms, cryptography, and quantum AI applications. Gained hands-on experience with quantum programming frameworks including Cirq, Qiskit, and developed applications in QNLP and Quantum Machine Learning.',
     period: 'Jan 2024 - Present',
@@ -266,42 +412,85 @@ export const scholarships = [
   }
 ];
 
-export const hackathons = [
+export const technicalAchievements = [
   {
-    title: 'Smart India Hackathon 2023',
-    description: 'Developed an AI-powered solution for sustainable urban planning',
-    status: 'Finalist',
-    tags: ['AI/ML', 'Sustainability', 'Smart Cities']
+    title: 'TGB X Kroolo Future of Work AI Hackathon',
+    status: 'Winner',
+    description: 'Developed an innovative AI solution for the future of work.',
+    tags: ['AI', 'FutureOfWork']
+  },
+  {
+    title: 'Kaspersky SkyHack Pan India Hackathon',
+    status: 'Winner',
+    description: 'Secured first place in a national level cybersecurity and tech hackathon.',
+    tags: ['Cybersecurity', 'Tech']
+  },
+  {
+    title: 'GetCreatr Vibe Coding Showdown',
+    status: 'Winner',
+    date: '2024-2025',
+    description: 'Top performance in coding and rapid prototyping showdown.',
+    tags: ['Coding', 'Prototyping']
   },
   {
     title: 'Intercontinental AI Hackathon',
-    description: 'Created a cross-platform solution for healthcare diagnostics using ML',
-    status: 'Runner-Up',
-    tags: ['Healthcare', 'ML', 'Diagnostics']
+    status: 'Winner',
+    description: 'Global recognition for AI-driven solution.',
+    tags: ['Global', 'AI']
+  },
+  {
+    title: 'Genesis Vibe Coding',
+    status: 'Finalist',
+    description: 'Reached the finals in this competitive coding event.',
+    tags: ['Coding']
   },
   {
     title: 'Quant-A-Maze',
-    description: 'Implemented quantum algorithms for financial market prediction',
     status: 'Finalist',
-    tags: ['Quantum', 'Finance', 'Algorithms']
+    description: 'Implemented quantum algorithms for complex problem solving.',
+    tags: ['Quantum', 'Algorithms']
+  },
+  {
+    title: 'Smart India Hackathon',
+    status: 'Finalist',
+    description: 'Selected for the grand finale of SIH.',
+    tags: ['Nationwide', 'Innovation']
+  },
+  {
+    title: 'TON HackerHouse',
+    status: 'Finalist',
+    description: 'Finalist in The Open Network blockchain hackathon.',
+    tags: ['Blockchain', 'TON']
+  },
+  {
+    title: 'SideTrip AI Hackathon',
+    status: 'Finalist',
+    description: 'Recognized for unique AI travel solution.',
+    tags: ['AI', 'Travel']
   }
 ];
 
-// Entrepreneurial achievements
-export const entrepreneurial = [
+export const entrepreneurialAchievements = [
+  {
+    title: 'WeSrijan by Welingkar WeSchool',
+    status: 'Winner',
+    date: '2024',
+    description: 'Awarded for exceptional entrepreneurial concept and business plan.'
+  },
   {
     title: 'Algorand India Accelerator',
     status: 'Finalist',
-    date: 'November 2023'
+    description: 'Selected for the prestigious blockchain accelerator program.'
   },
   {
     title: 'Conquest (BITS Pilani)',
     status: 'Finalist',
-    date: 'November 2023'
+    description: 'Finalist in one of India\'s largest startup conclaves.'
   },
   {
     title: 'Xartup Fellowship',
     status: 'Finalist',
-    date: 'November 2023'
+    date: '2023',
+    description: 'Recognized potential in the startup ecosystem.'
   }
 ];

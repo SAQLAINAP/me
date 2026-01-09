@@ -48,7 +48,6 @@ const AboutSection = () => {
       case 'FaDocker': return <FaDocker className="text-2xl mb-1 text-light-primary dark:text-dark-icon" />;
       case 'SiKubernetes': return <SiKubernetes className="text-2xl mb-1 text-light-primary dark:text-dark-icon" />;
       case 'SiAnsible': return <SiAnsible className="text-2xl mb-1 text-light-primary dark:text-dark-icon" />;
-      case 'SiPenny': return <SiPenny className="text-2xl mb-1 text-light-primary dark:text-dark-icon" />;
       case 'SiExpress': return <SiExpress className="text-2xl mb-1 text-light-primary dark:text-dark-icon" />;
       case 'SiMongodb': return <SiMongodb className="text-2xl mb-1 text-light-primary dark:text-dark-icon" />;
       case 'SiFlask': return <SiFlask className="text-2xl mb-1 text-light-primary dark:text-dark-icon" />;

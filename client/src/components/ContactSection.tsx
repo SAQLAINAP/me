@@ -1,267 +1,95 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
-import { useMutation } from '@tanstack/react-query';
-import { z } from 'zod';
-import { apiRequest } from '@/lib/queryClient';
-import { useToast } from '@/hooks/use-toast';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { SiLinktree } from 'react-icons/si';
+import { contact } from '@/lib/data';
 
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Name must be at least 2 characters.',
-  }),
-  email: z.string().email({
-    message: 'Please enter a valid email address.',
-  }),
-  message: z.string().min(5, {
-    message: 'Message must be at least 5 characters.',
-  }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
-
+/**
+ * Contact section — the SAQLAINAP site is static (hosted on GitHub Pages),
+ * so we removed the API-backed form and let visitors reach out directly via
+ * email / socials. The mailto link pre-fills subject + body so it's still one
+ * tap on mobile.
+ */
 const ContactSection = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      message: '',
-    },
-  });
-
-  const mutation = useMutation({
-    mutationFn: (data: FormValues) => {
-      return apiRequest('POST', '/api/contact', data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Success!",
-        description: "Your message has been sent successfully.",
-      });
-      form.reset();
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: error.message || "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
-    },
-    onSettled: () => {
-      setIsSubmitting(false);
-    }
-  });
-
-  const onSubmit = (data: FormValues) => {
-    setIsSubmitting(true);
-    mutation.mutate(data);
-  };
+  const mailto =
+    `mailto:${contact.email}` +
+    `?subject=${encodeURIComponent('Hey Saqlain — reaching out via saqlainap.github.io')}` +
+    `&body=${encodeURIComponent('Hi Saqlain,\n\n')}`;
 
   return (
-    <section id="contact" className="py-20 bg-light-secondary/5 dark:bg-dark-secondary/10">
-      <div className="w-[85%] mx-auto px-2 md:px-4">
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="inline-block font-poppins font-bold text-4xl md:text-5xl neo-brutal py-3 px-6 bg-light-primary dark:bg-dark-primary text-white transform -rotate-1">
-            Get In Touch
+    <section id="contact" className="py-24 relative">
+      <div className="w-[90%] max-w-6xl mx-auto">
+        <div className="max-w-3xl">
+          <div className="h-eyebrow">// contact</div>
+          <h2 className="h-display">
+            Let's <span className="text-aurora">build</span> something.
           </h2>
-        </motion.div>
+          <p className="mt-4 text-white/70 max-w-2xl">
+            I'm always up for a chat about voice AI, agents, quantum-ML, or
+            anything cloud-native. The fastest way to reach me is email.
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <motion.div
-            className="order-2 md:order-1"
+        <div className="mt-10 grid md:grid-cols-2 gap-6">
+          {/* Primary CTA card */}
+          <motion.a
+            href={mailto}
+            className="glass-strong p-8 flex flex-col justify-between h-full card-hover"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="neo-brutal bg-white dark:bg-dark-bg/90 p-6">
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="font-semibold">Name</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Your name"
-                            className="w-full p-3 neo-brutal-sm bg-light-bg dark:bg-dark-bg/80"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="font-semibold">Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="your.email@example.com"
-                            className="w-full p-3 neo-brutal-sm bg-light-bg dark:bg-dark-bg/80"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="font-semibold">Message</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Your message here..."
-                            rows={5}
-                            className="w-full p-3 neo-brutal-sm bg-light-bg dark:bg-dark-bg/80 resize-none"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <Button
-                    type="submit"
-                    className="neo-brutal bg-light-primary dark:bg-dark-primary text-white font-bold py-3 px-6 w-full hover:translate-y-0 hover:translate-x-0 hover:bg-light-primary dark:hover:bg-dark-primary"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button>
-                </form>
-              </Form>
+            <div>
+              <div className="pill mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                open to collaborations
+              </div>
+              <div className="text-3xl md:text-4xl font-display font-semibold text-white leading-tight">
+                {contact.email}
+              </div>
+              <p className="mt-3 text-white/60 text-sm">
+                Click to open a pre-drafted email. I usually reply within a day.
+              </p>
             </div>
-          </motion.div>
+            <div className="mt-8 flex items-center gap-2 text-sm text-cyan-300">
+              <FaEnvelope /> send email <span aria-hidden>→</span>
+            </div>
+          </motion.a>
 
+          {/* Socials card */}
           <motion.div
-            className="order-1 md:order-2"
+            className="glass-strong p-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <div className="neo-brutal bg-white dark:bg-dark-bg/90 p-6 h-full">
-              <h3 className="font-poppins font-bold text-2xl mb-6">Connect With Me</h3>
+            <div className="text-xs font-mono uppercase tracking-widest text-white/40 mb-4">
+              elsewhere on the web
+            </div>
+            <ul className="space-y-4">
+              <SocialRow
+                icon={<FaGithub />}
+                title="GitHub"
+                handle={contact.githubHandle}
+                href={contact.github}
+              />
+              <SocialRow
+                icon={<FaLinkedin />}
+                title="LinkedIn"
+                handle={contact.linkedinHandle}
+                href={contact.linkedin}
+              />
+              <SocialRow
+                icon={<SiLinktree />}
+                title="Linktree"
+                handle="linktr.ee/saqlainap"
+                href={contact.linktree}
+              />
+            </ul>
 
-              <div className="space-y-6">
-                <div className="flex items-center">
-                  <div className="neo-brutal-sm bg-light-primary dark:bg-dark-primary text-white p-3 mr-4">
-                    <i className="fas fa-envelope text-xl"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Email</h4>
-                    <a href="mailto:saqlain@example.com" className="text-light-primary dark:text-dark-icon hover:underline">
-                      saqlain@example.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <div className="neo-brutal-sm bg-light-primary dark:bg-dark-primary text-white p-3 mr-4">
-                    <i className="fab fa-github text-xl"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">GitHub</h4>
-                    <a
-                      href="https://github.com/saqlainahmed"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-light-primary dark:text-dark-icon hover:underline"
-                    >
-                      github.com/saqlainahmed
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <div className="neo-brutal-sm bg-light-primary dark:bg-dark-primary text-white p-3 mr-4">
-                    <i className="fab fa-linkedin text-xl"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">LinkedIn</h4>
-                    <a
-                      href="https://linkedin.com/in/saqlainahmed"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-light-primary dark:text-dark-icon hover:underline"
-                    >
-                      linkedin.com/in/saqlainahmed
-                    </a>
-                  </div>
-                </div>
-
-                <div className="mt-8">
-                  <h4 className="font-semibold mb-4">Find me on other platforms</h4>
-                  <div className="flex gap-4">
-                    <motion.a
-                      href="#"
-                      className="neo-brutal-sm bg-light-bg dark:bg-dark-bg p-3 text-xl"
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      <i className="fab fa-twitter"></i>
-                    </motion.a>
-                    <motion.a
-                      href="#"
-                      className="neo-brutal-sm bg-light-bg dark:bg-dark-bg p-3 text-xl"
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      <i className="fab fa-instagram"></i>
-                    </motion.a>
-                    <motion.a
-                      href="#"
-                      className="neo-brutal-sm bg-light-bg dark:bg-dark-bg p-3 text-xl"
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      <i className="fas fa-code"></i>
-                    </motion.a>
-                    <motion.a
-                      href="#"
-                      className="neo-brutal-sm bg-light-bg dark:bg-dark-bg p-3 text-xl"
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      <i className="fab fa-medium"></i>
-                    </motion.a>
-                  </div>
-                </div>
-              </div>
+            <div className="mt-8 pt-6 border-t border-white/5 text-xs text-white/40 font-mono">
+              this site is SAQLAINAP — my personal handle. work / plivo enquiries welcome via email.
             </div>
           </motion.div>
         </div>
@@ -269,5 +97,37 @@ const ContactSection = () => {
     </section>
   );
 };
+
+function SocialRow({
+  icon,
+  title,
+  handle,
+  href,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  handle: string;
+  href: string;
+}) {
+  return (
+    <li>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors group"
+      >
+        <div className="h-10 w-10 rounded-lg flex items-center justify-center bg-white/5 text-white/80 group-hover:text-white group-hover:bg-white/10 text-lg">
+          {icon}
+        </div>
+        <div className="flex-1">
+          <div className="text-sm text-white/60">{title}</div>
+          <div className="text-white font-mono text-sm">{handle}</div>
+        </div>
+        <span className="text-white/30 group-hover:text-white/80 transition-colors">↗</span>
+      </a>
+    </li>
+  );
+}
 
 export default ContactSection;

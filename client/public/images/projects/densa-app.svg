@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g-densa-app" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"   stop-color="#22d3ee"/>
+      <stop offset="1"   stop-color="#3b82f6"/>
+    </linearGradient>
+    <pattern id="grid-densa-app" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow-densa-app" cx="50%" cy="45%" r="55%">
+      <stop offset="0"   stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="1"   stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="800" height="500" fill="url(#g-densa-app)"/>
+  <rect width="800" height="500" fill="url(#grid-densa-app)"/>
+  <rect width="800" height="500" fill="url(#glow-densa-app)"/>
+
+  <!-- decorative floating shapes -->
+  <circle cx="120" cy="90"  r="60"  fill="#ffffff" opacity="0.06"/>
+  <circle cx="720" cy="410" r="90"  fill="#ffffff" opacity="0.05"/>
+  <circle cx="680" cy="120" r="30"  fill="#ffffff" opacity="0.10"/>
+
+  <!-- glyph disc, centered on the right -->
+  <g transform="translate(500 130) scale(1.35)">
+    <circle cx="100" cy="100" r="105" fill="#000" opacity="0.15"/>
+    
+    <rect x="40" y="45" width="120" height="110" rx="8" fill="none" stroke="#fff" stroke-width="6" opacity="0.9"/>
+    <rect x="55" y="60" width="90" height="20" rx="3" fill="#fff" opacity="0.85"/>
+    <rect x="55" y="90" width="90" height="6" rx="2" fill="#fff" opacity="0.7"/>
+    <rect x="55" y="102" width="60" height="6" rx="2" fill="#fff" opacity="0.7"/>
+    <rect x="55" y="120" width="40" height="26" rx="3" fill="#fff" opacity="0.55"/>
+    <rect x="100" y="120" width="45" height="6" rx="2" fill="#fff" opacity="0.7"/>
+    <rect x="100" y="132" width="45" height="6" rx="2" fill="#fff" opacity="0.7"/>
+  </g>
+
+  <!-- text plate on the left -->
+  <g font-family="'Space Grotesk','Inter',system-ui,sans-serif">
+    <text x="60" y="240" fill="#0b0b12" opacity="0.85" font-size="14" letter-spacing="4">SAQLAINAP · ARENA</text>
+    <text x="60" y="300" fill="#ffffff" font-size="56" font-weight="700">DENSA</text>
+    <text x="60" y="345" fill="#ffffff" opacity="0.85" font-size="22">dockerized news agg</text>
+    <rect x="60" y="370" width="80" height="5" rx="2" fill="#ffffff" opacity="0.9"/>
+  </g>
+</svg>

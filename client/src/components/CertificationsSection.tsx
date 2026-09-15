@@ -1,148 +1,45 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaCertificate } from 'react-icons/fa';
 import { certifications } from '../lib/data';
 
 const CertificationsSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
-
-  const nextCertificate = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === certifications.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevCertificate = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? certifications.length - 1 : prevIndex - 1
-    );
-  };
-
   return (
-    <section id="certifications" className="py-20 bg-light-bg dark:bg-dark-bg">
-      <div className="container mx-auto px-4 md:px-6">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <motion.h2 
-            variants={itemVariants}
-            className="font-poppins text-4xl md:text-5xl font-bold mb-4 neo-brutal-shadow-text"
-          >
-            My Certifications
-          </motion.h2>
-          <motion.div 
-            variants={itemVariants}
-            className="w-24 h-2 bg-light-primary dark:bg-dark-primary mx-auto mb-6"
-          />
-        </motion.div>
+    <section id="certifications" className="py-24 relative">
+      <div className="w-[90%] max-w-7xl mx-auto">
+        <div className="mb-10">
+          <div className="h-eyebrow">// certifications</div>
+          <h2 className="h-display">
+            Continuous <span className="text-aurora">learning</span> log.
+          </h2>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto"
-        >
-          <motion.div 
-            variants={itemVariants}
-            className="relative neo-brutal bg-white dark:bg-dark-bg/90 p-8"
-          >
-            <div className="grid md:grid-cols-2 gap-6 items-center">
-              {/* Left side - Certificate mockup */}
-              <div className="neo-brutal-sm bg-light-bg dark:bg-dark-bg/80 p-6 relative transform rotate-[-2deg]">
-                <div className="bg-white p-6 border-2 border-black">
-                  <div className="text-center mb-4">
-                    <h4 className="text-sm text-gray-500 mb-1">Certificate of Completion</h4>
-                    <h3 className="text-xl font-bold">{certifications[currentIndex].title}</h3>
-                  </div>
-                  <div className="text-center mb-4">
-                    <p className="font-medium">awarded to</p>
-                    <p className="text-xl font-bold">Saqlain Ahmed P</p>
-                  </div>
-                  <div className="border-t-2 border-dashed border-gray-300 my-4 pt-4 text-center">
-                    <p className="text-sm">
-                      {certifications[currentIndex].period}
-                    </p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      Issued by {certifications[currentIndex].issuer}
-                    </p>
-                    <p className="font-bold text-sm mt-1">
-                      {certifications[currentIndex].achievement}
-                    </p>
-                  </div>
+        <div className="grid md:grid-cols-2 gap-5">
+          {certifications.map((cert, i) => (
+            <motion.article
+              key={cert.title}
+              className="glass-strong p-6 card-hover flex gap-5 items-start"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: i * 0.05 }}
+            >
+              <div className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-fuchsia-500/20 to-cyan-400/20 text-fuchsia-300 text-xl">
+                <FaCertificate />
+              </div>
+
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <h3 className="font-display font-semibold text-lg text-white">{cert.title}</h3>
+                  <span className="chip-cyan">{cert.achievement}</span>
                 </div>
+                <div className="text-xs font-mono text-white/40 mb-3">
+                  {cert.issuer} · {cert.period}
+                </div>
+                <p className="text-sm text-white/70 leading-relaxed">{cert.description}</p>
               </div>
-
-              {/* Right side - Certificate information */}
-              <div>
-                <p className="text-gray-500 mb-1">{certifications[currentIndex].period}</p>
-                <h3 className="text-2xl font-bold mb-2">{certifications[currentIndex].title}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                  Issued by <span className="font-semibold">{certifications[currentIndex].issuer}</span>
-                </p>
-                <p className="mb-4">
-                  {certifications[currentIndex].description}
-                </p>
-                <p className="font-bold flex items-center">
-                  <span className="neo-brutal-sm bg-light-primary dark:bg-dark-primary text-white px-2 py-1 text-sm mr-2">
-                    {certifications[currentIndex].achievement}
-                  </span>
-                </p>
-              </div>
-            </div>
-
-            {/* Navigation arrows */}
-            <div className="flex justify-center mt-8 space-x-4">
-              <button 
-                onClick={prevCertificate}
-                className="neo-brutal-sm bg-light-bg dark:bg-dark-bg/80 p-2 hover:translate-y-[-2px] transition-transform"
-                aria-label="Previous certificate"
-              >
-                <FaArrowLeft />
-              </button>
-              <div className="flex space-x-2">
-                {certifications.map((_, index) => (
-                  <div 
-                    key={index} 
-                    className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-light-primary dark:bg-dark-primary' : 'bg-gray-300 dark:bg-gray-700'}`}
-                  />
-                ))}
-              </div>
-              <button 
-                onClick={nextCertificate}
-                className="neo-brutal-sm bg-light-bg dark:bg-dark-bg/80 p-2 hover:translate-y-[-2px] transition-transform"
-                aria-label="Next certificate"
-              >
-                <FaArrowRight />
-              </button>
-            </div>
-          </motion.div>
-        </motion.div>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );

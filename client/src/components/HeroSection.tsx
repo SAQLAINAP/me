@@ -1,113 +1,92 @@
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub } from 'react-icons/fa';
-import { SiLeetcode, SiCodechef, SiCodeforces, SiKaggle, SiLinktree } from 'react-icons/si';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
+import { Link } from 'wouter';
 import HackerText from './HackerText';
+import { contact } from '@/lib/data';
+
+const AuroraWorld = lazy(() => import('./three/AuroraWorld'));
 
 const HeroSection = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center py-20 overflow-hidden">
-      <div className="w-[85%] mx-auto px-2 md:px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            className="order-2 md:order-1 -mt-16 md:-mt-24"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="relative mb-6">
-              <div className="absolute -inset-1 bg-light-primary dark:bg-dark-primary transform rotate-1"></div>
-              <h2 className="relative font-poppins font-extrabold text-4xl md:text-6xl lg:text-7xl bg-light-bg dark:bg-dark-bg p-4 border-4 border-black inline-block">
-                <HackerText text="Hello, I am Saqlain Ahmed P" />
-              </h2>
-            </div>
-            <p className="text-xl md:text-2xl mb-12 font-semibold">
-              AI-ML Engineer | Quantum Computing Enthusiast | DevOps & Web Developer
-            </p>
+    <section id="home" className="relative min-h-[92vh] flex items-center py-16 md:py-24 overflow-hidden">
+      <div className="w-[90%] max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center relative z-10">
+        {/* LEFT: identity ---------------------------------------------------- */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="h-eyebrow">// saqlainap · portfolio v3</div>
 
-            {/* Laptop Frame */}
-            <motion.div
-              className="w-full max-w-md mx-auto md:mx-0"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-            >
-              {/* Screen Top */}
-              <div className="bg-gray-800 rounded-t-xl border-4 border-gray-900 p-2 pb-0 relative shadow-2xl">
-                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-gray-600 rounded-full z-10"></div>
-                {/* Screen Content */}
-                <div className="bg-white dark:bg-black border-2 border-gray-700 rounded-t h-48 sm:h-56 flex items-center justify-center p-4 relative overflow-hidden group">
-                  {/* Wallpaper / Background Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-light-primary/10 to-transparent dark:from-dark-primary/20 pointer-events-none"></div>
+          <h1 className="font-display font-semibold text-4xl md:text-6xl lg:text-7xl leading-[1.02]">
+            <HackerText text="Saqlain Ahmed P" />
+            <br />
+            <span className="text-aurora">building at the edge.</span>
+          </h1>
 
-                  <div className="w-full h-full grid grid-cols-3 grid-rows-2 place-items-center z-10 p-2 sm:p-4 gap-y-2">
-                    {[
-                      { icon: <SiLeetcode />, href: "https://leetcode.com/", color: "text-yellow-500" },
-                      { icon: <SiCodechef />, href: "https://www.codechef.com/", color: "text-amber-700" },
-                      { icon: <SiCodeforces />, href: "https://codeforces.com/", color: "text-blue-500" },
-                      { icon: <SiKaggle />, href: "https://www.kaggle.com/", color: "text-sky-500" },
-                      { icon: <FaGithub />, href: "https://github.com/", color: "text-gray-900 dark:text-white" },
-                      { icon: <SiLinktree />, href: "https://linktr.ee/", color: "text-green-500" },
-                    ].map((item, index) => (
-                      <motion.a
-                        key={index}
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`text-3xl sm:text-4xl ${item.color} transform transition-transform hover:scale-125 hover:drop-shadow-md`}
-                        whileHover={{ y: -3 }}
-                      >
-                        {item.icon}
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
+          <p className="mt-6 text-base md:text-lg text-white/70 max-w-xl leading-relaxed">
+            AI engineer @ <span className="text-white font-medium">Plivo</span>,
+            working on real-time voice AI. I like <span className="text-white">quantum computing</span>,
+            cloud-native <span className="text-white">open source</span>, and
+            shipping small things fast.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/arena" className="btn-neon">
+              Enter the Arena <span aria-hidden>→</span>
+            </Link>
+            <a href="#projects" className="btn-ghost">Browse Projects</a>
+            <a href="Saqlain-resume-25.pdf" target="_blank" rel="noopener noreferrer" className="btn-ghost">
+              <i className="fa-solid fa-download" /> Resume
+            </a>
+          </div>
+
+          <div className="mt-8 flex items-center gap-4 text-white/70">
+            <a href={contact.github}   target="_blank" rel="noopener noreferrer" aria-label="GitHub"   className="hover:text-white transition-colors"><FaGithub  className="text-xl" /></a>
+            <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-white transition-colors"><FaLinkedin className="text-xl" /></a>
+            <a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode" className="hover:text-white transition-colors"><SiLeetcode className="text-xl" /></a>
+            <span className="mx-2 h-4 w-px bg-white/15" />
+            <span className="font-mono text-xs text-white/50">bangalore · IST</span>
+          </div>
+
+          {/* stat strip */}
+          <div className="mt-10 grid grid-cols-3 gap-3 max-w-lg">
+            {[
+              { k: 'Projects', v: '14+' },
+              { k: 'Hackathon wins', v: '4' },
+              { k: 'CGPA', v: '9.55' },
+            ].map((s) => (
+              <div key={s.k} className="glass p-4 text-center">
+                <div className="font-display text-2xl md:text-3xl text-white">{s.v}</div>
+                <div className="text-[11px] uppercase tracking-widest text-white/50 font-mono mt-1">{s.k}</div>
               </div>
-              {/* Laptop Base */}
-              <div className="bg-gray-900 h-4 md:h-5 rounded-b-xl mx-2 shadow-xl relative">
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gray-700 rounded-b"></div>
-              </div>
-            </motion.div>
-          </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
-          <motion.div
-            className="order-1 md:order-2"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+        {/* RIGHT: 3D world -------------------------------------------------- */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="glass-strong overflow-hidden rounded-3xl relative"
+        >
+          <Suspense
+            fallback={(
+              <div className="h-[440px] md:h-[520px] w-full flex items-center justify-center text-white/50 font-mono text-sm">
+                booting scene…
+              </div>
+            )}
           >
-            <div className="relative">
-              <motion.div
-                className="neo-brutal overflow-hidden spiderman-hero-image"
-                style={{ transform: 'rotate(2deg)' }}
-                whileHover={{
-                  scale: 1.05,
-                  rotateY: 15,
-                  boxShadow: "0 0 25px rgba(250, 75, 19, 0.8)"
-                }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              >
-                <img
-                  src="https://media.licdn.com/dms/image/v2/D5603AQFHMZGpZFKYTw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1714051172231?e=1769644800&v=beta&t=W0lfipKDDStRsn9iKeUObRVqxpUiIdoaMOMca_g4rLo"
-                  alt="Saqlain Ahmed portrait"
-                  className="w-full h-auto object-cover"
-                />
-              </motion.div>
-              <motion.div
-                className="absolute -bottom-6 -left-6 bg-light-primary dark:bg-dark-primary neo-brutal p-4 transform -rotate-3 hover:scale-105 transition-transform"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 0 15px rgba(250, 75, 19, 0.6)"
-                }}
-              >
-                <p className="font-bold text-white">AI-ML Engineer</p>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
+            <AuroraWorld />
+          </Suspense>
+        </motion.div>
       </div>
+
+      {/* soft edge fade */}
+      <div className="pointer-events-none absolute inset-0 bg-grid-fade z-0" />
     </section>
   );
 };

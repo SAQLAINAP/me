@@ -8,13 +8,17 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// The site is served from https://saqlainap.github.io/me/ — we hard-code the
+// base to `/me/` when building for production so all asset URLs resolve.
+const BASE = process.env.NODE_ENV === "production" ? "/me/" : "/";
+
 export default defineConfig({
+  base: BASE,
   plugins: [
     react(),
     runtimeErrorOverlay(),
     themePlugin(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
+    ...(process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined
       ? [
           await import("@replit/vite-plugin-cartographer").then((m) =>
             m.cartographer(),
@@ -32,5 +36,14 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
+    // Split the heavy 3D scene out of the main bundle so the landing page
+    // stays snappy on first paint.
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          three: ["three", "@react-three/fiber", "@react-three/drei"],
+        },
+      },
+    },
   },
 });

@@ -6,7 +6,7 @@ interface ThemeContextType {
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
-  isDarkMode: false,
+  isDarkMode: true,
   toggleTheme: () => {},
 });
 
@@ -14,31 +14,27 @@ interface ThemeProviderProps {
   children: ReactNode;
 }
 
+/**
+ * Aurora portfolio is a dark-first design. We keep the toggle so the user can
+ * flip to light mode, but default is dark unless the user has explicitly
+ * opted out and saved that preference.
+ */
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Check user preferred theme and saved theme on mount
   useEffect(() => {
-    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedTheme = localStorage.getItem('theme');
-
-    if (savedTheme === 'dark' || (!savedTheme && userPrefersDark)) {
-      setIsDarkMode(true);
-      document.documentElement.classList.add('dark');
-    }
+    const saved = localStorage.getItem('theme');
+    const wantsLight = saved === 'light';
+    setIsDarkMode(!wantsLight);
+    document.documentElement.classList.toggle('dark', !wantsLight);
   }, []);
 
   const toggleTheme = () => {
     setIsDarkMode((prev) => {
-      const newTheme = !prev;
-      if (newTheme) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-      return newTheme;
+      const next = !prev;
+      document.documentElement.classList.toggle('dark', next);
+      localStorage.setItem('theme', next ? 'dark' : 'light');
+      return next;
     });
   };
 

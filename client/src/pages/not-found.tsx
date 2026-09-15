@@ -1,21 +1,22 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
+import { Link } from 'wouter';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md mx-4">
-        <CardContent className="pt-6">
-          <div className="flex mb-4 gap-2">
-            <AlertCircle className="h-8 w-8 text-red-500" />
-            <h1 className="text-2xl font-bold text-gray-900">404 Page Not Found</h1>
-          </div>
-
-          <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
-          </p>
-        </CardContent>
-      </Card>
+    <div className="min-h-[70vh] flex items-center justify-center">
+      <div className="glass-strong p-10 text-center max-w-md mx-4">
+        <div className="font-mono text-xs uppercase tracking-widest text-cyan-300/70 mb-3">
+          404 · off-grid
+        </div>
+        <div className="font-display text-5xl text-white mb-3">Lost in space.</div>
+        <p className="text-white/60 mb-6">
+          That route isn't part of the SAQLAINAP portfolio (yet). Head back to base
+          or check the arena.
+        </p>
+        <div className="flex gap-3 justify-center">
+          <Link href="/" className="btn-neon">← Home</Link>
+          <Link href="/arena" className="btn-ghost">Arena</Link>
+        </div>
+      </div>
     </div>
   );
 }

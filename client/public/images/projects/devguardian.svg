@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g-devguardian" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"   stop-color="#64748b"/>
+      <stop offset="1"   stop-color="#0ea5e9"/>
+    </linearGradient>
+    <pattern id="grid-devguardian" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow-devguardian" cx="50%" cy="45%" r="55%">
+      <stop offset="0"   stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="1"   stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="800" height="500" fill="url(#g-devguardian)"/>
+  <rect width="800" height="500" fill="url(#grid-devguardian)"/>
+  <rect width="800" height="500" fill="url(#glow-devguardian)"/>
+
+  <!-- decorative floating shapes -->
+  <circle cx="120" cy="90"  r="60"  fill="#ffffff" opacity="0.06"/>
+  <circle cx="720" cy="410" r="90"  fill="#ffffff" opacity="0.05"/>
+  <circle cx="680" cy="120" r="30"  fill="#ffffff" opacity="0.10"/>
+
+  <!-- glyph disc, centered on the right -->
+  <g transform="translate(500 130) scale(1.35)">
+    <circle cx="100" cy="100" r="105" fill="#000" opacity="0.15"/>
+    
+    <rect x="35" y="50" width="130" height="100" rx="8" fill="none" stroke="#fff" stroke-width="5" opacity="0.9"/>
+    <line x1="35" y1="72" x2="165" y2="72" stroke="#fff" stroke-width="3" opacity="0.6"/>
+    <circle cx="48" cy="61" r="3.5" fill="#fff" opacity="0.75"/>
+    <circle cx="60" cy="61" r="3.5" fill="#fff" opacity="0.75"/>
+    <circle cx="72" cy="61" r="3.5" fill="#fff" opacity="0.75"/>
+    <text x="50" y="115" fill="#fff" opacity="0.95" font-family="monospace" font-size="18">$ ls</text>
+    <rect x="86" y="102" width="10" height="18" fill="#fff" opacity="0.85"/>
+  </g>
+
+  <!-- text plate on the left -->
+  <g font-family="'Space Grotesk','Inter',system-ui,sans-serif">
+    <text x="60" y="240" fill="#0b0b12" opacity="0.85" font-size="14" letter-spacing="4">SAQLAINAP · ARENA</text>
+    <text x="60" y="300" fill="#ffffff" font-size="56" font-weight="700">DevGuardian</text>
+    <text x="60" y="345" fill="#ffffff" opacity="0.85" font-size="22">secrets &amp; deps scanner</text>
+    <rect x="60" y="370" width="80" height="5" rx="2" fill="#ffffff" opacity="0.9"/>
+  </g>
+</svg>

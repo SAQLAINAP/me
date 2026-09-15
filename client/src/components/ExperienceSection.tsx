@@ -3,53 +3,57 @@ import { experiences } from '@/lib/data';
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-20">
-      <div className="w-[85%] mx-auto px-2 md:px-4">
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="inline-block font-poppins font-bold text-4xl md:text-5xl neo-brutal py-3 px-6 bg-light-secondary dark:bg-dark-secondary text-white transform rotate-1">
-            Experience
+    <section id="experience" className="py-24 relative">
+      <div className="w-[90%] max-w-6xl mx-auto">
+        <div className="mb-12">
+          <div className="h-eyebrow">// experience</div>
+          <h2 className="h-display">
+            Places I've <span className="text-aurora">shipped</span> from.
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="relative pl-12 md:pl-16 max-w-3xl mx-auto">
-          <div className="absolute left-0 top-0 bottom-0 w-1 bg-black"></div>
-
+        <div className="relative pl-8 md:pl-10 border-l border-white/10">
           {experiences.map((experience, index) => (
             <motion.div
               key={index}
-              className={`timeline-item relative mb-16 ml-6 ${index === experiences.length - 1 ? '' : 'mb-16'}`}
-              initial={{ opacity: 0, x: -10 }}
+              className="timeline-item relative mb-10 last:mb-0 pl-4"
+              initial={{ opacity: 0, x: -8 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
             >
-              <div className="neo-brutal bg-white dark:bg-dark-bg/90 p-6">
-                <div className="flex flex-col md:flex-row justify-between mb-4">
-                  <h3 className="font-poppins font-bold text-xl">{experience.position}</h3>
-                  <div className="mt-2 md:mt-0 neo-brutal-sm inline-block bg-light-primary dark:bg-dark-primary text-white px-3 py-1">
+              <div className="glass-strong p-6 card-hover">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                  <h3 className="font-display font-semibold text-xl text-white">
+                    {experience.position}
+                  </h3>
+                  <span className="pill text-cyan-200 border-cyan-400/30 bg-cyan-400/5 self-start md:self-auto">
                     {experience.period}
-                  </div>
+                  </span>
                 </div>
 
-                <h4 className="font-semibold mb-3">{experience.company}</h4>
+                <div className="text-sm text-white/70 mb-4 flex items-center gap-2">
+                  <span className="font-medium text-white">{experience.company}</span>
+                  {experience.location && (
+                    <>
+                      <span className="text-white/30">·</span>
+                      <span>{experience.location}</span>
+                    </>
+                  )}
+                </div>
 
-                <ul className="list-disc list-inside space-y-2">
-                  {experience.responsibilities.map((responsibility, respIndex) => (
-                    <li key={respIndex} dangerouslySetInnerHTML={{ __html: responsibility }}></li>
+                <ul className="space-y-2 text-sm text-white/75">
+                  {experience.responsibilities.map((r, i) => (
+                    <li key={i} className="flex gap-2">
+                      <span className="text-cyan-300 mt-1">▸</span>
+                      <span dangerouslySetInnerHTML={{ __html: r }} />
+                    </li>
                   ))}
                 </ul>
 
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {experience.skills.map((skill, skillIndex) => (
-                    <span key={skillIndex} className="text-sm bg-light-bg dark:bg-dark-bg border-2 border-black px-2 py-1">
-                      {skill}
-                    </span>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {experience.skills.map((s, i) => (
+                    <span key={i} className="chip">{s}</span>
                   ))}
                 </div>
               </div>

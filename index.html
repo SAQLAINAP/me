@@ -50,7 +50,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Saqlain Ahmed P — AI Engineer · Voice AI · Quantum · Open Source</title>
     <meta name="description" content="SAQLAINAP — portfolio of Saqlain Ahmed P. AI Engineer at Plivo. Voice AI, quantum computing, cloud-native. Explore the arena for detailed project deep-dives." />
-    <meta name="theme-color" content="#0b0b12" />
+    <meta name="theme-color" content="#fff4ec" />
 
     <!-- Open Graph -->
     <meta property="og:type"        content="website" />
@@ -60,16 +60,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <script type="module" crossorigin src="/me/assets/index-CmuMmJbc.js"></script>
-    <link rel="modulepreload" crossorigin href="/me/assets/three-CaCTwEec.js">
-    <link rel="stylesheet" crossorigin href="/me/assets/index-DM-dOuZI.css">
+    <script>
+      // Companion to 404.html — decode the ?p=/route&q=... query the GitHub
+      // Pages fallback rewrites into a real SPA URL before React boots.
+      (function () {
+        var l = window.location;
+        if (l.search && l.search.indexOf('?p=/') === 0) {
+          var q = l.search.slice(1).split('&').reduce(function (acc, kv) {
+            var pair = kv.split('=');
+            acc[pair[0]] = pair.slice(1).join('=');
+            return acc;
+          }, {});
+          if (q.p !== undefined) {
+            var newUrl =
+              l.pathname.replace(/\/$/, '') +
+              '/' + q.p.replace(/^\//, '').replace(/~and~/g, '&') +
+              (q.q ? '?' + q.q.replace(/~and~/g, '&') : '') +
+              l.hash;
+            window.history.replaceState(null, '', newUrl);
+          }
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/me/assets/index-BxSjxVFT.js"></script>
+    <link rel="stylesheet" crossorigin href="/me/assets/index-CZFI5XBY.css">
   </head>
   <body>
     <div id="root"></div>

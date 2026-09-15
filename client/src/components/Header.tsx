@@ -31,38 +31,37 @@ const Header = () => {
     <header
       className={`sticky top-0 w-full z-50 transition-colors duration-300 ${
         scrolled
-          ? 'backdrop-blur-md bg-[hsl(var(--background))]/70 border-b border-white/5'
-          : 'bg-transparent'
+          ? 'bg-ivory/95 dark:bg-[var(--ivory)]/95 backdrop-blur-md border-b-2 border-ink'
+          : 'bg-transparent border-b-2 border-transparent'
       }`}
     >
-      <div className="w-[90%] max-w-7xl mx-auto flex justify-between items-center py-4">
+      <div className="wrap flex justify-between items-center py-4">
         <Link
           href="/"
-          className="flex items-center gap-2 font-display font-semibold text-xl group"
+          className="flex items-center gap-2 group"
           onClick={() => setIsMenuOpen(false)}
         >
-          <span className="relative inline-flex items-center justify-center h-8 w-8 rounded-lg bg-gradient-to-br from-fuchsia-500 to-cyan-400 text-black font-bold shadow-neon">
+          <span className="inline-flex items-center justify-center h-9 w-9 rounded-md bg-ink text-lime font-condensed font-bold text-lg leading-none border-2 border-ink">
             S
           </span>
-          <span className="tracking-tight">
-            <span className="text-white">SAQLAIN</span>
-            <span className="text-fuchsia-400">AP</span>
+          <span className="font-mono text-sm font-bold uppercase tracking-widest text-ink">
+            SAQLAIN<span className="bg-lime px-1">AP</span>
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-7 text-sm text-white/70">
+        <nav className="hidden md:flex items-center gap-6 font-mono text-xs uppercase tracking-widest text-ink/80">
           {anchorLinks.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-white transition-colors">
+            <a
+              key={l.href}
+              href={l.href}
+              className="relative hover:text-ink transition-colors after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-ink hover:after:w-full after:transition-all"
+            >
               {l.label}
             </a>
           ))}
           <Link
             href="/arena"
-            className={`font-mono text-xs uppercase tracking-widest px-3 py-1.5 rounded-md border transition-colors ${
-              onArena
-                ? 'text-white bg-fuchsia-500/20 border-fuchsia-500/40'
-                : 'text-cyan-300 border-cyan-400/30 hover:bg-cyan-400/10'
-            }`}
+            className={onArena ? 'pill pill--lime pill--sm' : 'pill pill--ghost pill--sm'}
           >
             /arena
           </Link>
@@ -71,15 +70,16 @@ const Header = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={toggleTheme}
-            className="glass w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white"
+            className="h-9 w-9 rounded-md border-2 border-ink bg-ivory dark:bg-[var(--cream)] text-ink flex items-center justify-center transition hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[3px_3px_0_var(--ink)]"
             aria-label="Toggle theme"
+            title={isDarkMode ? 'switch to light' : 'switch to dark'}
           >
-            {isDarkMode ? <i className="fas fa-moon" /> : <i className="fas fa-sun" />}
+            {isDarkMode ? <i className="fas fa-sun" /> : <i className="fas fa-moon" />}
           </button>
 
           <button
             onClick={() => setIsMenuOpen((s) => !s)}
-            className="md:hidden glass w-9 h-9 rounded-lg flex items-center justify-center text-white/70 hover:text-white"
+            className="md:hidden h-9 w-9 rounded-md border-2 border-ink bg-ivory dark:bg-[var(--cream)] text-ink flex items-center justify-center"
             aria-label="Toggle mobile menu"
           >
             <i className={`fas ${isMenuOpen ? 'fa-xmark' : 'fa-bars'}`} />
@@ -89,17 +89,17 @@ const Header = () => {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-[max-height] duration-300 border-t border-white/5 bg-[hsl(var(--background))]/90 backdrop-blur-md ${
+        className={`md:hidden overflow-hidden transition-[max-height] duration-300 border-t-2 border-ink bg-ivory dark:bg-[var(--cream)] ${
           isMenuOpen ? 'max-h-96' : 'max-h-0'
         }`}
       >
-        <div className="w-[90%] max-w-7xl mx-auto py-4 flex flex-col gap-2">
+        <div className="wrap py-4 flex flex-col gap-3 font-mono text-sm uppercase tracking-widest text-ink">
           {anchorLinks.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setIsMenuOpen(false)}
-              className="py-2 text-white/80 hover:text-white"
+              className="py-1 hover:text-ink/60"
             >
               {l.label}
             </a>
@@ -107,7 +107,7 @@ const Header = () => {
           <Link
             href="/arena"
             onClick={() => setIsMenuOpen(false)}
-            className="py-2 text-cyan-300 font-mono uppercase tracking-widest text-sm"
+            className="py-1 text-ink bg-lime inline-block px-2 rounded-sm w-max"
           >
             /arena
           </Link>

@@ -6,11 +6,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
-        // Legacy alias so any leftover .font-poppins keeps rendering.
-        poppins: ['"Space Grotesk"', 'Inter', 'sans-serif'],
+        // JetBrains Mono is the body — Montgomery uses mono for everything
+        // except the giant condensed display type.
+        sans: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        display: ['Oswald', '"Arial Narrow"', 'Impact', 'sans-serif'],
+        condensed: ['Oswald', '"Arial Narrow"', 'Impact', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        // Legacy aliases — keep old class references from previous themes rendering.
+        poppins: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -18,6 +21,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        // shadcn HSL passthroughs (keep radix / toaster working).
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -69,31 +73,15 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
 
-        // Portfolio palette — Aurora / deep-space.
-        aurora: {
-          bg:       '#0b0b12',
-          panel:    '#12131d',
-          panel2:   '#1a1b28',
-          border:   '#2a2b3d',
-          text:     '#e8e8ff',
-          muted:    '#9ea0c0',
-          primary:  '#a855f7', // violet
-          accent:   '#22d3ee', // cyan
-          gold:     '#fbbf24',
-          rose:     '#f472b6',
-          lime:     '#a3e635',
-        },
-      },
-      backgroundImage: {
-        'aurora-radial':
-          'radial-gradient(1200px 800px at 15% -10%, rgba(168,85,247,0.28), transparent 60%), radial-gradient(1000px 700px at 90% 10%, rgba(34,211,238,0.20), transparent 55%), radial-gradient(1200px 800px at 50% 120%, rgba(236,72,153,0.20), transparent 55%)',
-        'grid-fade':
-          'linear-gradient(to bottom, transparent, rgba(11,11,18,0.9) 90%)',
-      },
-      boxShadow: {
-        neon: '0 0 0 1px rgba(168,85,247,0.35), 0 10px 40px -10px rgba(168,85,247,0.55)',
-        'neon-cyan': '0 0 0 1px rgba(34,211,238,0.35), 0 10px 40px -10px rgba(34,211,238,0.55)',
-        'card-lg': '0 30px 80px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06)',
+        // Portfolio palette — Montgomery brutalist.
+        ivory:  '#fff4ec',
+        cream:  '#f6e6d9',
+        ink:    '#14160d',
+        olive:  '#3c422e',
+        lime:   '#d1e030',
+        mint:   '#9eef80',
+        gold:   '#fbd535',
+        sage:   '#9fcd7a',
       },
       keyframes: {
         "accordion-down": {
@@ -104,20 +92,24 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        floaty: {
-          '0%,100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-8px)' },
-        },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
+        tick:    { to: { transform: 'translateX(-50%)' } },
+        spin360: { to: { transform: 'rotate(360deg)' } },
+        breathe: {
+          '0%,100%': { transform: 'scale(1)' },
+          '50%':     { transform: 'scale(1.04)' },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        floaty: 'floaty 6s ease-in-out infinite',
-        shimmer: 'shimmer 3s linear infinite',
+        "accordion-up":   "accordion-up 0.2s ease-out",
+        tick:    'tick 32s linear infinite',
+        spin360: 'spin360 7s linear infinite',
+        breathe: 'breathe 5s ease-in-out infinite',
+      },
+      boxShadow: {
+        brutal:      '4px 4px 0 var(--ink)',
+        'brutal-sm': '3px 3px 0 var(--ink)',
+        'brutal-lg': '6px 6px 0 var(--ink)',
       },
     },
   },

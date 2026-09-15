@@ -36,14 +36,5 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
-    // Split the heavy 3D scene out of the main bundle so the landing page
-    // stays snappy on first paint.
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          three: ["three", "@react-three/fiber", "@react-three/drei"],
-        },
-      },
-    },
   },
 });

@@ -25,13 +25,14 @@ const AchievementsSection = () => {
   const [active, setActive] = useState<Tab>('scholarships');
 
   return (
-    <section id="achievements" className="py-24 relative">
-      <div className="w-[90%] max-w-7xl mx-auto">
-        <div className="mb-8">
-          <div className="h-eyebrow">// awards</div>
-          <h2 className="h-display">
-            Wins, <span className="text-aurora">scholarships</span> & shiny things.
+    <section id="achievements" className="py-24 relative bg-ivory">
+      <div className="wrap-lg">
+        <div className="section-head">
+          <span className="section-head__idx">// 05</span>
+          <h2 className="section-head__title">
+            Wins, <span className="mk mk--gold">scholarships</span> &amp; shiny things
           </h2>
+          <span className="section-head__note">technical · entrepreneurial · scholarships</span>
         </div>
 
         <div className="flex flex-wrap gap-2 mb-8">
@@ -39,11 +40,7 @@ const AchievementsSection = () => {
             <button
               key={t.id}
               onClick={() => setActive(t.id)}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono uppercase tracking-widest border transition-colors ${
-                active === t.id
-                  ? 'bg-white text-black border-white'
-                  : 'text-white/70 border-white/15 hover:border-white/40 hover:text-white'
-              }`}
+              className={`inline-flex items-center gap-2 ${active === t.id ? 'tag tag--lime' : 'tag'}`}
             >
               {t.icon} {t.label}
             </button>
@@ -61,15 +58,13 @@ const AchievementsSection = () => {
           >
             {active === 'technical' &&
               technicalAchievements.map((a, i) => (
-                <motion.div key={i} variants={item} className="glass-strong p-5 card-hover relative">
-                  <span className="absolute top-3 right-3 pill text-emerald-300 border-emerald-400/30 bg-emerald-400/10">
-                    {a.status}
-                  </span>
-                  <h4 className="font-display text-lg font-semibold text-white pr-16">{a.title}</h4>
-                  <p className="mt-2 text-sm text-white/65 leading-relaxed">{a.description}</p>
+                <motion.div key={i} variants={item} className="frame p-5 card-hover relative">
+                  <span className="absolute top-3 right-3 tag tag--mint">{a.status}</span>
+                  <h4 className="font-condensed text-xl text-ink pr-20 leading-tight">{a.title}</h4>
+                  <p className="mt-2 text-sm text-ink/75 leading-relaxed">{a.description}</p>
                   {a.tags && (
                     <div className="mt-3 flex flex-wrap gap-1.5">
-                      {a.tags.map((t, ti) => <span key={ti} className="chip">{t}</span>)}
+                      {a.tags.map((t, ti) => <span key={ti} className="tag">{t}</span>)}
                     </div>
                   )}
                 </motion.div>
@@ -77,20 +72,20 @@ const AchievementsSection = () => {
 
             {active === 'entrepreneurial' &&
               entrepreneurialAchievements.map((a, i) => (
-                <motion.div key={i} variants={item} className="glass-strong p-5 card-hover">
+                <motion.div key={i} variants={item} className="frame p-5 card-hover">
                   <div className="flex items-start gap-4">
-                    <div className="shrink-0 w-11 h-11 rounded-lg flex items-center justify-center bg-fuchsia-500/15 text-fuchsia-300 text-lg">
+                    <div className="shrink-0 w-11 h-11 rounded-lg flex items-center justify-center bg-gold border-2 border-ink text-ink text-lg">
                       <FaLightbulb />
                     </div>
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h4 className="font-display text-lg font-semibold text-white">{a.title}</h4>
-                        <span className="chip-rose">{a.status}</span>
+                        <h4 className="font-condensed text-xl text-ink leading-tight">{a.title}</h4>
+                        <span className="tag tag--gold">{a.status}</span>
                       </div>
                       {(a as any).date && (
-                        <div className="text-xs font-mono text-white/40 mt-1">{(a as any).date}</div>
+                        <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mt-1">{(a as any).date}</div>
                       )}
-                      <p className="mt-2 text-sm text-white/65 leading-relaxed">{a.description}</p>
+                      <p className="mt-2 text-sm text-ink/75 leading-relaxed">{a.description}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -98,18 +93,18 @@ const AchievementsSection = () => {
 
             {active === 'scholarships' &&
               scholarships.map((s, i) => (
-                <motion.div key={i} variants={item} className="glass-strong p-5 card-hover">
+                <motion.div key={i} variants={item} className="frame p-5 card-hover">
                   <div className="flex items-start gap-4">
-                    <div className="shrink-0 w-11 h-11 rounded-lg flex items-center justify-center bg-cyan-400/15 text-cyan-300 text-lg">
+                    <div className="shrink-0 w-11 h-11 rounded-lg flex items-center justify-center bg-mint border-2 border-ink text-ink text-lg">
                       {s.icon === 'medal' && <FaMedal />}
                       {s.icon === 'atom'  && <FaAtom />}
                       {s.icon === 'robot' && <FaRobot />}
                       {!['medal', 'atom', 'robot'].includes(s.icon || '') && <FaAward />}
                     </div>
                     <div className="min-w-0">
-                      <h4 className="font-display text-lg font-semibold text-white leading-tight">{s.title}</h4>
-                      <div className="text-xs font-mono text-white/40 mt-1">{s.date}</div>
-                      <p className="mt-2 text-sm text-white/65 leading-relaxed">{s.description}</p>
+                      <h4 className="font-condensed text-xl text-ink leading-tight">{s.title}</h4>
+                      <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mt-1">{s.date}</div>
+                      <p className="mt-2 text-sm text-ink/75 leading-relaxed">{s.description}</p>
                     </div>
                   </div>
                 </motion.div>

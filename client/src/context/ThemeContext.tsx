@@ -6,7 +6,7 @@ interface ThemeContextType {
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
-  isDarkMode: true,
+  isDarkMode: false,
   toggleTheme: () => {},
 });
 
@@ -15,18 +15,22 @@ interface ThemeProviderProps {
 }
 
 /**
- * Aurora portfolio is a dark-first design. We keep the toggle so the user can
- * flip to light mode, but default is dark unless the user has explicitly
- * opted out and saved that preference.
+ * SAQLAINAP portfolio is light-first (Montgomery ivory/cream palette).
+ * Dark mode is optional — we respect `localStorage.theme`, then fall back to
+ * `prefers-color-scheme`, and default to light if neither signal is present.
  */
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('theme');
-    const wantsLight = saved === 'light';
-    setIsDarkMode(!wantsLight);
-    document.documentElement.classList.toggle('dark', !wantsLight);
+    const prefersDark =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const wantsDark = saved ? saved === 'dark' : prefersDark;
+    setIsDarkMode(wantsDark);
+    document.documentElement.classList.toggle('dark', wantsDark);
   }, []);
 
   const toggleTheme = () => {

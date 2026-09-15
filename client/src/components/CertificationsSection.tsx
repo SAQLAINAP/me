@@ -4,38 +4,39 @@ import { certifications } from '../lib/data';
 
 const CertificationsSection = () => {
   return (
-    <section id="certifications" className="py-24 relative">
-      <div className="w-[90%] max-w-7xl mx-auto">
-        <div className="mb-10">
-          <div className="h-eyebrow">// certifications</div>
-          <h2 className="h-display">
-            Continuous <span className="text-aurora">learning</span> log.
+    <section id="certifications" className="py-24 relative bg-cream">
+      <div className="wrap-lg">
+        <div className="section-head">
+          <span className="section-head__idx">// 04</span>
+          <h2 className="section-head__title">
+            Continuous <span className="mk mk--lime">learning</span> log
           </h2>
+          <span className="section-head__note">certs · courses</span>
         </div>
 
         <div className="grid md:grid-cols-2 gap-5">
           {certifications.map((cert, i) => (
             <motion.article
               key={cert.title}
-              className="glass-strong p-6 card-hover flex gap-5 items-start"
+              className="frame p-6 card-hover flex gap-5 items-start"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: i * 0.05 }}
             >
-              <div className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-fuchsia-500/20 to-cyan-400/20 text-fuchsia-300 text-xl">
+              <div className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-lime border-2 border-ink text-ink text-xl">
                 <FaCertificate />
               </div>
 
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2 mb-1">
-                  <h3 className="font-display font-semibold text-lg text-white">{cert.title}</h3>
-                  <span className="chip-cyan">{cert.achievement}</span>
+                  <h3 className="font-condensed text-2xl text-ink leading-tight">{cert.title}</h3>
+                  <span className="tag tag--mint">{cert.achievement}</span>
                 </div>
-                <div className="text-xs font-mono text-white/40 mb-3">
+                <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-3">
                   {cert.issuer} · {cert.period}
                 </div>
-                <p className="text-sm text-white/70 leading-relaxed">{cert.description}</p>
+                <p className="text-sm text-ink/75 leading-relaxed">{cert.description}</p>
               </div>
             </motion.article>
           ))}

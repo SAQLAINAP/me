@@ -29,7 +29,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <Router base={BASE}>
-          <div className="min-h-screen text-foreground selection:bg-fuchsia-500/30">
+          <div className="min-h-screen bg-ivory text-ink selection:bg-ink selection:text-lime">
             <ScrollToTop />
             <Header />
             <main>

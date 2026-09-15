@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import { Link } from 'wouter';
-import HackerText from './HackerText';
 import { contact } from '@/lib/data';
 
 const AuroraWorld = lazy(() => import('./three/AuroraWorld'));
@@ -20,10 +19,15 @@ const HeroSection = () => {
         >
           <div className="h-eyebrow">// saqlainap · portfolio v3</div>
 
-          <h1 className="font-display font-semibold text-4xl md:text-6xl lg:text-7xl leading-[1.02]">
-            <HackerText text="Saqlain Ahmed P" />
-            <br />
-            <span className="text-aurora">building at the edge.</span>
+          <h1 className="font-display font-semibold leading-[1.02] tracking-tight">
+            {/* Name — fluid size, always one line */}
+            <span className="block whitespace-nowrap text-white text-[clamp(2.25rem,6.2vw,4.75rem)]">
+              Saqlain Ahmed P
+            </span>
+            {/* Tagline — one line, fluid, aurora gradient */}
+            <span className="mt-1 block whitespace-nowrap text-aurora text-[clamp(1.75rem,5vw,3.75rem)]">
+              building at the edge.
+            </span>
           </h1>
 
           <p className="mt-6 text-base md:text-lg text-white/70 max-w-xl leading-relaxed">

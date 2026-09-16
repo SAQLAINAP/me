@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g-iddc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="1" stop-color="#22c55e"/>
+    </linearGradient>
+    <pattern id="grid-iddc" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#14160d" stroke-opacity="0.10" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#g-iddc)"/>
+  <rect width="800" height="500" fill="url(#grid-iddc)"/>
+
+  <!-- doc -> JSON illustration on the right -->
+  <g transform="translate(460 90)" stroke="#14160d" stroke-width="4">
+    <!-- source document -->
+    <g>
+      <rect x="0" y="0" width="130" height="170" rx="6" fill="#fff4ec"/>
+      <rect x="14" y="18" width="70"  height="8" fill="#14160d"/>
+      <rect x="14" y="36" width="100" height="5" fill="#14160d" opacity="0.5" stroke="none"/>
+      <rect x="14" y="50" width="80"  height="5" fill="#14160d" opacity="0.5" stroke="none"/>
+      <rect x="14" y="70" width="100" height="5" fill="#14160d" opacity="0.35" stroke="none"/>
+      <rect x="14" y="84" width="60"  height="5" fill="#14160d" opacity="0.35" stroke="none"/>
+      <rect x="14" y="104" width="90" height="5" fill="#14160d" opacity="0.35" stroke="none"/>
+      <rect x="14" y="118" width="70" height="5" fill="#14160d" opacity="0.35" stroke="none"/>
+      <rect x="14" y="138" width="80" height="5" fill="#14160d" opacity="0.35" stroke="none"/>
+    </g>
+    <!-- arrow -->
+    <g stroke="none" fill="#14160d">
+      <path d="M150 80 L190 80 L190 70 L215 90 L190 110 L190 100 L150 100 Z"/>
+    </g>
+    <!-- JSON output card -->
+    <g transform="translate(230 -10)">
+      <rect x="0" y="0" width="150" height="220" rx="6" fill="#14160d"/>
+      <g font-family="'JetBrains Mono',monospace" font-size="11" fill="#9eef80" stroke="none">
+        <text x="12" y="24">{</text>
+        <text x="24" y="42">"name":</text>
+        <text x="72" y="42" fill="#fbd535">"acme"</text>
+        <text x="24" y="60">"total":</text>
+        <text x="72" y="60" fill="#22d3ee">1240</text>
+        <text x="24" y="78">"lines": [</text>
+        <text x="36" y="96">{ "sku":</text>
+        <text x="94" y="96" fill="#fbd535">"a1"</text>
+        <text x="36" y="114">"qty":</text>
+        <text x="82" y="114" fill="#22d3ee">3 },</text>
+        <text x="36" y="132">{ "sku":</text>
+        <text x="94" y="132" fill="#fbd535">"b7"</text>
+        <text x="36" y="150">"qty":</text>
+        <text x="82" y="150" fill="#22d3ee">1 }</text>
+        <text x="24" y="168">],</text>
+        <text x="24" y="186">"conf":</text>
+        <text x="72" y="186" fill="#22d3ee">0.97</text>
+        <text x="12" y="204">}</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- text plate -->
+  <g font-family="'Oswald','Arial Narrow',Impact,sans-serif">
+    <text x="60" y="220" fill="#14160d" opacity="0.75" font-size="14" letter-spacing="4" font-family="'JetBrains Mono',monospace">SAQLAINAP · ARENA</text>
+    <text x="60" y="290" fill="#fff4ec" font-size="70" font-weight="700">IDDC</text>
+    <text x="60" y="330" fill="#14160d" opacity="0.9" font-size="22" font-family="'JetBrains Mono',monospace">documents → clean json</text>
+    <rect x="60" y="360" width="80" height="5" fill="#14160d"/>
+  </g>
+</svg>

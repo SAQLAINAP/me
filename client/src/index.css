@@ -268,15 +268,15 @@
   }
 
   /* Inline highlighter blocks (used inside h-mega).
-     `leading-[0.75em]` shrinks the line-box so the highlighter hugs the
-     glyph and doesn't spill onto adjacent lines when used inside big
-     display type with tight line-height. */
+     Drawn as inline-block with tight line-height so the tint hugs the
+     glyph instead of ballooning to the parent line-box height on the
+     large display headings (h-mega-xl etc.). */
   .mk {
-    padding: 0.02em 0.14em 0.05em;
+    display: inline-block;
+    padding: 0.04em 0.18em 0.08em;
     color: var(--ink);
-    line-height: 0.85;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
+    line-height: 0.9;
+    vertical-align: baseline;
   }
   .mk--lime { background: var(--lime); }
   .mk--mint { background: var(--mint); }

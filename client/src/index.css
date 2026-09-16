@@ -50,36 +50,41 @@
 
   .dark {
     /* Dark twin — same accents, inverted neutrals.
+       Palette is intentionally *soft* for photosensitive-safety:
+       - neutrals sit between #1a…#22 (never pure #000) to reduce contrast blast
+       - text is a warm off-white (#e6dccd) rather than #fff to soften glare
+       - accent hues are the same family as light-mode but ~35–45% desaturated
+         so they don't strobe/vibrate against a dark surround.
        We also swap the `--x-rgb` triples so tailwind alpha utilities like
        `text-ink/70` become 70%-opacity ivory on dark instead of 70% ink. */
-    --ivory:  #0f1109;   --ivory-rgb:  15  17   9;   /* bg      */
-    --cream:  #17190f;   --cream-rgb:  23  25  15;   /* surface */
-    --ink:    #fff4ec;   --ink-rgb:   255 244 236;   /* text    */
-    --olive:  #cfd6ba;   --olive-rgb: 207 214 186;   /* muted   */
-    --lime:   #d1e030;   /* lime-rgb inherited from :root */
-    --mint:   #9eef80;
-    --gold:   #fbd535;
-    --sage:   #5a6a3d;   --sage-rgb:   90 106  61;
+    --ivory:  #16180f;   --ivory-rgb:  22  24  15;   /* bg      */
+    --cream:  #1e2016;   --cream-rgb:  30  32  22;   /* surface */
+    --ink:    #e6dccd;   --ink-rgb:   230 220 205;   /* text (warm off-white) */
+    --olive:  #b8bda3;   --olive-rgb: 184 189 163;   /* muted   */
+    --lime:   #b8c556;   --lime-rgb:  184 197  86;   /* desat lime */
+    --mint:   #8fc776;   --mint-rgb:  143 199 118;   /* desat mint */
+    --gold:   #d9b94a;   --gold-rgb:  217 185  74;   /* desat gold */
+    --sage:   #6b7a52;   --sage-rgb:  107 122  82;
 
-    --background: 66 22% 5%;
-    --foreground: 33 100% 96%;
-    --card: 66 20% 8%;
-    --card-foreground: 33 100% 96%;
-    --popover: 66 20% 8%;
-    --popover-foreground: 33 100% 96%;
-    --primary: 33 100% 96%;
-    --primary-foreground: 66 20% 7%;
-    --secondary: 63 76% 53%;
-    --secondary-foreground: 66 20% 7%;
-    --muted: 66 18% 12%;
-    --muted-foreground: 66 15% 65%;
-    --accent: 63 76% 53%;
-    --accent-foreground: 66 20% 7%;
-    --destructive: 0 62% 40%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 33 100% 96%;
-    --input: 66 18% 12%;
-    --ring: 33 100% 96%;
+    --background: 66 22% 8%;
+    --foreground: 36 30% 85%;
+    --card: 66 20% 11%;
+    --card-foreground: 36 30% 85%;
+    --popover: 66 20% 11%;
+    --popover-foreground: 36 30% 85%;
+    --primary: 36 30% 85%;
+    --primary-foreground: 66 20% 10%;
+    --secondary: 66 46% 55%;
+    --secondary-foreground: 66 20% 10%;
+    --muted: 66 18% 15%;
+    --muted-foreground: 40 15% 60%;
+    --accent: 66 46% 55%;
+    --accent-foreground: 66 20% 10%;
+    --destructive: 0 45% 45%;
+    --destructive-foreground: 36 30% 90%;
+    --border: 36 20% 40%;
+    --input: 66 18% 15%;
+    --ring: 36 30% 70%;
   }
 }
 
@@ -254,8 +259,12 @@
     text-transform: uppercase;
     letter-spacing: -0.025em;
     line-height: 0.9;
-    font-size: clamp(56px, 11vw, 180px);
+    /* Narrow phones need a smaller floor or the ampersand overflows the
+       320-360px viewport; keep the same ceiling for desktop drama. */
+    font-size: clamp(44px, 11vw, 180px);
     color: var(--ink);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .h-hero {
     font-family: 'Oswald', 'Arial Narrow', Impact, sans-serif;
@@ -263,8 +272,11 @@
     text-transform: uppercase;
     letter-spacing: -0.02em;
     line-height: 0.9;
-    font-size: clamp(72px, 15.5vw, 240px);
+    /* Lowered mobile floor from 72px → 52px so "AHMED P." fits at 320px. */
+    font-size: clamp(52px, 15.5vw, 240px);
     color: var(--ink);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   /* Inline highlighter blocks (used inside h-mega).
@@ -347,23 +359,34 @@
     font-family: 'Oswald', 'Arial Narrow', Impact, sans-serif;
     font-weight: 700;
     color: var(--ink);
-    animation: breathe 5s ease-in-out infinite;
+    /* Slowed to 8s + softer glow so the pulse reads as "breathing" not
+       "strobing" — well under the ≥3Hz photosensitive threshold. */
+    animation: breathe 8s ease-in-out infinite;
   }
-  .dark .breathe-circle { background: var(--lime); color: var(--ink); border-color: var(--ink); }
+  .dark .breathe-circle { background: var(--lime); color: var(--ink); border-color: var(--olive); }
   @keyframes breathe {
-    0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(209, 224, 48, 0); }
-    50%      { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(209, 224, 48, 0.35); }
+    0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0    rgba(var(--lime-rgb), 0); }
+    50%      { transform: scale(1.02); box-shadow: 0 0 0 8px  rgba(var(--lime-rgb), 0.18); }
+  }
+  /* Respect users who prefer reduced motion — remove pulse + drift entirely. */
+  @media (prefers-reduced-motion: reduce) {
+    .breathe-circle,
+    .pixel-avatar-disc,
+    .ticker__track,
+    .ast {
+      animation: none !important;
+    }
   }
 
   /* --- Pixel-art avatar disc (hero) ----------------------------------
      Matches the breathe-circle framing but with a subtle idle drift so
      the two discs read as a pair without duplicating the pulse. */
   .pixel-avatar-disc {
-    box-shadow: 4px 4px 0 var(--ink);
-    animation: drift 6s ease-in-out infinite;
+    box-shadow: 4px 4px 0 var(--olive);
+    animation: drift 8s ease-in-out infinite;
     transition: transform 220ms ease, box-shadow 220ms ease;
   }
-  .pixel-avatar-disc:hover { box-shadow: 6px 6px 0 var(--ink); }
+  .pixel-avatar-disc:hover { box-shadow: 6px 6px 0 var(--olive); }
   .pixel-img {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;

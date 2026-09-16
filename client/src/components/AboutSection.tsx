@@ -188,7 +188,7 @@ const AboutSection = () => {
               open full pdf →
             </a>
           </div>
-          <div className="rounded-lg overflow-hidden border-2 border-ink bg-ivory h-[420px]">
+          <div className="rounded-lg overflow-hidden border-2 border-ink bg-ivory h-[280px] sm:h-[360px] md:h-[420px]">
             <iframe
               src={`${RESUME_URL}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
               title="Saqlain Ahmed P — Resume preview"

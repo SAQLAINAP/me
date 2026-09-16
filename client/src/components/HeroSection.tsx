@@ -55,6 +55,55 @@ const HeroSection = () => {
 
         {/* main giant heading + circle badge --------------------------- */}
         <div className="relative">
+          {/* On mobile, render the pair of discs above the heading so they
+              stay visible; on md+ they float top-right of the h1. */}
+          <div className="flex md:hidden items-center justify-center gap-4 mb-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="breathe-circle w-24 h-24"
+            >
+              <div className="text-center leading-none">
+                <div className="text-[8px] font-mono tracking-widest opacity-70">STATUS</div>
+                <div className="mt-0.5 text-base font-condensed">OPEN</div>
+                <div className="text-[8px] font-mono tracking-widest opacity-70">TO&nbsp;WORK</div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, rotate: -8 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.6, delay: 0.35, type: 'spring', stiffness: 180 }}
+              className="pixel-avatar-disc w-24 h-24 rounded-full border-4 border-ink bg-mint overflow-hidden relative"
+              aria-hidden
+            >
+              <AnimatePresence mode="sync">
+                <motion.img
+                  key={frame.src}
+                  src={`${import.meta.env.BASE_URL}${frame.src}`}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover pixel-img"
+                  draggable={false}
+                  initial={{ opacity: 0, scale: 1.06 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.94 }}
+                  transition={{ duration: 0.7, ease: 'easeInOut' }}
+                />
+              </AnimatePresence>
+              <div className="absolute top-1.5 left-1/2 -translate-x-1/2 flex gap-0.5">
+                {PIXEL_FRAMES.map((_, i) => (
+                  <span
+                    key={i}
+                    className={`h-1 w-1 rounded-full transition-colors ${
+                      i === frameIdx ? 'bg-ink' : 'bg-ink/25'
+                    }`}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}

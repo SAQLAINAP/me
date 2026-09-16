@@ -1,8 +1,18 @@
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import { Link } from 'wouter';
 import { contact } from '@/lib/data';
+
+// Pixel-avatar slideshow frames — each hand-drawn 24x24 SVG matching a
+// real photo (ecko jacket, red kurta, purple check, black sweatshirt).
+const PIXEL_FRAMES = [
+  { src: 'images/saqlain-pixel-1.svg', label: 'ECKO' },
+  { src: 'images/saqlain-pixel-2.svg', label: 'KURTA' },
+  { src: 'images/saqlain-pixel-3.svg', label: 'STUDIO' },
+  { src: 'images/saqlain-pixel-4.svg', label: 'LAKESIDE' },
+];
 
 /**
  * Hero — Montgomery-inspired.
@@ -21,6 +31,16 @@ import { contact } from '@/lib/data';
  *  └───────────────────────────────────────────────┘
  */
 const HeroSection = () => {
+  const [frameIdx, setFrameIdx] = useState(0);
+  useEffect(() => {
+    const id = window.setInterval(
+      () => setFrameIdx((i) => (i + 1) % PIXEL_FRAMES.length),
+      2600,
+    );
+    return () => window.clearInterval(id);
+  }, []);
+  const frame = PIXEL_FRAMES[frameIdx];
+
   return (
     <section
       id="home"
@@ -68,17 +88,49 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.35, type: 'spring', stiffness: 180 }}
               whileHover={{ rotate: 4, scale: 1.03 }}
               className="pixel-avatar-disc w-[clamp(120px,15vw,220px)] aspect-square rounded-full border-[clamp(4px,0.6vw,8px)] border-ink bg-mint overflow-hidden relative"
-              aria-label="Pixel-art avatar of Saqlain"
+              aria-label="Pixel-art slideshow of Saqlain"
+              role="img"
             >
-              <img
-                src={`${import.meta.env.BASE_URL}images/saqlain-pixel.svg`}
-                alt="Pixel-art avatar of Saqlain Ahmed P"
-                className="w-full h-full object-cover pixel-img"
-                draggable={false}
-              />
-              <span className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono tracking-widest bg-ink text-ivory px-2 py-0.5 rounded-full">
-                SAQLAIN.PXL
-              </span>
+              {/* crossfade slideshow of pixel-art frames */}
+              <AnimatePresence mode="sync">
+                <motion.img
+                  key={frame.src}
+                  src={`${import.meta.env.BASE_URL}${frame.src}`}
+                  alt={`Pixel-art avatar of Saqlain — ${frame.label}`}
+                  className="absolute inset-0 w-full h-full object-cover pixel-img"
+                  draggable={false}
+                  initial={{ opacity: 0, scale: 1.06 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.94 }}
+                  transition={{ duration: 0.7, ease: 'easeInOut' }}
+                />
+              </AnimatePresence>
+
+              {/* frame label chip — swaps in sync with the image */}
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={`${frame.src}-label`}
+                  className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono tracking-widest bg-ink text-ivory px-2 py-0.5 rounded-full"
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.35 }}
+                >
+                  SAQLAIN.PXL · {frame.label}
+                </motion.span>
+              </AnimatePresence>
+
+              {/* progress dots */}
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 flex gap-1">
+                {PIXEL_FRAMES.map((_, i) => (
+                  <span
+                    key={i}
+                    className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                      i === frameIdx ? 'bg-ink' : 'bg-ink/25'
+                    }`}
+                  />
+                ))}
+              </div>
             </motion.div>
           </div>
         </div>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pixel frame 2 — red kurta, ID-photo style -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" shape-rendering="crispEdges" preserveAspectRatio="xMidYMid meet">
+  <!-- neutral cream backdrop -->
+  <rect width="24" height="24" fill="#fff4ec"/>
+  <rect x="0" y="18" width="24" height="6" fill="#e9dccb"/>
+
+  <!-- hair (slightly neater, younger) -->
+  <g fill="#1a1a12">
+    <rect x="6"  y="3" width="12" height="1"/>
+    <rect x="5"  y="4" width="14" height="2"/>
+    <rect x="4"  y="6" width="16" height="1"/>
+    <rect x="4"  y="7" width="2"  height="2"/>
+    <rect x="18" y="7" width="2"  height="2"/>
+  </g>
+  <g fill="#3a3a25">
+    <rect x="10" y="4" width="1" height="1"/>
+    <rect x="14" y="4" width="1" height="1"/>
+  </g>
+
+  <!-- face -->
+  <g fill="#c8875a">
+    <rect x="6"  y="7"  width="12" height="1"/>
+    <rect x="5"  y="8"  width="14" height="1"/>
+    <rect x="5"  y="9"  width="14" height="1"/>
+    <rect x="5"  y="10" width="14" height="1"/>
+    <rect x="5"  y="11" width="14" height="1"/>
+    <rect x="5"  y="12" width="14" height="1"/>
+    <rect x="6"  y="13" width="12" height="1"/>
+    <rect x="7"  y="14" width="10" height="1"/>
+    <rect x="8"  y="15" width="8"  height="1"/>
+  </g>
+  <g fill="#a06d43" opacity="0.55">
+    <rect x="17" y="8"  width="2" height="7"/>
+  </g>
+
+  <!-- eyebrows + eyes (no glasses, neutral) -->
+  <g fill="#1a1a12">
+    <rect x="7"  y="8" width="4" height="1"/>
+    <rect x="13" y="8" width="4" height="1"/>
+    <rect x="8"  y="10" width="2" height="1"/>
+    <rect x="14" y="10" width="2" height="1"/>
+  </g>
+  <!-- neutral mouth -->
+  <g fill="#5a3520">
+    <rect x="10" y="14" width="4" height="1"/>
+  </g>
+
+  <!-- neck -->
+  <g fill="#a06d43">
+    <rect x="10" y="16" width="4" height="1"/>
+  </g>
+
+  <!-- red kurta with collar -->
+  <g fill="#b8322f">
+    <rect x="3"  y="17" width="18" height="7"/>
+  </g>
+  <!-- kurta collar (V-neck opening) -->
+  <g fill="#c8875a">
+    <rect x="11" y="17" width="2" height="1"/>
+    <rect x="11" y="18" width="2" height="1"/>
+  </g>
+  <g fill="#8a2321">
+    <rect x="10" y="17" width="1" height="2"/>
+    <rect x="13" y="17" width="1" height="2"/>
+  </g>
+  <!-- fabric shading -->
+  <g fill="#8a2321" opacity="0.75">
+    <rect x="19" y="17" width="2" height="7"/>
+    <rect x="3"  y="17" width="1" height="7"/>
+  </g>
+
+  <!-- outline pass -->
+  <g fill="#14160d">
+    <rect x="6"  y="2" width="12" height="1"/>
+    <rect x="5"  y="3" width="1" height="1"/>
+    <rect x="18" y="3" width="1" height="1"/>
+    <rect x="4"  y="4" width="1" height="2"/>
+    <rect x="19" y="4" width="1" height="2"/>
+    <rect x="3"  y="6" width="1" height="1"/>
+    <rect x="20" y="6" width="1" height="1"/>
+    <rect x="4"  y="7" width="1" height="6"/>
+    <rect x="19" y="7" width="1" height="6"/>
+    <rect x="5"  y="13" width="1" height="1"/>
+    <rect x="18" y="13" width="1" height="1"/>
+    <rect x="6"  y="14" width="1" height="1"/>
+    <rect x="17" y="14" width="1" height="1"/>
+    <rect x="7"  y="15" width="1" height="1"/>
+    <rect x="16" y="15" width="1" height="1"/>
+    <rect x="8"  y="16" width="2" height="1"/>
+    <rect x="14" y="16" width="2" height="1"/>
+  </g>
+</svg>

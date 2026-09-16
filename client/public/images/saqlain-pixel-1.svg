@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pixel frame 1 — ecko jacket + glass-tower backdrop -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" shape-rendering="crispEdges" preserveAspectRatio="xMidYMid meet">
+  <!-- glass building bg (pale silver-blue grid) -->
+  <rect width="24" height="24" fill="#b8c8d8"/>
+  <g fill="#9fb2c6" opacity="0.55">
+    <rect x="0"  y="0"  width="24" height="1"/>
+    <rect x="0"  y="5"  width="24" height="1"/>
+    <rect x="0"  y="10" width="24" height="1"/>
+    <rect x="0"  y="15" width="24" height="1"/>
+    <rect x="4"  y="0"  width="1"  height="16"/>
+    <rect x="10" y="0"  width="1"  height="16"/>
+    <rect x="16" y="0"  width="1"  height="16"/>
+    <rect x="20" y="0"  width="1"  height="16"/>
+  </g>
+  <!-- window highlight -->
+  <g fill="#dde6f0" opacity="0.55">
+    <rect x="11" y="1" width="4" height="3"/>
+    <rect x="1"  y="6" width="2" height="3"/>
+  </g>
+
+  <!-- hair -->
+  <g fill="#1a1a12">
+    <rect x="6"  y="3" width="12" height="1"/>
+    <rect x="5"  y="4" width="14" height="1"/>
+    <rect x="4"  y="5" width="16" height="2"/>
+    <rect x="4"  y="7" width="2"  height="2"/>
+    <rect x="18" y="7" width="2"  height="2"/>
+  </g>
+  <g fill="#3a3a25">
+    <rect x="7"  y="4" width="1" height="1"/>
+    <rect x="11" y="3" width="1" height="1"/>
+    <rect x="15" y="4" width="1" height="1"/>
+  </g>
+
+  <!-- face -->
+  <g fill="#c8875a">
+    <rect x="6"  y="7"  width="12" height="1"/>
+    <rect x="5"  y="8"  width="14" height="1"/>
+    <rect x="5"  y="9"  width="14" height="1"/>
+    <rect x="5"  y="10" width="14" height="1"/>
+    <rect x="5"  y="11" width="14" height="1"/>
+    <rect x="5"  y="12" width="14" height="1"/>
+    <rect x="6"  y="13" width="12" height="1"/>
+    <rect x="7"  y="14" width="10" height="1"/>
+    <rect x="8"  y="15" width="8"  height="1"/>
+  </g>
+  <g fill="#a06d43" opacity="0.55">
+    <rect x="17" y="8"  width="2" height="7"/>
+  </g>
+
+  <!-- eyes (no glasses in this frame) -->
+  <g fill="#1a1a12">
+    <rect x="8"  y="10" width="2" height="1"/>
+    <rect x="14" y="10" width="2" height="1"/>
+    <rect x="7"  y="8"  width="4" height="1"/>
+    <rect x="13" y="8"  width="4" height="1"/>
+  </g>
+  <!-- mouth smirk -->
+  <g fill="#5a3520">
+    <rect x="10" y="14" width="4" height="1"/>
+    <rect x="14" y="13" width="1" height="1"/>
+  </g>
+  <!-- stubble hint -->
+  <g fill="#2a1c12" opacity="0.35">
+    <rect x="9"  y="15" width="6" height="1"/>
+  </g>
+
+  <!-- neck -->
+  <g fill="#a06d43">
+    <rect x="10" y="16" width="4" height="1"/>
+  </g>
+
+  <!-- dark patterned tee peek at collar -->
+  <g fill="#1a2440">
+    <rect x="10" y="17" width="4" height="1"/>
+  </g>
+  <g fill="#4b6ab0">
+    <rect x="11" y="17" width="1" height="1"/>
+    <rect x="13" y="17" width="1" height="1"/>
+  </g>
+
+  <!-- tan ecko jacket (open, chest pockets) -->
+  <g fill="#c48545">
+    <rect x="3"  y="17" width="7" height="7"/>
+    <rect x="14" y="17" width="7" height="7"/>
+  </g>
+  <!-- jacket shading (right side) -->
+  <g fill="#8a5730">
+    <rect x="19" y="17" width="2" height="7"/>
+    <rect x="3"  y="17" width="1" height="7"/>
+  </g>
+  <!-- pocket flaps -->
+  <g fill="#8a5730">
+    <rect x="5"  y="19" width="4" height="1"/>
+    <rect x="15" y="19" width="4" height="1"/>
+  </g>
+  <!-- red ecko patch on right chest -->
+  <g fill="#b83030">
+    <rect x="16" y="21" width="3" height="2"/>
+  </g>
+  <g fill="#fff4ec">
+    <rect x="17" y="22" width="1" height="1"/>
+  </g>
+
+  <!-- outline pass -->
+  <g fill="#14160d">
+    <rect x="6"  y="2" width="12" height="1"/>
+    <rect x="5"  y="3" width="1" height="1"/>
+    <rect x="18" y="3" width="1" height="1"/>
+    <rect x="4"  y="4" width="1" height="1"/>
+    <rect x="19" y="4" width="1" height="1"/>
+    <rect x="3"  y="5" width="1" height="2"/>
+    <rect x="20" y="5" width="1" height="2"/>
+    <rect x="4"  y="7" width="1" height="6"/>
+    <rect x="19" y="7" width="1" height="6"/>
+    <rect x="5"  y="13" width="1" height="1"/>
+    <rect x="18" y="13" width="1" height="1"/>
+    <rect x="6"  y="14" width="1" height="1"/>
+    <rect x="17" y="14" width="1" height="1"/>
+    <rect x="7"  y="15" width="1" height="1"/>
+    <rect x="16" y="15" width="1" height="1"/>
+    <rect x="8"  y="16" width="2" height="1"/>
+    <rect x="14" y="16" width="2" height="1"/>
+  </g>
+</svg>

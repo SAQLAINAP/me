@@ -11,7 +11,7 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="py-24 relative bg-cream">
-      <div className="wrap">
+      <div className="wrap-lg">
         <div className="section-head">
           <span className="section-head__idx">// 06</span>
           <h2 className="section-head__title">

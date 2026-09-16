@@ -229,7 +229,7 @@ function ArenaDetail({ project }: { project: Project }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="wrap"
+      className="wrap-lg"
     >
       <Link
         href="/arena"

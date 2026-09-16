@@ -35,7 +35,7 @@ const Header = () => {
           : 'bg-transparent border-b-2 border-transparent'
       }`}
     >
-      <div className="wrap flex justify-between items-center py-4">
+      <div className="wrap-lg flex justify-between items-center py-4">
         <Link
           href="/"
           className="flex items-center gap-2 group"
@@ -93,7 +93,7 @@ const Header = () => {
           isMenuOpen ? 'max-h-96' : 'max-h-0'
         }`}
       >
-        <div className="wrap py-4 flex flex-col gap-3 font-mono text-sm uppercase tracking-widest text-ink">
+        <div className="wrap-lg py-4 flex flex-col gap-3 font-mono text-sm uppercase tracking-widest text-ink">
           {anchorLinks.map((l) => (
             <a
               key={l.href}

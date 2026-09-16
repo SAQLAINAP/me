@@ -27,7 +27,7 @@ const COMPANY_TINT: Record<string, string> = {
 const ExperienceSection = () => {
   return (
     <section id="experience" className="py-24 relative bg-cream">
-      <div className="wrap">
+      <div className="wrap-lg">
         <div className="section-head">
           <span className="section-head__idx">// 02</span>
           <h2 className="section-head__title">

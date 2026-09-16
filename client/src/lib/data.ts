@@ -489,15 +489,62 @@ export const scholarships = [
 ];
 
 export const technicalAchievements = [
-  { title: 'TGB × Kroolo Future-of-Work AI Hackathon', status: 'Winner', description: 'Built an AI solution for future-of-work automation.', tags: ['AI', 'FutureOfWork'] },
-  { title: 'Kaspersky SkyHack Pan-India Hackathon', status: 'Winner', description: 'First place at national-level cybersecurity + tech hackathon.', tags: ['Cybersecurity', 'Tech'] },
-  { title: 'GetCreatr Vibe Coding Showdown', status: 'Winner', description: 'Top performance in rapid-prototyping coding showdown.', tags: ['Coding', 'Prototyping'] },
-  { title: 'Intercontinental AI Hackathon', status: 'Winner', description: 'Global recognition for AI-driven solution.', tags: ['Global', 'AI'] },
-  { title: 'Genesis Vibe Coding', status: 'Finalist', description: 'Reached the finals in this competitive coding event.', tags: ['Coding'] },
-  { title: 'Quant-A-Maze', status: 'Finalist', description: 'Applied quantum algorithms to complex maze / optimisation problems.', tags: ['Quantum', 'Algorithms'] },
-  { title: 'Smart India Hackathon', status: 'Finalist', description: 'Grand-finale selection at SIH.', tags: ['Nationwide', 'Innovation'] },
-  { title: 'TON HackerHouse', status: 'Finalist', description: 'Finalist in The Open Network blockchain hackathon.', tags: ['Blockchain', 'TON'] },
-  { title: 'SideTrip AI Hackathon', status: 'Finalist', description: 'Recognized for a unique AI travel-planning solution.', tags: ['AI', 'Travel'] }
+  {
+    title: 'Future of Work × Kroolo Hackathon',
+    status: 'Winner',
+    date: 'Jun 2025',
+    description: 'Built an AI solution for future-of-work automation — winner across all-India teams.',
+    tags: ['AI', 'FutureOfWork']
+  },
+  {
+    title: 'Kaspersky × MAHE Hackathon',
+    status: 'Winner',
+    date: 'Nov 2025',
+    description: 'Pan-India cybersecurity + tech hackathon hosted at Manipal by Kaspersky.',
+    tags: ['Cybersecurity', 'National']
+  },
+  {
+    title: 'GetCreatr Vibe-Coding Showdown',
+    status: 'Winner',
+    date: 'Mar 2025',
+    description: 'Rapid-prototyping "vibe coding" sprint — shipped fastest cleanest build.',
+    tags: ['Coding', 'Prototyping']
+  },
+  {
+    title: 'Inter-continental AI Agents Hackathon × August AI',
+    status: 'Winner',
+    date: 'Nov 2024',
+    description: 'Global AI-agents hackathon with August AI — end-to-end agentic workflow.',
+    tags: ['AI', 'Agents']
+  },
+  {
+    title: 'CodeRush — Genesis (DSCE)',
+    status: 'Winner',
+    date: 'Sep 2025',
+    description: 'Winner at the flagship coding sprint of DSCE Genesis.',
+    tags: ['Coding', 'Campus']
+  },
+  {
+    title: 'AI Agents Quiz — BTW',
+    status: 'Winner',
+    date: 'Aug 2026',
+    description: 'Top score in the BTW community AI-agents theory + practice quiz.',
+    tags: ['AI', 'Agents']
+  },
+  {
+    title: 'Case-Study Contest — WeSrijan (Welingkar)',
+    status: 'Winner',
+    date: 'Apr 2025',
+    description: 'Winning entry at the WeSrijan case-study contest, Welingkar Institute.',
+    tags: ['Business', 'CaseStudy']
+  },
+  {
+    title: 'Nano Hackathon w/ GitHub Copilot',
+    status: 'Winner',
+    date: 'Dec 2025',
+    description: 'Copilot-powered nano-hackathon at the GitHub Universe \'25 recap.',
+    tags: ['GitHub', 'Copilot']
+  },
 ];
 
 export const entrepreneurialAchievements = [

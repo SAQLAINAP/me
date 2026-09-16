@@ -12,15 +12,18 @@
 
 @layer base {
   :root {
-    /* Montgomery palette — light default. */
-    --ivory:  #fff4ec;
-    --cream:  #f6e6d9;
-    --ink:    #14160d;
-    --olive:  #3c422e;
-    --lime:   #d1e030;
-    --mint:   #9eef80;
-    --gold:   #fbd535;
-    --sage:   #9fcd7a;
+    /* Montgomery palette — light default.
+       Each colour ships as both a hex `--x` (for direct CSS use) *and* a raw
+       `--x-rgb` triple (for tailwind's `rgb(var(--x-rgb) / <alpha-value>)`
+       so that opacity modifiers like `text-ink/70` swap with the theme). */
+    --ivory:  #fff4ec;  --ivory-rgb: 255 244 236;
+    --cream:  #f6e6d9;  --cream-rgb: 246 230 217;
+    --ink:    #14160d;  --ink-rgb:    20  22  13;
+    --olive:  #3c422e;  --olive-rgb:  60  66  46;
+    --lime:   #d1e030;  --lime-rgb:  209 224  48;
+    --mint:   #9eef80;  --mint-rgb:  158 239 128;
+    --gold:   #fbd535;  --gold-rgb:  251 213  53;
+    --sage:   #9fcd7a;  --sage-rgb:  159 205 122;
 
     /* shadcn passthroughs (keep radix / toaster components working). */
     --background: 33 100% 96%;   /* ivory */
@@ -46,15 +49,17 @@
   }
 
   .dark {
-    /* Dark twin — same accents, inverted neutrals. */
-    --ivory:  #0f1109;   /* bg */
-    --cream:  #17190f;   /* surface */
-    --ink:    #fff4ec;   /* text */
-    --olive:  #cfd6ba;   /* muted text */
-    --lime:   #d1e030;
+    /* Dark twin — same accents, inverted neutrals.
+       We also swap the `--x-rgb` triples so tailwind alpha utilities like
+       `text-ink/70` become 70%-opacity ivory on dark instead of 70% ink. */
+    --ivory:  #0f1109;   --ivory-rgb:  15  17   9;   /* bg      */
+    --cream:  #17190f;   --cream-rgb:  23  25  15;   /* surface */
+    --ink:    #fff4ec;   --ink-rgb:   255 244 236;   /* text    */
+    --olive:  #cfd6ba;   --olive-rgb: 207 214 186;   /* muted   */
+    --lime:   #d1e030;   /* lime-rgb inherited from :root */
     --mint:   #9eef80;
     --gold:   #fbd535;
-    --sage:   #5a6a3d;
+    --sage:   #5a6a3d;   --sage-rgb:   90 106  61;
 
     --background: 66 22% 5%;
     --foreground: 33 100% 96%;
@@ -262,10 +267,14 @@
     color: var(--ink);
   }
 
-  /* Inline highlighter blocks (used inside h-mega). */
+  /* Inline highlighter blocks (used inside h-mega).
+     `leading-[0.75em]` shrinks the line-box so the highlighter hugs the
+     glyph and doesn't spill onto adjacent lines when used inside big
+     display type with tight line-height. */
   .mk {
-    padding: 0 0.12em;
+    padding: 0.02em 0.14em 0.05em;
     color: var(--ink);
+    line-height: 0.85;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }
@@ -300,17 +309,20 @@
   }
   .dark .card-hover:hover { box-shadow: 6px 6px 0 var(--lime); }
 
-  /* Solid-color project card variants (Montgomery `.proj--lime` etc). */
+  /* Solid-color project card variants (Montgomery `.proj--lime` etc).
+     No min-height — content sizes the card so short descriptions don't
+     leave awkward vertical space. Callers can add their own min-height
+     via arbitrary Tailwind classes if they need it. */
   .card-proj {
     border: 2px solid var(--ink);
     border-radius: var(--radius);
-    padding: 32px;
+    padding: 28px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 20px;
     transition: transform 220ms ease, box-shadow 220ms ease;
     color: var(--ink);
-    min-height: 380px;
   }
   .card-proj:hover {
     transform: translate(-6px, -6px);
@@ -330,14 +342,14 @@
     justify-content: center;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: clamp(6px, 0.8vw, 12px) solid var(--ink);
-    background: var(--ivory);
+    border: clamp(4px, 0.6vw, 8px) solid var(--ink);
+    background: var(--lime);
     font-family: 'Oswald', 'Arial Narrow', Impact, sans-serif;
     font-weight: 700;
     color: var(--ink);
     animation: breathe 5s ease-in-out infinite;
   }
-  .dark .breathe-circle { background: var(--cream); }
+  .dark .breathe-circle { background: var(--lime); color: var(--ink); border-color: var(--ink); }
   @keyframes breathe {
     0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(209, 224, 48, 0); }
     50%      { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(209, 224, 48, 0.35); }
@@ -389,25 +401,9 @@
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-  .text-ink    { color: var(--ink);   }
-  .text-ivory  { color: var(--ivory); }
-  .text-olive  { color: var(--olive); }
-  .text-lime   { color: var(--lime);  }
-  .text-mint   { color: var(--mint);  }
-  .text-gold   { color: var(--gold);  }
-  .text-sage   { color: var(--sage);  }
-
-  .bg-ink    { background: var(--ink);   }
-  .bg-ivory  { background: var(--ivory); }
-  .bg-cream  { background: var(--cream); }
-  .bg-olive  { background: var(--olive); }
-  .bg-lime   { background: var(--lime);  }
-  .bg-mint   { background: var(--mint);  }
-  .bg-gold   { background: var(--gold);  }
-
-  .border-ink { border-color: var(--ink); }
-  .border-sage { border-color: var(--sage); }
+  /* Palette utilities (bg-x, text-x, border-x) are now generated by
+     tailwind from the CSS-var-based colours so opacity modifiers like
+     "text-ink/70" work across both light and dark modes. */
 
   /* Legacy aliases so any leftover class from the old aurora system still
      renders as *something* instead of falling through unstyled. */

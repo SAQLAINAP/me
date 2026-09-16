@@ -74,14 +74,16 @@ export default {
         },
 
         // Portfolio palette — Montgomery brutalist.
-        ivory:  '#fff4ec',
-        cream:  '#f6e6d9',
-        ink:    '#14160d',
-        olive:  '#3c422e',
-        lime:   '#d1e030',
-        mint:   '#9eef80',
-        gold:   '#fbd535',
-        sage:   '#9fcd7a',
+        // Wired through CSS vars so `.dark` can swap neutrals *and* alpha
+        // modifiers like `text-ink/70` still resolve correctly per-theme.
+        ivory: 'rgb(var(--ivory-rgb) / <alpha-value>)',
+        cream: 'rgb(var(--cream-rgb) / <alpha-value>)',
+        ink:   'rgb(var(--ink-rgb)   / <alpha-value>)',
+        olive: 'rgb(var(--olive-rgb) / <alpha-value>)',
+        lime:  'rgb(var(--lime-rgb)  / <alpha-value>)',
+        mint:  'rgb(var(--mint-rgb)  / <alpha-value>)',
+        gold:  'rgb(var(--gold-rgb)  / <alpha-value>)',
+        sage:  'rgb(var(--sage-rgb)  / <alpha-value>)',
       },
       keyframes: {
         "accordion-down": {

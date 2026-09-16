@@ -31,20 +31,49 @@ const AboutSection = () => {
   const renderIcon = (key: string) =>
     ICONS[key] ?? <span className="font-mono font-bold">{key.slice(2, 3) || '·'}</span>;
 
-  const TechGrid = ({ items }: { items: { name: string; iconType: string }[] }) => (
-    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5">
-      {items.map((it) => (
-        <div
-          key={it.name}
-          className="frame p-3 flex flex-col items-center justify-center gap-2 aspect-square card-hover"
-          title={it.name}
-        >
-          <div className="text-2xl text-ink">{renderIcon(it.iconType)}</div>
-          <span className="text-[11px] font-mono text-ink/70 text-center leading-tight uppercase tracking-wide">{it.name}</span>
-        </div>
-      ))}
+  /* Compact chip-list — each tech shows a small icon + label on one row.
+     Reads horizontally so a long category doesn't force the surrounding grid
+     to grow vertically. */
+  const TechList = ({
+    label,
+    items,
+  }: {
+    label: string;
+    items: { name: string; iconType: string }[];
+  }) => (
+    <div>
+      <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-3">
+        {label} · {items.length}
+      </div>
+      <ul className="flex flex-wrap gap-2">
+        {items.map((it) => (
+          <li
+            key={it.name}
+            className="inline-flex items-center gap-2 px-2 py-1 border-2 border-ink rounded-full text-xs font-mono uppercase tracking-wide text-ink bg-ivory transition-colors hover:bg-lime"
+            title={it.name}
+          >
+            <span className="text-sm text-ink">{renderIcon(it.iconType)}</span>
+            {it.name}
+          </li>
+        ))}
+      </ul>
     </div>
   );
+
+  const HOBBIES = [
+    { icon: <FaGamepad />,      label: 'Gaming' },
+    { icon: <FaPlane />,        label: 'Travel' },
+    { icon: <FaMusic />,        label: 'Music' },
+    { icon: <FaFilm />,         label: 'Movies' },
+    { icon: <FaUtensils />,     label: 'Food' },
+    { icon: <FaBookOpen />,     label: 'Story' },
+    { icon: <FaMicrophone />,   label: 'Speaking' },
+    { icon: <FaCar />,          label: 'Driving' },
+    { icon: <FaUsers />,        label: 'Confs' },
+    { icon: <FaRunning />,      label: 'Cricket' },
+    { icon: <FaTableTennis />,  label: 'Pickleball' },
+    { icon: <FaDice />,         label: 'Cards' },
+  ];
 
   return (
     <section id="about" className="py-24 relative bg-ivory">
@@ -57,120 +86,114 @@ const AboutSection = () => {
           <span className="section-head__note">bio · stack · hobbies</span>
         </div>
 
+        {/* ROW 1: Bio (wide) + Education (narrow) */}
         <div className="grid md:grid-cols-5 gap-6">
-          {/* Bio ------------------------------------------------------------ */}
           <motion.div
-            className="md:col-span-3 space-y-6"
+            className="md:col-span-3 frame frame-cream p-7"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="frame frame-cream p-7">
-              <h3 className="font-condensed text-3xl mb-3 text-ink">Bio</h3>
-              <p className="text-ink/80 leading-relaxed">
-                I'm an AI engineer at <span className="font-bold text-ink">Plivo</span> building
-                real-time voice AI — LLMs plugged into telephony, evaluation harnesses for
-                TTS / STT vendors, and agentic voice workflows.
-              </p>
-              <p className="mt-4 text-ink/80 leading-relaxed">
-                Outside the day job I chase <span className="font-bold text-ink">quantum computing</span>,
-                cloud-native <span className="font-bold text-ink">open source</span>, and any hackathon
-                that sounds fun. Two-time <span className="font-bold text-ink">Shubhra Kar Linux Foundation Scholar</span>
-                {' '}(2023 + 2026) via the CNCF.
-              </p>
-              <p className="mt-4 text-ink/80 leading-relaxed">
-                Bias for shipping over talking. Comfortable across the stack, but happiest in the
-                messy middle where product, model and infra meet.
-              </p>
-            </div>
-
-            <div className="frame p-7">
-              <h3 className="font-condensed text-3xl mb-4 text-ink">Education</h3>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <div className="flex items-center gap-2 text-ink font-bold">
-                    <FaGraduationCap />
-                    Dayananda Sagar College of Engineering, Bangalore
-                  </div>
-                  <div className="mt-1 text-sm text-ink/70">
-                    B.E. — Artificial Intelligence &amp; Machine Learning · 2022 – 2026
-                  </div>
-                  <div className="mt-3">
-                    <span className="tag tag--lime">CGPA 9.55 / 10.0</span>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6">
-                <a
-                  href="Saqlain-resume-25.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pill pill--lime"
-                >
-                  <FaDownload /> Download resume
-                </a>
-              </div>
-            </div>
-
-            <div className="frame frame-cream p-7">
-              <h3 className="font-condensed text-3xl mb-4 text-ink">Hobbies &amp; interests</h3>
-              <div className="grid grid-cols-4 gap-2.5">
-                {[
-                  { icon: <FaGamepad />,      label: 'Gaming' },
-                  { icon: <FaPlane />,        label: 'Travel' },
-                  { icon: <FaMusic />,        label: 'Music' },
-                  { icon: <FaFilm />,         label: 'Movies' },
-                  { icon: <FaUtensils />,     label: 'Food' },
-                  { icon: <FaBookOpen />,     label: 'Story' },
-                  { icon: <FaMicrophone />,   label: 'Speaking' },
-                  { icon: <FaCar />,          label: 'Driving' },
-                  { icon: <FaUsers />,        label: 'Confs' },
-                  { icon: <FaRunning />,      label: 'Cricket' },
-                  { icon: <FaTableTennis />,  label: 'Pickleball' },
-                  { icon: <FaDice />,         label: 'Cards' },
-                ].map((h) => (
-                  <div key={h.label} className="frame p-3 flex flex-col items-center gap-1 card-hover">
-                    <div className="text-lg text-ink">{h.icon}</div>
-                    <span className="text-[10px] font-mono uppercase tracking-wide text-ink/70">{h.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <h3 className="font-condensed text-3xl mb-3 text-ink">Bio</h3>
+            <p className="text-ink/80 leading-relaxed">
+              I'm an AI engineer at <span className="font-bold text-ink">Plivo</span> building
+              real-time voice AI — LLMs plugged into telephony, evaluation harnesses for
+              TTS / STT vendors, and agentic voice workflows.
+            </p>
+            <p className="mt-4 text-ink/80 leading-relaxed">
+              Outside the day job I chase <span className="font-bold text-ink">quantum computing</span>,
+              cloud-native <span className="font-bold text-ink">open source</span>, and any hackathon
+              that sounds fun. Two-time <span className="font-bold text-ink">Shubhra Kar Linux Foundation Scholar</span>
+              {' '}(2023 + 2026) via the CNCF.
+            </p>
+            <p className="mt-4 text-ink/80 leading-relaxed">
+              Bias for shipping over talking. Comfortable across the stack, but happiest in the
+              messy middle where product, model and infra meet.
+            </p>
           </motion.div>
 
-          {/* Tech Stack ---------------------------------------------------- */}
           <motion.div
-            className="md:col-span-2"
+            className="md:col-span-2 frame p-7 flex flex-col justify-between"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
           >
-            <div className="frame p-7 sticky top-24">
-              <h3 className="font-condensed text-3xl mb-6 text-ink">Tech stack</h3>
-
-              <div className="space-y-6">
-                <div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-3">Languages</div>
-                  <TechGrid items={languages} />
-                </div>
-                <div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-3">Frameworks</div>
-                  <TechGrid items={frameworks} />
-                </div>
-                <div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-3">Tooling</div>
-                  <TechGrid items={devTools} />
-                </div>
-                <div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-3">Cloud &amp; data</div>
-                  <TechGrid items={cloudAndDb} />
-                </div>
+            <div>
+              <h3 className="font-condensed text-3xl mb-4 text-ink">Education</h3>
+              <div className="flex items-center gap-2 text-ink font-bold">
+                <FaGraduationCap />
+                Dayananda Sagar College of Engineering
+              </div>
+              <div className="mt-1 text-sm text-ink/70">
+                B.E. — Artificial Intelligence &amp; Machine Learning
+              </div>
+              <div className="mt-1 text-sm text-ink/70 font-mono">2022 – 2026 · Bangalore</div>
+              <div className="mt-3">
+                <span className="tag tag--lime">CGPA 9.55 / 10.0</span>
               </div>
             </div>
+            <a
+              href="Saqlain-resume-25.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pill pill--lime mt-6 self-start"
+            >
+              <FaDownload /> Download resume
+            </a>
           </motion.div>
         </div>
+
+        {/* ROW 2: Tech stack, full-width, 4 category columns to stay short */}
+        <motion.div
+          className="mt-6 frame p-7"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <div className="flex items-baseline justify-between mb-6">
+            <h3 className="font-condensed text-3xl text-ink">Tech stack</h3>
+            <span className="text-xs font-mono uppercase tracking-widest text-ink/50">
+              things I reach for
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <TechList label="Languages"     items={languages} />
+            <TechList label="Frameworks"    items={frameworks} />
+            <TechList label="Tooling"       items={devTools} />
+            <TechList label="Cloud & data"  items={cloudAndDb} />
+          </div>
+        </motion.div>
+
+        {/* ROW 3: Hobbies full-width strip */}
+        <motion.div
+          className="mt-6 frame frame-cream p-7"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+        >
+          <div className="flex items-baseline justify-between mb-4">
+            <h3 className="font-condensed text-3xl text-ink">Hobbies &amp; interests</h3>
+            <span className="text-xs font-mono uppercase tracking-widest text-ink/50">
+              off-duty saqlain
+            </span>
+          </div>
+          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-3">
+            {HOBBIES.map((h) => (
+              <div
+                key={h.label}
+                className="frame p-3 flex flex-col items-center gap-1 card-hover"
+              >
+                <div className="text-xl text-ink">{h.icon}</div>
+                <span className="text-[10px] font-mono uppercase tracking-wide text-ink/70">{h.label}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

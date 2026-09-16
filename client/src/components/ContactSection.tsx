@@ -29,18 +29,23 @@ const ContactSection = () => {
           {/* Primary CTA card ------------------------------------------------ */}
           <motion.a
             href={mailto}
-            className="card-proj card-proj--lime relative"
+            className="card-proj card-proj--lime relative min-w-0 overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div>
+            <div className="min-w-0">
               <div className="inline-flex items-center gap-2 tag mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-ink animate-pulse" />
                 open to collaborations
               </div>
-              <div className="font-condensed text-4xl md:text-5xl uppercase text-ink leading-none">
+              {/* Fluid clamp + break-all so 24-char email never overflows
+                  the card on 320-375px viewports. */}
+              <div
+                className="font-condensed uppercase text-ink leading-[0.95] break-all"
+                style={{ fontSize: 'clamp(20px, 6.5vw, 44px)' }}
+              >
                 {contact.email}
               </div>
               <p className="mt-4 text-ink/70 text-sm">
@@ -54,7 +59,7 @@ const ContactSection = () => {
 
           {/* Socials card ---------------------------------------------------- */}
           <motion.div
-            className="frame p-8"
+            className="frame p-6 sm:p-8 min-w-0 overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -95,9 +100,9 @@ function SocialRow({
         <div className="h-10 w-10 rounded-lg flex items-center justify-center bg-ivory border-2 border-ink text-ink text-lg">
           {icon}
         </div>
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <div className="text-xs font-mono uppercase tracking-widest text-ink/60">{title}</div>
-          <div className="text-ink font-mono text-sm">{handle}</div>
+          <div className="text-ink font-mono text-sm truncate">{handle}</div>
         </div>
         <span className="text-ink/40 group-hover:text-ink transition-colors">↗</span>
       </a>

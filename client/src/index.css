@@ -385,13 +385,20 @@
   .card-proj {
     border: 2px solid var(--ink);
     border-radius: var(--radius);
-    padding: 28px;
+    /* Tighter padding on narrow phones so 320-360px cards keep content
+       inside the border-box; desktop keeps the roomier 28px feel. */
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
     transition: transform 220ms ease, box-shadow 220ms ease;
     color: var(--ink);
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  @media (min-width: 640px) {
+    .card-proj { padding: 28px; }
   }
   .card-proj:hover {
     transform: translate(-6px, -6px);

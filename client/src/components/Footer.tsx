@@ -7,9 +7,9 @@ const Footer = () => {
   const mailto = `mailto:${contact.email}?subject=${encodeURIComponent("Let's build something")}`;
 
   return (
-    <footer className="relative mt-24 bg-ink text-ivory">
+    <footer className="footer-panel relative mt-24">
       {/* ============ Giant CTA strip ============ */}
-      <div className="wrap pt-20 pb-10">
+      <div className="wrap-lg pt-20 pb-10">
         <div className="text-xs font-mono uppercase tracking-widest text-ivory/50 mb-6">
           // next
         </div>
@@ -37,10 +37,10 @@ const Footer = () => {
         </div>
       </div>
 
-      <hr className="rule-dashed w-[92%] max-w-[1280px] mx-auto" style={{ borderColor: 'var(--olive)' }} />
+      <hr className="rule-dashed wrap-lg" style={{ borderColor: 'var(--olive)' }} />
 
       {/* ============ Meta grid ============ */}
-      <div className="wrap py-12 grid md:grid-cols-3 gap-8 items-start">
+      <div className="wrap-lg py-12 grid md:grid-cols-3 gap-8 items-start">
         <div>
           <Link href="/" className="flex items-center gap-2">
             <span className="inline-flex items-center justify-center h-9 w-9 rounded-md bg-lime text-ink font-condensed font-bold text-lg leading-none border-2 border-lime">
@@ -51,7 +51,7 @@ const Footer = () => {
             </span>
           </Link>
           <p className="mt-4 text-sm text-ivory/60 max-w-xs leading-relaxed">
-            Portfolio v3.4.5 · built with React, Vite &amp; Tailwind, hosted on GitHub Pages.
+            Portfolio v3.4.6 · built with React, Vite &amp; Tailwind, hosted on GitHub Pages.
             Aesthetic borrowed with love from Montgomery.
           </p>
         </div>
@@ -88,9 +88,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="wrap pb-6 pt-4 border-t border-ivory/10 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-ivory/40 font-mono">
+      <div className="wrap-lg pb-6 pt-4 border-t border-ivory/10 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-ivory/40 font-mono">
         <span>© {new Date().getFullYear()} Saqlain Ahmed P — SAQLAINAP</span>
-        <span>made in bangalore · v3.4.5 · brutalist</span>
+        <span>made in bangalore · v3.4.6 · brutalist</span>
       </div>
     </footer>
   );

@@ -489,6 +489,31 @@
   }
   .timeline-item:last-child::after { display: none; }
 
+  /* --- Footer panel — theme-locked dark surface ----------------------
+     The footer is designed to always read as a dark contrast strip.
+     Without this, dark mode swaps `--ink` (warm off-white) with `--ivory`
+     (near-black), which inverts every `bg-ink`/`text-ivory` inside the
+     footer and turns it into a jarring light strip below a dark page.
+     Overriding the vars inside `.footer-panel` scope keeps every
+     Tailwind utility (`bg-ink`, `text-ivory/70`, `text-lime`, `bg-lime
+     text-ink`, `border-ivory/10`, `text-mint`, …) resolving to its
+     originally-intended shade regardless of the current theme. */
+  .footer-panel {
+    --ivory:  #f2ead9;   --ivory-rgb: 242 234 217;
+    --cream:  #1e2016;   --cream-rgb:  30  32  22;
+    --ink:    #14160d;   --ink-rgb:    20  22  13;
+    --olive:  #6b7a52;   --olive-rgb: 107 122  82;
+    --lime:   #b8c556;   --lime-rgb:  184 197  86;
+    --mint:   #8fc776;   --mint-rgb:  143 199 118;
+    --gold:   #d9b94a;   --gold-rgb:  217 185  74;
+    --sage:   #6b7a52;   --sage-rgb:  107 122  82;
+    background: var(--ink);
+    color: var(--ivory);
+  }
+  /* Extra top separator in dark mode where footer bg abuts a dark
+     section — a thin lime hairline reads as an intentional divider. */
+  .dark .footer-panel { border-top: 1px solid rgb(var(--lime-rgb) / 0.15); }
+
   /* --- Container ------------------------------------------------------
      Fixed px gutter on small viewports so the layout uses more of the
      phone width; percentage gutter on desktop for classic centered feel. */

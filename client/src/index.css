@@ -90,7 +90,22 @@
 
 @layer base {
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+
+  /* Hard-clip horizontal on the root so children that legitimately
+     overflow (marquee tracks, decorative box-shadows, wide iframes)
+     never expand documentElement.scrollWidth. Without this, mobile
+     Chrome's pinch-to-zoom-out reveals the marquee's real content
+     width and treats the page as if it were 1000+px wide, producing
+     a dead right gutter. `overflow: clip` (as opposed to `hidden`)
+     is stronger — it prevents the element from becoming a scroll
+     container at all, which also stops the layout-viewport expansion.
+     Fallback to `hidden` for older Safari. */
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100vw;
+  }
 
   body {
     background: var(--ivory);
@@ -100,6 +115,9 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100vw;
+    width: 100%;
     transition: background-color 300ms ease, color 300ms ease;
   }
 
@@ -114,6 +132,15 @@
 
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
+
+  /* Root + main mirror the html clip so no descendant can grow past
+     the viewport width and re-enable pinch-zoom-out dead space. */
+  #root, main {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -188,9 +215,14 @@
   .ticker {
     background: var(--lime);
     border-bottom: 2px solid var(--ink);
+    /* `clip` (not `hidden`) so the max-content track can't push the
+       parent's scrollWidth and inflate the mobile layout viewport. */
     overflow: hidden;
+    overflow: clip;
     padding: 10px 0;
     color: var(--ink);
+    width: 100%;
+    max-width: 100vw;
   }
   .ticker__track {
     display: flex;

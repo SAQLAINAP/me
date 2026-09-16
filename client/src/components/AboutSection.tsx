@@ -98,17 +98,18 @@ const AboutSection = () => {
           >
             <h3 className="font-condensed text-3xl mb-3 text-ink">Bio</h3>
             <p className="text-ink/80 leading-relaxed">
-              AI Engineer at <span className="font-bold text-ink">Plivo</span>, working on
-              real-time voice AI — LLMs over telephony, evaluation harnesses for TTS &amp; STT
-              vendors, and agentic voice workflows.
+              Forward Deployed Engineer intern at <span className="font-bold text-ink">Plivo</span>,
+              building AI-driven communication systems — an IVR platform, agentic query-resolution
+              chatbots, and an internal RAG knowledge system with n8n automations.
+            </p>
+            <p className="mt-4 text-ink/80 leading-relaxed">
+              Also independently benchmarked 8 voice-AI vendors against real Plivo PSTN calls to
+              verify vendor-published WER, latency and cost under production conditions.
             </p>
             <p className="mt-4 text-ink/80 leading-relaxed">
               Prior work: product &amp; AI engineering internships at Kroolo AI and GetCreatr,
-              contributions to CNCF open-source, and applied quantum-ML research on the side.
-            </p>
-            <p className="mt-4 text-ink/80 leading-relaxed">
-              Interests: voice AI, agentic systems, cloud-native infra, and quantum machine
-              learning. Comfortable across frontend, backend and model layers.
+              CNCF open-source contributions, KCNA certified, and applied quantum-ML research on
+              the side.
             </p>
           </motion.div>
 
@@ -132,7 +133,7 @@ const AboutSection = () => {
                 </div>
                 <div className="mt-1 text-xs text-ink/60 font-mono">2022 – 2026 · Bangalore</div>
                 <div className="mt-2">
-                  <span className="tag tag--lime">CGPA 9.55 / 10.0</span>
+                  <span className="tag tag--lime">CGPA 9.25 / 10.0</span>
                 </div>
               </div>
 

@@ -153,9 +153,10 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-6 max-w-2xl text-ink/70 leading-relaxed"
         >
-          AI Engineer at <span className="font-bold text-ink">Plivo</span>, building
-          real-time voice AI infrastructure. Previously shipped product &amp; AI features
-          at Kroolo AI and GetCreatr. CNCF Shubhra Kar scholar.
+          Forward Deployed Engineer intern at <span className="font-bold text-ink">Plivo</span>,
+          building AI-driven comms — IVR, agentic chatbots, RAG knowledge systems and voice-vendor
+          benchmarking. Previously shipped product &amp; AI features at Kroolo AI and GetCreatr.
+          CNCF KCNA · Shubhra Kar scholar.
         </motion.p>
 
         {/* CTAs ---------------------------------------------------------- */}
@@ -200,7 +201,7 @@ const HeroSection = () => {
           {[
             { k: 'Projects',       v: '18+',  tint: 'card-proj--lime' },
             { k: 'Hackathon wins', v: '8',    tint: 'card-proj--mint' },
-            { k: 'CGPA',           v: '9.55', tint: 'card-proj--gold' },
+            { k: 'CGPA',           v: '9.25', tint: 'card-proj--gold' },
           ].map((s) => (
             <div key={s.k} className={`card-proj ${s.tint} !min-h-0 !p-5 text-center`}>
               <div className="font-condensed text-4xl md:text-5xl leading-none text-ink">{s.v}</div>

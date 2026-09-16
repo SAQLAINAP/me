@@ -58,25 +58,25 @@ export const cloudAndDb = [
 
 export const experiences = [
   {
-    position: 'AI Engineer',
+    position: 'Forward Deployed Engineer (FDE) Intern',
     company: 'Plivo',
     location: 'Bangalore',
-    period: 'Nov 2025 – Present',
+    period: 'Feb 2026 – Present',
     responsibilities: [
-      'Building <span class="font-semibold">real-time voice AI infrastructure</span> — evaluating and benchmarking TTS, STT and LLM providers across latency, cost and quality dimensions for production voice agents',
-      'Authoring <span class="font-semibold">multi-vendor evaluation harnesses</span> (AssemblyAI, Deepgram, Cartesia, Fish Audio, Inworld, Speechmatics, Gnani, Vapi) so product teams can pick the right model per use case',
-      'Prototyping <span class="font-semibold">voice-first agent workflows</span> and internal tooling around Pipecat / OpenAI Realtime for Plivo\'s conversational AI stack'
+      'Developing <span class="font-semibold">AI-driven communication systems</span> — an IVR platform and an agentic query-resolution chatbot for enterprise workflows',
+      'Built an internal <span class="font-semibold">RAG-based knowledge system</span> with ingestion pipelines and n8n automations — improving internal EDA efficiency by 25%',
+      'Independently benchmarked <span class="font-semibold">8 voice AI vendors</span> (Deepgram, AssemblyAI, Speechmatics, Cartesia, Fish Audio, Inworld, Gnani, Vapi) against real Plivo PSTN calls — verifying vendor-published WER, latency and cost claims under production conditions'
     ],
-    skills: ['Voice AI', 'LLM Evals', 'TTS/STT Benchmarking', 'Pipecat', 'Realtime APIs']
+    skills: ['Voice AI', 'RAG', 'n8n', 'IVR', 'Agentic Systems', 'PSTN Benchmarking']
   },
   {
     position: 'Product Dev & Engineering Intern',
     company: 'Kroolo AI',
     location: 'Bangalore',
-    period: 'Jul 2025 – Oct 2025',
+    period: 'Jul 2025 – Nov 2025',
     responsibilities: [
-      'Shipped a <span class="font-semibold">policy analyzer & generator</span> from zero — processing 40+ policy documents at 90%+ accuracy and cutting manual review time by 40%',
-      'Contributed multiple features to <span class="font-semibold">Enterprise Search</span>, improving p95 search response times by ~30%'
+      'Built a <span class="font-semibold">policy analyzer & generator</span> from scratch — processing 40+ policies at 90%+ accuracy and cutting manual review time by 40%',
+      'Contributed features to <span class="font-semibold">Enterprise Search</span> on the Kroolo Platform, improving search response times by 30%'
     ],
     skills: ['Product Engineering', 'Full Stack', 'Enterprise Search', 'AI Integration']
   },
@@ -86,8 +86,8 @@ export const experiences = [
     location: 'Bangalore',
     period: 'May 2025 – Jul 2025',
     responsibilities: [
-      'Built and deployed <span class="font-semibold">5 end-to-end AI-embedded full-stack apps</span> using advanced prompting patterns — generating $3,000+ in client project revenue',
-      'Helped ship <span class="font-semibold">client and showcase projects</span> on Creatr, improving in-app conversion for the template gallery'
+      'Developed and deployed <span class="font-semibold">5 end-to-end AI full-stack applications</span> using advanced prompting techniques — generating $3,000+ in client revenue',
+      'Built <span class="font-semibold">portfolio projects on the Creatr platform</span> and assisted client engagements to improve app outreach'
     ],
     skills: ['Prompt Engineering', 'Full Stack', 'AI Applications', 'Client Delivery']
   },
@@ -328,22 +328,22 @@ export const projects: Project[] = [
   },
   {
     id: 'architectural-ai-gemini',
-    title: 'Architectural AI (Gemini)',
-    year: '2024',
-    shortDescription: 'Generative AI for floor-plan design',
-    description: 'An AI assistant that turns natural-language briefs into architectural layout suggestions using Google\'s Gemini Pro Vision, plus zoning-data lookups and structural checks.',
-    challenges: 'Translating vague human briefs ("2 BHK, sunny living room, home office") into constrained layout objects the frontend can render. Handled with a schema-first prompt template and few-shot examples.',
+    title: 'Architectural AI Agent',
+    year: '2025',
+    shortDescription: 'Floor plans + material estimation + NBC/BBMP/Vastu checks',
+    description: 'An architecture-focused AI agent that generates automated floor plans, material estimations and cost breakdowns — and validates every design against NBC, BBMP and Vastu compliance rules before handoff.',
+    challenges: 'Reconciling three different rule systems (statutory NBC, municipal BBMP, cultural Vastu) into a single validation pass without producing contradictory verdicts. Solved with a rule-priority ladder + explicit conflict-surfacing UI.',
     features: [
-      'Multimodal input: text + reference images',
-      'Structured layout JSON output',
-      'Zoning / setback validation',
-      'React canvas renderer for layouts'
+      'Automated floor-plan generation from a brief',
+      'Material estimation + cost breakdown per plan',
+      'NBC / BBMP / Vastu compliance validator',
+      'Supabase-persisted project versioning',
     ],
-    techStack: ['Gemini API', 'Python', 'FastAPI', 'React'],
+    techStack: ['React', 'TypeScript', 'Gemini AI', 'Supabase'],
     image: projectImg('architectural-ai-gemini'),
     accent: ['#f59e0b', '#ef4444'],
-    categories: ['ai'],
-    githubLink: 'https://github.com/SAQLAINAP/Architectural-AI-Gemini'
+    categories: ['ai', 'web'],
+    githubLink: 'https://github.com/SAQLAINAP/Architectural-AI-Agent'
   },
   {
     id: 'refashion-nft',
@@ -385,41 +385,40 @@ export const projects: Project[] = [
   },
   {
     id: 'poligap',
-    title: 'Poligap',
-    year: '2024',
-    shortDescription: 'Citizen ⇄ policy-maker platform',
-    description: 'A live platform that closes the gap between citizens and policy makers with real-time updates, structured discussion threads, and direct feedback channels.',
-    challenges: 'Real-time discussion at scale without letting bad-faith actors dominate the thread. Added weighted signal scoring on top of vanilla up/down votes.',
+    title: 'PoliGap',
+    year: '2025',
+    shortDescription: 'AI compliance & contract analysis system',
+    description: 'An AI-powered compliance and contract analysis system that detects risks, policy gaps and deviations in minutes — with automated redlining workflows built for legal + policy teams.',
+    challenges: 'Getting deterministic, defensible outputs from an LLM on high-stakes legal text. Solved with a Portkey-gated model layer, structured Pydantic contracts on every extraction, and per-clause citations back into the source document.',
     features: [
-      'Real-time policy digests',
-      'Structured citizen discussion threads',
-      'Signed-feedback channels',
-      'Live deployment at poligap.com'
+      'Risk, policy-gap and deviation detection in minutes',
+      'Automated redlining workflow with reviewer sign-off',
+      'Portkey-gated model layer for reliability + cost control',
+      'OAuth-protected multi-tenant workspaces',
     ],
-    techStack: ['Next.js', 'React', 'Tailwind CSS', 'Node.js', 'PostgreSQL'],
+    techStack: ['FastAPI', 'Next.js', 'GraphQL', 'Portkey', 'Supabase', 'OAuth'],
     image: projectImg('poligap'),
     accent: ['#3b82f6', '#8b5cf6'],
-    categories: ['web'],
+    categories: ['ai', 'web'],
     githubLink: 'https://github.com/SAQLAINAP/Poligap',
-    demoLink: 'https://poligap.com'
   },
   {
     id: 'safeclick',
     title: 'SafeClick',
-    year: '2024',
-    shortDescription: 'Anti-phishing browser extension',
-    description: 'A lightweight browser extension that scans links before you click them — local heuristics first, cloud checks only on ambiguous URLs.',
-    challenges: 'Low-latency URL analysis without leaking browsing history. Solved with a local bloom-filter of known-bad domains and hashed cloud lookups.',
+    year: '2025',
+    shortDescription: 'Real-time phishing detection engine (<10s)',
+    description: 'A real-time phishing detection engine that classifies a target URL in under 10 seconds using NVIDIA Meta Maverick — Docker-deployed for scalable cross-browser performance.',
+    challenges: 'Keeping latency under 10 seconds end-to-end while still doing full page-content + SERP-context analysis, not just URL heuristics. Solved with parallel fetch + Maverick inference and a SERPAPI-backed reputation cross-check.',
     features: [
-      'Real-time hover URL scanning',
-      'Local + cloud two-tier decision',
-      'Warning banners on high-risk sites',
-      'Privacy-preserving (hashed lookups)'
+      'Sub-10s classify pipeline (fetch → analyse → verdict)',
+      'NVIDIA Meta Maverick as the primary classifier',
+      'SERPAPI reputation cross-check',
+      'Dockerised — cross-browser deploy in one command',
     ],
-    techStack: ['JavaScript', 'WebExtensions API', 'HTML/CSS'],
+    techStack: ['Python', 'Flask', 'NVIDIA Maverick', 'SERPAPI', 'Docker'],
     image: projectImg('safeclick'),
     accent: ['#eab308', '#f97316'],
-    categories: ['web', 'misc'],
+    categories: ['ai', 'web'],
     githubLink: 'https://github.com/SAQLAINAP/SafeClick'
   },
   {
@@ -462,16 +461,16 @@ export const projects: Project[] = [
   },
   {
     id: 'bail-reckoner',
-    title: 'Bail-Reckoner',
+    title: 'Bail Reckoner',
     year: '2024',
-    shortDescription: 'Automated bail-amount calculator',
-    description: 'A full-stack legal-tech tool that automates bail-amount estimation — reducing manual effort by 85% and improving accuracy by 95% vs. traditional estimates.',
-    challenges: 'Encoding legal provisions (IPC, BNS, BSS + amendments) into an algorithmic rule set that stays maintainable as laws change.',
+    shortDescription: 'Auto-estimate bail via IPC / BNS / BSS — 85% faster review',
+    description: 'A legal-tech platform that auto-estimates bail using the IPC, BNS and BSS — cutting legal review by 85%. Includes an AI legal assistant and multilingual support for Indian audiences.',
+    challenges: 'Encoding three overlapping legal provisions (IPC, BNS, BSS + amendments) into a rules engine that stays maintainable as laws evolve. Solved with a versioned rule pack + a diff-viewer for amendments.',
     features: [
-      'Rules-engine over IPC / BNS / BSS',
-      'AI chatbot for bail queries',
+      'Rules engine over IPC / BNS / BSS with versioned amendments',
+      'AI legal assistant for bail-related queries',
       'Legal-database integration',
-      'Multi-lingual (Indian audiences)',
+      'Multilingual support for Indian users',
     ],
     techStack: ['MongoDB', 'Express.js', 'React.js', 'Node.js'],
     image: projectImg('bail-reckoner'),
@@ -527,7 +526,7 @@ export const education = [
     institution: 'Dayananda Sagar College of Engineering, Bangalore',
     degree: 'Bachelor of Engineering — Artificial Intelligence & Machine Learning',
     period: '2022 – 2026',
-    gpa: '9.55 / 10.0'
+    gpa: '9.25 / 10.0'
   }
 ];
 
@@ -662,10 +661,10 @@ export const entrepreneurialAchievements = [
 // ---- Contact --------------------------------------------------------------
 
 export const contact = {
-  email: 'saqlainahmedp@gmail.com',
+  email: 'saqlainahmed302@gmail.com',
   github: 'https://github.com/SAQLAINAP',
   githubHandle: 'github.com/SAQLAINAP',
-  linkedin: 'https://www.linkedin.com/in/saqlain-ahmed-p/',
-  linkedinHandle: 'linkedin.com/in/saqlain-ahmed-p',
+  linkedin: 'https://www.linkedin.com/in/saqlain-ahmed-p-sap/',
+  linkedinHandle: 'linkedin.com/in/saqlain-ahmed-p-sap',
   linktree: 'https://linktr.ee/saqlainap',
 };

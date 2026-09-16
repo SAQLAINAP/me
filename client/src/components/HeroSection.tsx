@@ -14,24 +14,38 @@ const PIXEL_FRAMES = [
   { src: 'images/saqlain-pixel-4.svg', label: 'LAKESIDE' },
 ];
 
+// Multilingual eyebrow — cycles the handle "SAQLAINAP" through
+// transliterations of "Saqlain" across the scripts I read/speak or
+// grew up around. Kept short so the row height stays constant across
+// swaps regardless of Devanagari matras, Tamil descenders, etc.
+const NAMES = [
+  { text: 'SAQLAINAP', lang: 'en', dir: 'ltr' as const, script: 'LATIN' },
+  { text: 'साक़लैन',    lang: 'hi', dir: 'ltr' as const, script: 'देवनागरी' },
+  { text: 'ಸಖ್ಲೈನ್',   lang: 'kn', dir: 'ltr' as const, script: 'ಕನ್ನಡ' },
+  { text: 'ثاقلین',    lang: 'ur', dir: 'rtl' as const, script: 'اردو' },
+  { text: 'ثاقلين',    lang: 'ar', dir: 'rtl' as const, script: 'العربية' },
+  { text: 'சக்லைன்',   lang: 'ta', dir: 'ltr' as const, script: 'தமிழ்' },
+  { text: 'సఖ్లైన్',    lang: 'te', dir: 'ltr' as const, script: 'తెలుగు' },
+];
+
 /**
  * Hero — Montgomery-inspired.
  *
- * Layout:
+ * Layout (all breakpoints, mobile matches desktop split):
  *  ┌───────────────────────────────────────────────┐
- *  │  // eyebrow                                    │
+ *  │  // ‹cycling multilingual SAQLAINAP›           │
  *  │  SAQLAIN                              [ ◯ ]   │
- *  │  AHMED P.                                      │
- *  │  building at the [mark]edge[/mark].            │
- *  │                                                │
+ *  │  AHMED P.                             [ ◉ ]   │
+ *  │  Voice AI · agentic · cloud · quantum          │
  *  │  short bio                                     │
  *  │  [ pill ] [ pill ] [ pill ]                    │
- *  │                                                │
  *  │  stat strip                                    │
  *  └───────────────────────────────────────────────┘
  */
 const HeroSection = () => {
   const [frameIdx, setFrameIdx] = useState(0);
+  const [nameIdx,  setNameIdx]  = useState(0);
+
   useEffect(() => {
     const id = window.setInterval(
       () => setFrameIdx((i) => (i + 1) % PIXEL_FRAMES.length),
@@ -39,7 +53,17 @@ const HeroSection = () => {
     );
     return () => window.clearInterval(id);
   }, []);
+
+  useEffect(() => {
+    const id = window.setInterval(
+      () => setNameIdx((i) => (i + 1) % NAMES.length),
+      3200,
+    );
+    return () => window.clearInterval(id);
+  }, []);
+
   const frame = PIXEL_FRAMES[frameIdx];
+  const name  = NAMES[nameIdx];
 
   return (
     <section
@@ -47,87 +71,70 @@ const HeroSection = () => {
       className="relative overflow-hidden pt-14 pb-24 md:pt-20 md:pb-32"
     >
       <div className="wrap-lg">
-        {/* eyebrow ------------------------------------------------------- */}
-        <div className="flex items-baseline gap-3 mb-8 font-mono text-xs uppercase tracking-widest text-ink/60">
-          <span>// saqlainap · portfolio v3</span>
-          <span className="hidden md:inline">— based in bangalore, IST</span>
+        {/* eyebrow — cycling multilingual SAQLAINAP -------------------- */}
+        <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-ink/60">
+          <span aria-hidden>//</span>
+          {/* Fixed min-width + centered baseline so different scripts
+              (short Arabic vs long Devanagari) don't jitter the row. */}
+          <div className="relative inline-flex items-baseline min-w-[9ch] h-5">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={name.text}
+                lang={name.lang}
+                dir={name.dir}
+                initial={{ opacity: 0, y: 3, filter: 'blur(3px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                exit={{    opacity: 0, y: -3, filter: 'blur(3px)' }}
+                transition={{ duration: 0.55, ease: 'easeInOut' }}
+                className="absolute left-0 top-0 text-sm normal-case text-ink font-semibold whitespace-nowrap"
+              >
+                {name.text}
+              </motion.span>
+            </AnimatePresence>
+          </div>
+          <span className="opacity-40" aria-hidden>·</span>
+          <span className="opacity-70">{name.script}</span>
+          <span className="hidden sm:inline opacity-40" aria-hidden>·</span>
+          <span className="hidden sm:inline">bangalore, IST</span>
         </div>
 
-        {/* main giant heading + circle badge --------------------------- */}
-        <div className="relative">
-          {/* On mobile, render the pair of discs above the heading so they
-              stay visible; on md+ they float top-right of the h1. */}
-          <div className="flex md:hidden items-center justify-center gap-4 mb-6">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="breathe-circle w-24 h-24"
-            >
-              <div className="text-center leading-none">
-                <div className="text-[8px] font-mono tracking-widest opacity-70">STATUS</div>
-                <div className="mt-0.5 text-base font-condensed">OPEN</div>
-                <div className="text-[8px] font-mono tracking-widest opacity-70">TO&nbsp;WORK</div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85, rotate: -8 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.6, delay: 0.35, type: 'spring', stiffness: 180 }}
-              className="pixel-avatar-disc w-24 h-24 rounded-full border-4 border-ink bg-mint overflow-hidden relative"
-              aria-hidden
-            >
-              <AnimatePresence mode="sync">
-                <motion.img
-                  key={frame.src}
-                  src={`${import.meta.env.BASE_URL}${frame.src}`}
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover pixel-img"
-                  draggable={false}
-                  initial={{ opacity: 0, scale: 1.06 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.94 }}
-                  transition={{ duration: 0.7, ease: 'easeInOut' }}
-                />
-              </AnimatePresence>
-              <div className="absolute top-1.5 left-1/2 -translate-x-1/2 flex gap-0.5">
-                {PIXEL_FRAMES.map((_, i) => (
-                  <span
-                    key={i}
-                    className={`h-1 w-1 rounded-full transition-colors ${
-                      i === frameIdx ? 'bg-ink' : 'bg-ink/25'
-                    }`}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
+        {/* Split row — name (left) + stacked discs (right).
+            Same shape on mobile as desktop, just scaled down via clamp(). */}
+        <div className="flex items-start gap-3 sm:gap-6 md:gap-10">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="h-hero"
+            className="h-hero flex-1 min-w-0"
           >
-            <span className="block">SAQLAIN</span>
-            <span className="block">
+            <motion.span
+              className="hero-word"
+              whileHover={{ x: 6 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+            >
+              SAQLAIN
+            </motion.span>
+            <motion.span
+              className="hero-word"
+              whileHover={{ x: 6 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+            >
               AHMED&nbsp;<span className="mk mk--lime">P.</span>
-            </span>
+            </motion.span>
           </motion.h1>
 
-          {/* breathing circular badge + pixel-art avatar — stacked on right */}
-          <div className="hidden md:flex flex-col items-center gap-4 absolute top-2 right-2 md:right-6">
+          {/* Stacked discs on the right — one column, always visible. */}
+          <div className="flex flex-col items-center gap-3 sm:gap-4 shrink-0">
             <motion.div
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="breathe-circle w-[clamp(120px,15vw,220px)]"
+              className="breathe-circle w-[clamp(84px,15vw,220px)]"
             >
               <div className="text-center leading-none">
-                <div className="text-[10px] font-mono tracking-widest opacity-70">STATUS</div>
-                <div className="mt-1 text-[clamp(1.25rem,2vw,2rem)] font-condensed">OPEN</div>
-                <div className="text-[10px] font-mono tracking-widest opacity-70">TO&nbsp;WORK</div>
+                <div className="text-[8px] sm:text-[10px] font-mono tracking-widest opacity-70">STATUS</div>
+                <div className="mt-1 text-base sm:text-[clamp(1.25rem,2vw,2rem)] font-condensed">OPEN</div>
+                <div className="text-[8px] sm:text-[10px] font-mono tracking-widest opacity-70">TO&nbsp;WORK</div>
               </div>
             </motion.div>
 
@@ -136,7 +143,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 0.6, delay: 0.35, type: 'spring', stiffness: 180 }}
               whileHover={{ rotate: 4, scale: 1.03 }}
-              className="pixel-avatar-disc w-[clamp(120px,15vw,220px)] aspect-square rounded-full border-[clamp(4px,0.6vw,8px)] border-ink bg-mint overflow-hidden relative"
+              className="pixel-avatar-disc w-[clamp(84px,15vw,220px)] aspect-square rounded-full border-[clamp(3px,0.6vw,8px)] border-ink bg-mint overflow-hidden relative"
               aria-label="Pixel-art slideshow of Saqlain"
               role="img"
             >
@@ -155,11 +162,11 @@ const HeroSection = () => {
                 />
               </AnimatePresence>
 
-              {/* frame label chip — swaps in sync with the image */}
+              {/* frame label chip — desktop only (too cramped on phones) */}
               <AnimatePresence mode="wait">
                 <motion.span
                   key={`${frame.src}-label`}
-                  className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono tracking-widest bg-ink text-ivory px-2 py-0.5 rounded-full"
+                  className="hidden md:inline absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono tracking-widest bg-ink text-ivory px-2 py-0.5 rounded-full"
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
@@ -170,11 +177,11 @@ const HeroSection = () => {
               </AnimatePresence>
 
               {/* progress dots */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 flex gap-1">
+              <div className="absolute top-1.5 sm:top-2 left-1/2 -translate-x-1/2 flex gap-1">
                 {PIXEL_FRAMES.map((_, i) => (
                   <span
                     key={i}
-                    className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                    className={`h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full transition-colors ${
                       i === frameIdx ? 'bg-ink' : 'bg-ink/25'
                     }`}
                   />
@@ -189,7 +196,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-8 max-w-3xl text-2xl md:text-3xl font-condensed uppercase tracking-tight text-ink leading-tight"
+          className="mt-8 max-w-3xl text-xl sm:text-2xl md:text-3xl font-condensed uppercase tracking-tight text-ink leading-tight"
         >
           Voice AI · agentic systems · <span className="mk mk--mint">cloud-native</span> ·
           <span className="mk mk--gold"> quantum-ML</span>.

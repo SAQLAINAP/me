@@ -355,6 +355,25 @@
     50%      { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(209, 224, 48, 0.35); }
   }
 
+  /* --- Pixel-art avatar disc (hero) ----------------------------------
+     Matches the breathe-circle framing but with a subtle idle drift so
+     the two discs read as a pair without duplicating the pulse. */
+  .pixel-avatar-disc {
+    box-shadow: 4px 4px 0 var(--ink);
+    animation: drift 6s ease-in-out infinite;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+  .pixel-avatar-disc:hover { box-shadow: 6px 6px 0 var(--ink); }
+  .pixel-img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translateY(0)    rotate(0deg); }
+    50%      { transform: translateY(-4px) rotate(1.5deg); }
+  }
+
   /* --- Reveal on scroll ---------------------------------------------- */
   .reveal {
     opacity: 0;

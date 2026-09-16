@@ -13,7 +13,6 @@ export const languages = [
   { name: 'JavaScript', iconType: 'FaJsSquare' },
   { name: 'Java', iconType: 'FaJava' },
   { name: 'C++', iconType: 'SiCplusplus' },
-  { name: 'Go', iconType: 'SiGo' },
 ];
 
 export const frameworks = [
@@ -24,8 +23,8 @@ export const frameworks = [
   { name: 'FastAPI', iconType: 'SiFastapi' },
   { name: 'Flask', iconType: 'SiFlask' },
   { name: 'Tailwind CSS', iconType: 'SiTailwindcss' },
-  { name: 'Three.js', iconType: 'SiThreedotjs' },
-  { name: 'Cirq / Qiskit', iconType: 'FaCode' },
+  { name: 'Pandas', iconType: 'SiPandas' },
+  { name: 'NumPy', iconType: 'SiNumpy' },
 ];
 
 export const devTools = [
@@ -45,13 +44,14 @@ export const devTools = [
 
 export const cloudAndDb = [
   { name: 'AWS', iconType: 'FaAws' },
-  { name: 'Azure', iconType: 'FaMicrosoft' },
-  { name: 'GCP', iconType: 'SiGooglecloud' },
   { name: 'PostgreSQL', iconType: 'SiPostgresql' },
+  { name: 'Supabase', iconType: 'SiSupabase' },
+  { name: 'NeonDB', iconType: 'FaDatabase' },
   { name: 'MongoDB', iconType: 'SiMongodb' },
+  { name: 'ChromaDB', iconType: 'FaDatabase' },
+  { name: 'OpenSearch', iconType: 'FaSearch' },
   { name: 'Firebase', iconType: 'SiFirebase' },
   { name: 'Redis', iconType: 'SiRedis' },
-  { name: 'SQL', iconType: 'FaDatabase' },
 ];
 
 // ---- Experience ------------------------------------------------------------
@@ -147,6 +147,102 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: 'resume-forge',
+    title: 'Resume-Forge',
+    year: '2025',
+    shortDescription: 'AI-native resume tailoring & scoring engine',
+    description: 'A resume tailoring engine that rewrites, scores and ATS-optimizes resumes against a target JD in seconds — powered by LLMs and a rubric-based scoring loop.',
+    challenges: 'Getting deterministic, high-signal scoring out of an LLM without letting it hallucinate skills the candidate does not have. Solved with a two-stage rubric evaluator + retrieval grounding on the source resume.',
+    features: [
+      'JD-aware resume rewriting',
+      'ATS-friendly export (PDF / DOCX)',
+      'Rubric-based scoring with per-section feedback',
+      'Skill-gap surfacer with learning suggestions',
+      'History + version diffing',
+    ],
+    techStack: ['Next.js', 'FastAPI', 'OpenAI', 'Supabase', 'Tailwind'],
+    image: projectImg('resume-forge'),
+    accent: ['#d1e030', '#9eef80'],
+    categories: ['ai', 'web'],
+    githubLink: 'https://github.com/SAQLAINAP/resume-forge',
+  },
+  {
+    id: 'codecity',
+    title: 'CodeCity',
+    year: '2025',
+    shortDescription: 'Visualize any repo as a walkable city',
+    description: 'A 3D visualization tool that maps any GitHub repository into a walkable city — files become buildings, directories become districts, complexity drives height.',
+    challenges: 'Rendering large repos (10k+ files) without dropping frames. Solved with instanced meshes, aggressive frustum culling and a level-of-detail streamer.',
+    features: [
+      'Instant city gen from any public repo',
+      'Metrics-driven building height / colour',
+      'Click-to-open source in overlay editor',
+      'Shareable snapshot links',
+    ],
+    techStack: ['React', 'Three.js', 'TypeScript', 'Node.js'],
+    image: projectImg('codecity'),
+    accent: ['#22d3ee', '#8b5cf6'],
+    categories: ['web', 'opensource', 'misc'],
+    githubLink: 'https://github.com/SAQLAINAP/codecity',
+  },
+  {
+    id: 'foundermap',
+    title: 'FounderMap',
+    year: '2025',
+    shortDescription: 'Founder ↔ co-founder matching graph',
+    description: 'A matching platform that pairs founders with complementary co-founders using embeddings over skills, domain interest, timezone and past building patterns.',
+    challenges: 'Cold-start matching without behavioural data. Solved by grounding matches in explicit signals (skills, availability, stage) and a soft-similarity re-ranker.',
+    features: [
+      'Semantic co-founder search',
+      'Complementarity score with breakdown',
+      'Verified email + LinkedIn intros',
+      'Founder shortlists + notes',
+    ],
+    techStack: ['Next.js', 'PostgreSQL', 'pgvector', 'OpenAI', 'Tailwind'],
+    image: projectImg('foundermap'),
+    accent: ['#fbd535', '#f97316'],
+    categories: ['web', 'ai'],
+    githubLink: 'https://github.com/SAQLAINAP/foundermap',
+  },
+  {
+    id: 'iddc',
+    title: 'IDDC',
+    year: '2025',
+    shortDescription: 'Intelligent Document → Data Converter',
+    description: 'A document-processing pipeline that ingests messy PDFs, scans and images and emits clean, schema-valid JSON — with confidence scores per field.',
+    challenges: 'Handling wildly varying layouts (invoices, forms, contracts) with a single pipeline. Solved with a layout-classifier front-end + per-schema LLM extractors and a validator loop.',
+    features: [
+      'Multi-format ingest (PDF, PNG, DOCX)',
+      'Schema-first extraction (Pydantic contracts)',
+      'Per-field confidence + review UI',
+      'Batch processing with resumable jobs',
+    ],
+    techStack: ['Python', 'FastAPI', 'Pydantic', 'Anthropic', 'PostgreSQL'],
+    image: projectImg('iddc'),
+    accent: ['#0ea5e9', '#22c55e'],
+    categories: ['ai', 'opensource'],
+    githubLink: 'https://github.com/SAQLAINAP/iddc',
+  },
+  {
+    id: 'gitclaw-agent',
+    title: 'GitClaw Agent',
+    year: '2025',
+    shortDescription: 'Autonomous PR-scoping & code-review agent',
+    description: 'A background agent that watches your GitHub repos, drafts scoped PRs from issues, and reviews incoming PRs with grounded citations back into the codebase.',
+    challenges: 'Keeping the agent from touching files it has no business touching. Solved with a two-tier plan-then-execute loop where the plan must pass a static ACL before any file write.',
+    features: [
+      'Issue → scoped PR draft with plan',
+      'Grounded PR review with file-anchored comments',
+      'ACL-gated write actions',
+      'Slack / GitHub notifications',
+    ],
+    techStack: ['TypeScript', 'Node.js', 'Anthropic', 'GitHub API', 'Docker'],
+    image: projectImg('gitclaw-agent'),
+    accent: ['#a855f7', '#ec4899'],
+    categories: ['ai', 'opensource'],
+    githubLink: 'https://github.com/SAQLAINAP/gitclaw-agent',
+  },
   {
     id: 'news-pod',
     title: 'News-Pod',

@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion';
+import type { JSX } from 'react';
 import {
   FaGraduationCap, FaMicrophone, FaPython, FaJsSquare, FaJava, FaReact, FaNodeJs,
-  FaGitAlt, FaGithub, FaCode, FaLinux, FaMicrosoft, FaDatabase, FaDocker, FaDownload,
+  FaGitAlt, FaGithub, FaCode, FaLinux, FaDatabase, FaDocker, FaDownload, FaSearch,
   FaGamepad, FaPlane, FaMusic, FaFilm, FaUtensils, FaBookOpen, FaCar, FaUsers,
-  FaRunning, FaTableTennis, FaDice, FaTools, FaAws,
+  FaRunning, FaTableTennis, FaDice, FaTools, FaAws, FaSchool,
 } from 'react-icons/fa';
 import {
   SiTailwindcss, SiCplusplus, SiKubernetes, SiExpress, SiMongodb, SiFlask, SiFastapi,
   SiNodedotjs, SiNextdotjs, SiPostman, SiOpenai, SiGoogle, SiN8N, SiFirebase, SiMake,
-  SiAnthropic, SiTypescript, SiGo, SiThreedotjs, SiGooglecloud, SiPostgresql, SiRedis,
+  SiAnthropic, SiTypescript, SiPostgresql, SiRedis, SiSupabase, SiPandas, SiNumpy,
 } from 'react-icons/si';
 import { languages, frameworks, devTools, cloudAndDb } from '@/lib/data';
 
@@ -17,7 +18,7 @@ const AboutSection = () => {
     FaPython: <FaPython />, FaJsSquare: <FaJsSquare />, FaJava: <FaJava />,
     FaReact: <FaReact />, FaNodeJs: <FaNodeJs />, FaGitAlt: <FaGitAlt />,
     FaGithub: <FaGithub />, FaCode: <FaCode />, FaLinux: <FaLinux />,
-    FaMicrosoft: <FaMicrosoft />, FaDatabase: <FaDatabase />, FaDocker: <FaDocker />,
+    FaDatabase: <FaDatabase />, FaDocker: <FaDocker />, FaSearch: <FaSearch />,
     FaAws: <FaAws />, FaTools: <FaTools />,
     SiCplusplus: <SiCplusplus />, SiTailwindcss: <SiTailwindcss />,
     SiKubernetes: <SiKubernetes />, SiExpress: <SiExpress />, SiMongodb: <SiMongodb />,
@@ -25,15 +26,13 @@ const AboutSection = () => {
     SiNextdotjs: <SiNextdotjs />, SiPostman: <SiPostman />, SiOpenai: <SiOpenai />,
     SiGoogle: <SiGoogle />, SiN8N: <SiN8N />, SiFirebase: <SiFirebase />,
     SiMake: <SiMake />, SiAnthropic: <SiAnthropic />, SiTypescript: <SiTypescript />,
-    SiGo: <SiGo />, SiThreedotjs: <SiThreedotjs />, SiGooglecloud: <SiGooglecloud />,
     SiPostgresql: <SiPostgresql />, SiRedis: <SiRedis />,
+    SiSupabase: <SiSupabase />, SiPandas: <SiPandas />, SiNumpy: <SiNumpy />,
   };
   const renderIcon = (key: string) =>
     ICONS[key] ?? <span className="font-mono font-bold">{key.slice(2, 3) || '·'}</span>;
 
-  /* Compact chip-list — each tech shows a small icon + label on one row.
-     Reads horizontally so a long category doesn't force the surrounding grid
-     to grow vertically. */
+  /* Compact chip-list — each tech shows a small icon + label on one row. */
   const TechList = ({
     label,
     items,
@@ -75,18 +74,20 @@ const AboutSection = () => {
     { icon: <FaDice />,         label: 'Cards' },
   ];
 
+  const RESUME_URL = `${import.meta.env.BASE_URL}Saqlain-resume-25.pdf`;
+
   return (
     <section id="about" className="py-24 relative bg-ivory">
       <div className="wrap-lg">
         <div className="section-head">
           <span className="section-head__idx">// 01</span>
           <h2 className="section-head__title">
-            The <span className="mk mk--lime">human</span> behind saqlainap
+            About <span className="mk mk--lime">me</span>
           </h2>
-          <span className="section-head__note">bio · stack · hobbies</span>
+          <span className="section-head__note">bio · education · stack · hobbies</span>
         </div>
 
-        {/* ROW 1: Bio (wide) + Education (narrow) */}
+        {/* ROW 1: Bio (wide) + Education (narrow) — factual, no fluff */}
         <div className="grid md:grid-cols-5 gap-6">
           <motion.div
             className="md:col-span-3 frame frame-cream p-7"
@@ -97,45 +98,67 @@ const AboutSection = () => {
           >
             <h3 className="font-condensed text-3xl mb-3 text-ink">Bio</h3>
             <p className="text-ink/80 leading-relaxed">
-              I'm an AI engineer at <span className="font-bold text-ink">Plivo</span> building
-              real-time voice AI — LLMs plugged into telephony, evaluation harnesses for
-              TTS / STT vendors, and agentic voice workflows.
+              AI Engineer at <span className="font-bold text-ink">Plivo</span>, working on
+              real-time voice AI — LLMs over telephony, evaluation harnesses for TTS &amp; STT
+              vendors, and agentic voice workflows.
             </p>
             <p className="mt-4 text-ink/80 leading-relaxed">
-              Outside the day job I chase <span className="font-bold text-ink">quantum computing</span>,
-              cloud-native <span className="font-bold text-ink">open source</span>, and any hackathon
-              that sounds fun. Two-time <span className="font-bold text-ink">Shubhra Kar Linux Foundation Scholar</span>
-              {' '}(2023 + 2026) via the CNCF.
+              Prior work: product &amp; AI engineering internships at Kroolo AI and GetCreatr,
+              contributions to CNCF open-source, and applied quantum-ML research on the side.
             </p>
             <p className="mt-4 text-ink/80 leading-relaxed">
-              Bias for shipping over talking. Comfortable across the stack, but happiest in the
-              messy middle where product, model and infra meet.
+              Interests: voice AI, agentic systems, cloud-native infra, and quantum machine
+              learning. Comfortable across frontend, backend and model layers.
             </p>
           </motion.div>
 
           <motion.div
-            className="md:col-span-2 frame p-7 flex flex-col justify-between"
+            className="md:col-span-2 frame p-7 flex flex-col"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.05 }}
           >
-            <div>
-              <h3 className="font-condensed text-3xl mb-4 text-ink">Education</h3>
-              <div className="flex items-center gap-2 text-ink font-bold">
-                <FaGraduationCap />
-                Dayananda Sagar College of Engineering
+            <h3 className="font-condensed text-3xl mb-4 text-ink">Education</h3>
+
+            <div className="space-y-4">
+              <div>
+                <div className="flex items-center gap-2 text-ink font-bold">
+                  <FaGraduationCap />
+                  Dayananda Sagar College of Engineering
+                </div>
+                <div className="mt-1 text-sm text-ink/70">
+                  B.E. — Artificial Intelligence &amp; Machine Learning
+                </div>
+                <div className="mt-1 text-xs text-ink/60 font-mono">2022 – 2026 · Bangalore</div>
+                <div className="mt-2">
+                  <span className="tag tag--lime">CGPA 9.55 / 10.0</span>
+                </div>
               </div>
-              <div className="mt-1 text-sm text-ink/70">
-                B.E. — Artificial Intelligence &amp; Machine Learning
+
+              <div className="border-t-2 border-dashed border-ink/20 pt-4">
+                <div className="flex items-center gap-2 text-ink font-bold text-sm">
+                  <FaSchool />
+                  Class 12 · PCM + CS
+                </div>
+                <div className="mt-1">
+                  <span className="tag tag--mint">95%</span>
+                </div>
               </div>
-              <div className="mt-1 text-sm text-ink/70 font-mono">2022 – 2026 · Bangalore</div>
-              <div className="mt-3">
-                <span className="tag tag--lime">CGPA 9.55 / 10.0</span>
+
+              <div>
+                <div className="flex items-center gap-2 text-ink font-bold text-sm">
+                  <FaSchool />
+                  Class 10
+                </div>
+                <div className="mt-1">
+                  <span className="tag tag--gold">90%</span>
+                </div>
               </div>
             </div>
+
             <a
-              href="Saqlain-resume-25.pdf"
+              href={RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="pill pill--lime mt-6 self-start"
@@ -144,6 +167,35 @@ const AboutSection = () => {
             </a>
           </motion.div>
         </div>
+
+        {/* ROW 1.5: Resume preview iframe — appealing inline PDF glance */}
+        <motion.div
+          className="mt-6 frame p-5"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.08 }}
+        >
+          <div className="flex items-baseline justify-between mb-3">
+            <h3 className="font-condensed text-2xl text-ink">Resume · quick look</h3>
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono uppercase tracking-widest text-ink/60 hover:text-ink underline underline-offset-4"
+            >
+              open full pdf →
+            </a>
+          </div>
+          <div className="rounded-lg overflow-hidden border-2 border-ink bg-ivory h-[420px]">
+            <iframe
+              src={`${RESUME_URL}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+              title="Saqlain Ahmed P — Resume preview"
+              className="w-full h-full"
+              loading="lazy"
+            />
+          </div>
+        </motion.div>
 
         {/* ROW 2: Tech stack, full-width, 4 category columns to stay short */}
         <motion.div
@@ -179,7 +231,7 @@ const AboutSection = () => {
           <div className="flex items-baseline justify-between mb-4">
             <h3 className="font-condensed text-3xl text-ink">Hobbies &amp; interests</h3>
             <span className="text-xs font-mono uppercase tracking-widest text-ink/50">
-              off-duty saqlain
+              off-duty
             </span>
           </div>
           <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-3">

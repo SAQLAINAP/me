@@ -47,19 +47,40 @@ const HeroSection = () => {
             </span>
           </motion.h1>
 
-          {/* breathing circular badge — floats top-right */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="hidden md:flex breathe-circle absolute top-2 right-2 md:right-6 w-[clamp(120px,15vw,220px)]"
-          >
-            <div className="text-center leading-none">
-              <div className="text-[10px] font-mono tracking-widest opacity-70">STATUS</div>
-              <div className="mt-1 text-[clamp(1.25rem,2vw,2rem)] font-condensed">OPEN</div>
-              <div className="text-[10px] font-mono tracking-widest opacity-70">TO&nbsp;WORK</div>
-            </div>
-          </motion.div>
+          {/* breathing circular badge + pixel-art avatar — stacked on right */}
+          <div className="hidden md:flex flex-col items-center gap-4 absolute top-2 right-2 md:right-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="breathe-circle w-[clamp(120px,15vw,220px)]"
+            >
+              <div className="text-center leading-none">
+                <div className="text-[10px] font-mono tracking-widest opacity-70">STATUS</div>
+                <div className="mt-1 text-[clamp(1.25rem,2vw,2rem)] font-condensed">OPEN</div>
+                <div className="text-[10px] font-mono tracking-widest opacity-70">TO&nbsp;WORK</div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, rotate: -8 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.6, delay: 0.35, type: 'spring', stiffness: 180 }}
+              whileHover={{ rotate: 4, scale: 1.03 }}
+              className="pixel-avatar-disc w-[clamp(120px,15vw,220px)] aspect-square rounded-full border-[clamp(4px,0.6vw,8px)] border-ink bg-mint overflow-hidden relative"
+              aria-label="Pixel-art avatar of Saqlain"
+            >
+              <img
+                src={`${import.meta.env.BASE_URL}images/saqlain-pixel.svg`}
+                alt="Pixel-art avatar of Saqlain Ahmed P"
+                className="w-full h-full object-cover pixel-img"
+                draggable={false}
+              />
+              <span className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono tracking-widest bg-ink text-ivory px-2 py-0.5 rounded-full">
+                SAQLAIN.PXL
+              </span>
+            </motion.div>
+          </div>
         </div>
 
         {/* sub tagline --------------------------------------------------- */}
@@ -69,8 +90,8 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mt-8 max-w-3xl text-2xl md:text-3xl font-condensed uppercase tracking-tight text-ink leading-tight"
         >
-          Building at the <span className="mk mk--mint">edge</span> — voice AI,
-          quantum-ML, cloud-native <span className="mk mk--gold">open source</span>.
+          Voice AI · agentic systems · <span className="mk mk--mint">cloud-native</span> ·
+          <span className="mk mk--gold"> quantum-ML</span>.
         </motion.p>
 
         {/* short bio ---------------------------------------------------- */}
@@ -80,10 +101,9 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-6 max-w-2xl text-ink/70 leading-relaxed"
         >
-          AI engineer @ <span className="font-bold text-ink">Plivo</span>,
-          shipping real-time voice AI infrastructure. Two-time CNCF Shubhra Kar
-          scholar, four-time hackathon winner, and permanently curious about the
-          messy middle where product, model and infra meet.
+          AI Engineer at <span className="font-bold text-ink">Plivo</span>, building
+          real-time voice AI infrastructure. Previously shipped product &amp; AI features
+          at Kroolo AI and GetCreatr. CNCF Shubhra Kar scholar.
         </motion.p>
 
         {/* CTAs ---------------------------------------------------------- */}
@@ -126,8 +146,8 @@ const HeroSection = () => {
         {/* stat strip --------------------------------------------------- */}
         <div className="mt-14 grid grid-cols-3 gap-4 max-w-2xl">
           {[
-            { k: 'Projects',       v: '14+',  tint: 'card-proj--lime' },
-            { k: 'Hackathon wins', v: '4',    tint: 'card-proj--mint' },
+            { k: 'Projects',       v: '18+',  tint: 'card-proj--lime' },
+            { k: 'Hackathon wins', v: '8',    tint: 'card-proj--mint' },
             { k: 'CGPA',           v: '9.55', tint: 'card-proj--gold' },
           ].map((s) => (
             <div key={s.k} className={`card-proj ${s.tint} !min-h-0 !p-5 text-center`}>

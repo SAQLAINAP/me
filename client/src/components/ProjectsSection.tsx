@@ -38,7 +38,7 @@ const ProjectsSection = () => {
           <h2 className="section-head__title">
             Selected <span className="mk mk--lime">work</span>
           </h2>
-          <span className="section-head__note">14 projects · scroll or filter</span>
+          <span className="section-head__note">{projects.length} projects · scroll or filter</span>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">

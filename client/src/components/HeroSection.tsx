@@ -42,6 +42,12 @@ const NAMES = [
  *  │  stat strip                                    │
  *  └───────────────────────────────────────────────┘
  */
+const STATS = [
+  { k: 'Projects',       v: '18+',  tint: 'card-proj--lime' },
+  { k: 'Hackathon wins', v: '8',    tint: 'card-proj--mint' },
+  { k: 'CGPA',           v: '9.25', tint: 'card-proj--gold' },
+];
+
 const HeroSection = () => {
   const [frameIdx, setFrameIdx] = useState(0);
   const [nameIdx,  setNameIdx]  = useState(0);
@@ -98,43 +104,165 @@ const HeroSection = () => {
           <span className="hidden sm:inline">bangalore, IST</span>
         </div>
 
-        {/* Split row — name (left) + stacked discs (right).
-            Same shape on mobile as desktop, just scaled down via clamp(). */}
-        <div className="flex items-start gap-3 sm:gap-6 md:gap-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="h-hero flex-1 min-w-0"
-          >
-            <motion.span
-              className="hero-word"
-              whileHover={{ x: 6 }}
-              transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-            >
-              SAQLAIN
-            </motion.span>
-            <motion.span
-              className="hero-word"
-              whileHover={{ x: 6 }}
-              transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-            >
-              AHMED&nbsp;<span className="mk mk--lime">P.</span>
-            </motion.span>
-          </motion.h1>
+        {/* Two-column hero body — left has name+text+CTAs; right column
+            (desktop only) holds the two discs and the three stat cards
+            stacked vertically so the space beside the tagline/bio never
+            reads as dead. On mobile the right-column is collapsed and
+            small discs render inline beside the h1, with the stats moved
+            to a full-width 3-col strip after the socials. */}
+        <div className="md:flex md:items-start md:gap-8 lg:gap-12">
+          <div className="md:flex-1 min-w-0">
+            {/* Mobile-only inline discs beside the h1 */}
+            <div className="flex items-start gap-3 sm:gap-6 md:block">
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className="h-hero flex-1 min-w-0 md:flex-none"
+              >
+                <motion.span
+                  className="hero-word"
+                  whileHover={{ x: 6 }}
+                  transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                >
+                  SAQLAIN
+                </motion.span>
+                <motion.span
+                  className="hero-word"
+                  whileHover={{ x: 6 }}
+                  transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                >
+                  AHMED&nbsp;<span className="mk mk--lime">P.</span>
+                </motion.span>
+              </motion.h1>
 
-          {/* Stacked discs on the right — one column, always visible. */}
-          <div className="flex flex-col items-center gap-3 sm:gap-4 shrink-0">
+              {/* Mobile-only compact discs */}
+              <div className="flex flex-col items-center gap-3 shrink-0 md:hidden">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                  className="breathe-circle w-[clamp(84px,22vw,120px)]"
+                >
+                  <div className="text-center leading-none">
+                    <div className="text-[8px] font-mono tracking-widest opacity-70">STATUS</div>
+                    <div className="mt-1 text-base font-condensed">OPEN</div>
+                    <div className="text-[8px] font-mono tracking-widest opacity-70">TO&nbsp;WORK</div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.85, rotate: -8 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ duration: 0.6, delay: 0.35, type: 'spring', stiffness: 180 }}
+                  className="pixel-avatar-disc w-[clamp(84px,22vw,120px)] aspect-square rounded-full border-[3px] border-ink bg-mint overflow-hidden relative"
+                  aria-hidden
+                >
+                  <AnimatePresence mode="sync">
+                    <motion.img
+                      key={frame.src}
+                      src={`${import.meta.env.BASE_URL}${frame.src}`}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover pixel-img"
+                      draggable={false}
+                      initial={{ opacity: 0, scale: 1.06 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.94 }}
+                      transition={{ duration: 0.7, ease: 'easeInOut' }}
+                    />
+                  </AnimatePresence>
+                  <div className="absolute top-1.5 left-1/2 -translate-x-1/2 flex gap-1">
+                    {PIXEL_FRAMES.map((_, i) => (
+                      <span
+                        key={i}
+                        className={`h-1 w-1 rounded-full transition-colors ${
+                          i === frameIdx ? 'bg-ink' : 'bg-ink/25'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* sub tagline --------------------------------------------- */}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="mt-8 max-w-3xl text-xl sm:text-2xl md:text-3xl font-condensed uppercase tracking-tight text-ink leading-tight"
+            >
+              Voice AI · agentic systems · <span className="mk mk--mint">cloud-native</span> ·
+              <span className="mk mk--gold"> quantum-ML</span>.
+            </motion.p>
+
+            {/* short bio ---------------------------------------------- */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-6 max-w-2xl text-ink/70 leading-relaxed"
+            >
+              Forward Deployed Engineer intern at <span className="font-bold text-ink">Plivo</span>,
+              building AI-driven comms — IVR, agentic chatbots, RAG knowledge systems and voice-vendor
+              benchmarking. Previously shipped product &amp; AI features at Kroolo AI and GetCreatr.
+              CNCF KCNA · Shubhra Kar scholar.
+            </motion.p>
+
+            {/* CTAs -------------------------------------------------- */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-8 flex flex-wrap items-center gap-3"
+            >
+              <Link href="/arena" className="pill pill--lime pill--big">
+                Enter the arena <span className="arr">→</span>
+              </Link>
+              <a href="#projects" className="pill pill--ghost">
+                Browse projects
+              </a>
+              <a
+                href="Saqlain-resume-25.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pill pill--ink"
+              >
+                <i className="fa-solid fa-download" /> Resume
+              </a>
+            </motion.div>
+
+            {/* socials + locale ------------------------------------- */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mt-8 flex items-center gap-5 text-ink/70"
+            >
+              <a href={contact.github}   target="_blank" rel="noopener noreferrer" aria-label="GitHub"   className="hover:text-ink transition-colors"><FaGithub  className="text-xl" /></a>
+              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-ink transition-colors"><FaLinkedin className="text-xl" /></a>
+              <a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode" className="hover:text-ink transition-colors"><SiLeetcode className="text-xl" /></a>
+              <span className="mx-2 h-4 w-px bg-ink/30" />
+              <span className="font-mono text-xs text-ink/60">bangalore · IST</span>
+            </motion.div>
+          </div>
+
+          {/* Desktop-only right column — big discs + stat stack.
+              Width matches the disc size so cards align with the discs. */}
+          <aside
+            className="hidden md:flex md:flex-col items-stretch gap-5 shrink-0"
+            style={{ width: 'clamp(200px, 20vw, 260px)' }}
+          >
             <motion.div
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="breathe-circle w-[clamp(84px,15vw,220px)]"
+              className="breathe-circle w-full"
             >
               <div className="text-center leading-none">
-                <div className="text-[8px] sm:text-[10px] font-mono tracking-widest opacity-70">STATUS</div>
-                <div className="mt-1 text-base sm:text-[clamp(1.25rem,2vw,2rem)] font-condensed">OPEN</div>
-                <div className="text-[8px] sm:text-[10px] font-mono tracking-widest opacity-70">TO&nbsp;WORK</div>
+                <div className="text-[10px] font-mono tracking-widest opacity-70">STATUS</div>
+                <div className="mt-1 text-[clamp(1.25rem,2vw,2rem)] font-condensed">OPEN</div>
+                <div className="text-[10px] font-mono tracking-widest opacity-70">TO&nbsp;WORK</div>
               </div>
             </motion.div>
 
@@ -143,11 +271,10 @@ const HeroSection = () => {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 0.6, delay: 0.35, type: 'spring', stiffness: 180 }}
               whileHover={{ rotate: 4, scale: 1.03 }}
-              className="pixel-avatar-disc w-[clamp(84px,15vw,220px)] aspect-square rounded-full border-[clamp(3px,0.6vw,8px)] border-ink bg-mint overflow-hidden relative"
+              className="pixel-avatar-disc w-full aspect-square rounded-full border-[clamp(4px,0.6vw,8px)] border-ink bg-mint overflow-hidden relative"
               aria-label="Pixel-art slideshow of Saqlain"
               role="img"
             >
-              {/* crossfade slideshow of pixel-art frames */}
               <AnimatePresence mode="sync">
                 <motion.img
                   key={frame.src}
@@ -162,11 +289,10 @@ const HeroSection = () => {
                 />
               </AnimatePresence>
 
-              {/* frame label chip — desktop only (too cramped on phones) */}
               <AnimatePresence mode="wait">
                 <motion.span
                   key={`${frame.src}-label`}
-                  className="hidden md:inline absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono tracking-widest bg-ink text-ivory px-2 py-0.5 rounded-full"
+                  className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono tracking-widest bg-ink text-ivory px-2 py-0.5 rounded-full"
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
@@ -176,92 +302,46 @@ const HeroSection = () => {
                 </motion.span>
               </AnimatePresence>
 
-              {/* progress dots */}
-              <div className="absolute top-1.5 sm:top-2 left-1/2 -translate-x-1/2 flex gap-1">
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 flex gap-1">
                 {PIXEL_FRAMES.map((_, i) => (
                   <span
                     key={i}
-                    className={`h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full transition-colors ${
+                    className={`h-1.5 w-1.5 rounded-full transition-colors ${
                       i === frameIdx ? 'bg-ink' : 'bg-ink/25'
                     }`}
                   />
                 ))}
               </div>
             </motion.div>
-          </div>
+
+            {/* Stat cards stacked in the right column — fills the space
+                below the avatar disc that used to read as dead white. */}
+            <div className="flex flex-col gap-3 mt-1">
+              {STATS.map((s, i) => (
+                <motion.div
+                  key={s.k}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 + i * 0.08 }}
+                  className={`card-proj ${s.tint} !min-h-0 !p-4 text-center`}
+                >
+                  <div className="font-condensed text-4xl leading-none text-ink">{s.v}</div>
+                  <div className="text-[10px] uppercase tracking-widest text-ink/70 font-mono mt-1.5">
+                    {s.k}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </aside>
         </div>
 
-        {/* sub tagline --------------------------------------------------- */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-8 max-w-3xl text-xl sm:text-2xl md:text-3xl font-condensed uppercase tracking-tight text-ink leading-tight"
-        >
-          Voice AI · agentic systems · <span className="mk mk--mint">cloud-native</span> ·
-          <span className="mk mk--gold"> quantum-ML</span>.
-        </motion.p>
-
-        {/* short bio ---------------------------------------------------- */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-6 max-w-2xl text-ink/70 leading-relaxed"
-        >
-          Forward Deployed Engineer intern at <span className="font-bold text-ink">Plivo</span>,
-          building AI-driven comms — IVR, agentic chatbots, RAG knowledge systems and voice-vendor
-          benchmarking. Previously shipped product &amp; AI features at Kroolo AI and GetCreatr.
-          CNCF KCNA · Shubhra Kar scholar.
-        </motion.p>
-
-        {/* CTAs ---------------------------------------------------------- */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 flex flex-wrap items-center gap-3"
-        >
-          <Link href="/arena" className="pill pill--lime pill--big">
-            Enter the arena <span className="arr">→</span>
-          </Link>
-          <a href="#projects" className="pill pill--ghost">
-            Browse projects
-          </a>
-          <a
-            href="Saqlain-resume-25.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="pill pill--ink"
-          >
-            <i className="fa-solid fa-download" /> Resume
-          </a>
-        </motion.div>
-
-        {/* socials + locale --------------------------------------------- */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-8 flex items-center gap-5 text-ink/70"
-        >
-          <a href={contact.github}   target="_blank" rel="noopener noreferrer" aria-label="GitHub"   className="hover:text-ink transition-colors"><FaGithub  className="text-xl" /></a>
-          <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-ink transition-colors"><FaLinkedin className="text-xl" /></a>
-          <a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode" className="hover:text-ink transition-colors"><SiLeetcode className="text-xl" /></a>
-          <span className="mx-2 h-4 w-px bg-ink/30" />
-          <span className="font-mono text-xs text-ink/60">bangalore · IST</span>
-        </motion.div>
-
-        {/* stat strip --------------------------------------------------- */}
-        <div className="mt-14 grid grid-cols-3 gap-4 max-w-2xl">
-          {[
-            { k: 'Projects',       v: '18+',  tint: 'card-proj--lime' },
-            { k: 'Hackathon wins', v: '8',    tint: 'card-proj--mint' },
-            { k: 'CGPA',           v: '9.25', tint: 'card-proj--gold' },
-          ].map((s) => (
-            <div key={s.k} className={`card-proj ${s.tint} !min-h-0 !p-5 text-center`}>
-              <div className="font-condensed text-4xl md:text-5xl leading-none text-ink">{s.v}</div>
-              <div className="text-[11px] uppercase tracking-widest text-ink/70 font-mono mt-2">
+        {/* Mobile-only stat strip — 3-col grid, hidden on md+ where the
+            stats live in the right aside column. */}
+        <div className="mt-12 grid grid-cols-3 gap-3 max-w-2xl md:hidden">
+          {STATS.map((s) => (
+            <div key={s.k} className={`card-proj ${s.tint} !min-h-0 !p-4 text-center`}>
+              <div className="font-condensed text-3xl leading-none text-ink">{s.v}</div>
+              <div className="text-[10px] uppercase tracking-widest text-ink/70 font-mono mt-1.5">
                 {s.k}
               </div>
             </div>

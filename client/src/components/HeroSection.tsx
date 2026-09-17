@@ -314,19 +314,20 @@ const HeroSection = () => {
               </div>
             </motion.div>
 
-            {/* Stat cards stacked in the right column — fills the space
-                below the avatar disc that used to read as dead white. */}
-            <div className="flex flex-col gap-3 mt-1">
+            {/* Stat cards spread horizontally under the avatar disc.
+                3 compact cards fit inside the ~240px right column so
+                the space reads full without towering vertically. */}
+            <div className="grid grid-cols-3 gap-2 mt-1">
               {STATS.map((s, i) => (
                 <motion.div
                   key={s.k}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 + i * 0.08 }}
-                  className={`card-proj ${s.tint} !min-h-0 !p-4 text-center`}
+                  className={`card-proj ${s.tint} !min-h-0 !p-2.5 text-center !gap-1`}
                 >
-                  <div className="font-condensed text-4xl leading-none text-ink">{s.v}</div>
-                  <div className="text-[10px] uppercase tracking-widest text-ink/70 font-mono mt-1.5">
+                  <div className="font-condensed text-xl leading-none text-ink">{s.v}</div>
+                  <div className="text-[8px] uppercase tracking-widest text-ink/70 font-mono leading-tight">
                     {s.k}
                   </div>
                 </motion.div>

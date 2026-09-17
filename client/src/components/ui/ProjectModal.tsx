@@ -117,14 +117,16 @@ const ProjectModal = ({ isOpen, projectId, onClose }: ProjectModalProps) => {
                 </div>
                 
                 <div className="mt-8 flex gap-4">
-                  <a 
-                    href={project.githubLink} 
-                    className="neo-brutal-sm bg-light-primary dark:bg-dark-primary text-white font-bold py-2 px-6"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fab fa-github mr-2"></i> View Code
-                  </a>
+                  {project.githubLink && (
+                    <a
+                      href={project.githubLink}
+                      className="neo-brutal-sm bg-light-primary dark:bg-dark-primary text-white font-bold py-2 px-6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fab fa-github mr-2"></i> View Code
+                    </a>
+                  )}
                   {project.demoLink && (
                     <a 
                       href={project.demoLink} 

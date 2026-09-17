@@ -132,14 +132,20 @@ const ProjectsSection = () => {
                     <span className="inline-flex items-center gap-1">
                       open in arena <span aria-hidden>→</span>
                     </span>
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`relative z-20 inline-flex items-center gap-1 hover:underline ${isDark ? 'text-ivory' : 'text-ink'}`}
-                    >
-                      <i className="fab fa-github" /> repo
-                    </a>
+                    {project.githubLink ? (
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`relative z-20 inline-flex items-center gap-1 hover:underline ${isDark ? 'text-ivory' : 'text-ink'}`}
+                      >
+                        <i className="fab fa-github" /> repo
+                      </a>
+                    ) : (
+                      <span className={`inline-flex items-center gap-1 opacity-50 ${isDark ? 'text-ivory' : 'text-ink'}`}>
+                        <i className="fab fa-github" /> private
+                      </span>
+                    )}
                   </div>
                 </motion.article>
               );

@@ -141,7 +141,7 @@ export interface Project {
   image: string;
   accent: [string, string];   // gradient stops for hero card in /arena
   categories: ProjectFilter[];
-  githubLink: string;
+  githubLink?: string;
   demoLink?: string;
   metrics?: { label: string; value: string }[];
 }
@@ -296,7 +296,6 @@ export const projects: Project[] = [
     image: projectImg('spam-detection'),
     accent: ['#f472b6', '#a855f7'],
     categories: ['ai'],
-    githubLink: 'https://github.com/SAQLAINAP/distilbert-spam-detector',
     metrics: [
       { label: 'F1', value: '0.94' },
       { label: 'CPU inference', value: '<95ms' },
@@ -343,7 +342,7 @@ export const projects: Project[] = [
     image: projectImg('architectural-ai-gemini'),
     accent: ['#f59e0b', '#ef4444'],
     categories: ['ai', 'web'],
-    githubLink: 'https://github.com/SAQLAINAP/Architectural-AI-Agent'
+    githubLink: 'https://github.com/SAQLAINAP/Architectural-AI-Gemini'
   },
   {
     id: 'refashion-nft',
@@ -476,7 +475,6 @@ export const projects: Project[] = [
     image: projectImg('bail-reckoner'),
     accent: ['#f97316', '#facc15'],
     categories: ['ai', 'web'],
-    githubLink: 'https://github.com/SAQLAINAP/bail-reckoner'
   },
   {
     id: 'speech-spam',
@@ -496,7 +494,7 @@ export const projects: Project[] = [
     image: projectImg('speech-spam'),
     accent: ['#a855f7', '#ec4899'],
     categories: ['ai'],
-    githubLink: 'https://github.com/SAQLAINAP/speech-spam-detector'
+    githubLink: 'https://github.com/SAQLAINAP/Real-Time-Speech-Spam-Detection-System'
   },
   {
     id: 'bangalore-atlas',
@@ -515,7 +513,7 @@ export const projects: Project[] = [
     image: projectImg('bangalore-atlas'),
     accent: ['#0ea5e9', '#22c55e'],
     categories: ['web', 'misc'],
-    githubLink: 'https://github.com/SAQLAINAP'
+    githubLink: 'https://github.com/SAQLAINAP/bangalore-atlas'
   }
 ];
 

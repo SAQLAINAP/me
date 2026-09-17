@@ -51,7 +51,7 @@ const Footer = () => {
             </span>
           </Link>
           <p className="mt-4 text-sm text-ivory/60 max-w-xs leading-relaxed">
-            Portfolio v3.5.0 · built with React, Vite &amp; Tailwind, hosted on GitHub Pages.
+            Portfolio v3.5.1 · built with React, Vite &amp; Tailwind, hosted on GitHub Pages.
             Aesthetic borrowed with love from Montgomery.
           </p>
         </div>
@@ -90,7 +90,7 @@ const Footer = () => {
 
       <div className="wrap-lg pb-6 pt-4 border-t border-ivory/10 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-ivory/40 font-mono">
         <span>© {new Date().getFullYear()} Saqlain Ahmed P — SAQLAINAP</span>
-        <span>made in bangalore · v3.5.0 · brutalist</span>
+        <span>made in bangalore · v3.5.1 · brutalist</span>
       </div>
     </footer>
   );

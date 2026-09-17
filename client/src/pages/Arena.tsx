@@ -262,14 +262,16 @@ function ArenaDetail({ project }: { project: Project }) {
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href={project.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pill pill--ink"
-            >
-              <FaGithub /> source
-            </a>
+            {project.githubLink && (
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pill pill--ink"
+              >
+                <FaGithub /> source
+              </a>
+            )}
             {project.demoLink && (
               <a
                 href={project.demoLink}
@@ -335,14 +337,20 @@ function ArenaDetail({ project }: { project: Project }) {
 
           <Panel title="Links">
             <div className="flex flex-col gap-2 text-sm font-mono">
-              <a
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-ink/80 hover:text-ink"
-              >
-                <FaGithub /> {project.githubLink.replace('https://', '')}
-              </a>
+              {project.githubLink ? (
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-ink/80 hover:text-ink"
+                >
+                  <FaGithub /> {project.githubLink.replace('https://', '')}
+                </a>
+              ) : (
+                <span className="inline-flex items-center gap-2 text-ink/50">
+                  <FaGithub /> repo private
+                </span>
+              )}
               {project.demoLink && (
                 <a
                   href={project.demoLink}

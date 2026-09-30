@@ -50,21 +50,21 @@
 
   .dark {
     /* Dark twin — same accents, inverted neutrals.
-       Palette is intentionally *soft* for photosensitive-safety:
-       - neutrals sit between #1a…#22 (never pure #000) to reduce contrast blast
-       - text is a warm off-white (#e6dccd) rather than #fff to soften glare
-       - accent hues are the same family as light-mode but ~35–45% desaturated
-         so they don't strobe/vibrate against a dark surround.
+       - neutrals sit between #16…#22 (never pure #000) to reduce contrast blast
+       - text is a warm off-white rather than #fff to soften glare
+       - accents are the light-mode hues, only ~10% softer, so lime/mint/gold
+         stay vivid instead of turning olive on the dark surround. Text on an
+         accent surface stays dark (see "Accent surfaces" below).
        We also swap the `--x-rgb` triples so tailwind alpha utilities like
        `text-ink/70` become 70%-opacity ivory on dark instead of 70% ink. */
     --ivory:  #16180f;   --ivory-rgb:  22  24  15;   /* bg      */
     --cream:  #1e2016;   --cream-rgb:  30  32  22;   /* surface */
     --ink:    #f2ead9;   --ink-rgb:   242 234 217;   /* text (warm off-white — softly luminous) */
     --olive:  #b8bda3;   --olive-rgb: 184 189 163;   /* muted   */
-    --lime:   #b8c556;   --lime-rgb:  184 197  86;   /* desat lime */
-    --mint:   #8fc776;   --mint-rgb:  143 199 118;   /* desat mint */
-    --gold:   #d9b94a;   --gold-rgb:  217 185  74;   /* desat gold */
-    --sage:   #6b7a52;   --sage-rgb:  107 122  82;
+    --lime:   #c9d93a;   --lime-rgb:  201 217  58;
+    --mint:   #8fe36d;   --mint-rgb:  143 227 109;
+    --gold:   #f0c838;   --gold-rgb:  240 200  56;
+    --sage:   #7a9f56;   --sage-rgb:  122 159  86;
 
     --background: 66 22% 8%;
     --foreground: 40 55% 89%;
@@ -74,11 +74,11 @@
     --popover-foreground: 40 55% 89%;
     --primary: 40 55% 89%;
     --primary-foreground: 66 20% 10%;
-    --secondary: 66 46% 55%;
+    --secondary: 66 68% 54%;
     --secondary-foreground: 66 20% 10%;
     --muted: 66 18% 15%;
     --muted-foreground: 40 15% 60%;
-    --accent: 66 46% 55%;
+    --accent: 66 68% 54%;
     --accent-foreground: 66 20% 10%;
     --destructive: 0 45% 45%;
     --destructive-foreground: 40 55% 92%;
@@ -207,9 +207,9 @@
   .dark .tag { background: var(--cream); }
   .dark .tag:hover { background: var(--mint); color: var(--ink); }
 
-  .tag--lime { background: var(--lime); }
-  .tag--gold { background: var(--gold); }
-  .tag--mint { background: var(--mint); }
+  .tag--lime, .dark .tag--lime { background: var(--lime); }
+  .tag--gold, .dark .tag--gold { background: var(--gold); }
+  .tag--mint, .dark .tag--mint { background: var(--mint); }
 
   /* --- Ticker (top marquee) ------------------------------------------- */
   .ticker {
@@ -496,6 +496,28 @@
   }
   .timeline-item:last-child::after { display: none; }
 
+  /* --- Accent surfaces in dark mode ---------------------------------
+     Lime/mint/gold are light colours, so text on them must stay dark, as in
+     light mode. Dark mode swaps `--ink` to off-white, which left every accent
+     (hero "P.", pills, project cards, ticker) at ~1.6:1 contrast. Re-scoping
+     the neutrals to their light-mode values inside an accent (same trick as
+     `.footer-panel`) makes `text-ink`, `border-ink`, nested `.tag`s, etc.
+     resolve the way they do in light mode. */
+  .dark :is(
+    .bg-lime, .bg-mint, .bg-gold, .hover\:bg-lime:hover,
+    .pill--lime, .pill--mint, .pill--gold,
+    .tag--lime, .tag--mint, .tag--gold, .tag:hover,
+    .mk--lime, .mk--mint, .mk--gold,
+    .card-proj--lime, .card-proj--mint, .card-proj--gold,
+    .ticker, .breathe-circle, .text-aurora
+  ):not(.pixel-avatar-disc) {
+    --ivory: #fff4ec;  --ivory-rgb: 255 244 236;
+    --cream: #f6e6d9;  --cream-rgb: 246 230 217;
+    --ink:   #14160d;  --ink-rgb:    20  22  13;
+    --olive: #3c422e;  --olive-rgb:  60  66  46;
+    color: var(--ink);
+  }
+
   /* --- Footer panel — theme-locked dark surface ----------------------
      The footer is designed to always read as a dark contrast strip.
      Without this, dark mode swaps `--ink` (warm off-white) with `--ivory`
@@ -510,9 +532,9 @@
     --cream:  #1e2016;   --cream-rgb:  30  32  22;
     --ink:    #14160d;   --ink-rgb:    20  22  13;
     --olive:  #6b7a52;   --olive-rgb: 107 122  82;
-    --lime:   #b8c556;   --lime-rgb:  184 197  86;
-    --mint:   #8fc776;   --mint-rgb:  143 199 118;
-    --gold:   #d9b94a;   --gold-rgb:  217 185  74;
+    --lime:   #c9d93a;   --lime-rgb:  201 217  58;
+    --mint:   #8fe36d;   --mint-rgb:  143 227 109;
+    --gold:   #f0c838;   --gold-rgb:  240 200  56;
     --sage:   #6b7a52;   --sage-rgb:  107 122  82;
     background: var(--ink);
     color: var(--ivory);
